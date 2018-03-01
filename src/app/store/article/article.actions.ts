@@ -4,14 +4,15 @@ import { IArticleState } from "./IArticleState";
 import { ArticleService } from "../../services/article/article.service";
 
 
-export const FILTER_CLOTHES = 'clothes/FILTER';
+export const FILTER_CLOTHES = 'articles/FILTER';
 export const REQUEST_ARTICLES_SUCCESS = 'articles/REQUEST_SUCCESS';
 
 @Injectable()
 export class ArticleActions {
 
-    constructor(private ngRedux: NgRedux<IArticleState>,
-    private articleService: ArticleService) {
+    constructor(
+        private ngRedux: NgRedux<IArticleState>,
+        private articleService: ArticleService) {
     }
 
     getClothes(){
