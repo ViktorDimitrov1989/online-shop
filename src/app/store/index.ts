@@ -1,2 +1,2 @@
-export * from './IArticleState';
-export * from './store';
+export * from './article/IArticleState';
+export * from './article/article.store';

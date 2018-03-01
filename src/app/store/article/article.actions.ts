@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { NgRedux } from 'ng2-redux';
-import { IArticleState } from ".";
-import { ArticleService } from "../services/article/article.service";
+import { IArticleState } from "./IArticleState";
+import { ArticleService } from "../../services/article/article.service";
 
 
 export const FILTER_CLOTHES = 'clothes/FILTER';
@@ -12,7 +12,6 @@ export class ArticleActions {
 
     constructor(private ngRedux: NgRedux<IArticleState>,
     private articleService: ArticleService) {
-
     }
 
     getClothes(){

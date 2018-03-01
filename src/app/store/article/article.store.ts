@@ -4,14 +4,15 @@ import {
     compose, 
     GenericStoreEnhancer 
   } from 'redux';
-  import { reducer } from './reducer';
-  import { IArticleState } from './IArticleState';
+import { articleReducer } from './article.reducer';
+import { IArticleState } from '..';
+
   
   declare var window: any;
   const devToolsExtension: GenericStoreEnhancer = (window.devToolsExtension)
     ? window.devToolsExtension() : (f) => f;
   
   export const store = createStore<IArticleState>(
-    reducer,
+    articleReducer,
     compose(devToolsExtension) as GenericStoreEnhancer);
   

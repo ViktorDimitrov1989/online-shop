@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { Observable } from 'rxjs/observable';
-import Clothe from './models/article';
-import { ArticleActions } from './store/article.actions';
+import { ArticleActions } from './store/article/article.actions';
+import Article from './models/article';
 
 @Component({
   selector: 'app-root',
@@ -13,17 +13,16 @@ export class AppComponent implements OnInit {
 
   title = 'app';
 
-  @select('clothes') clothes: Observable<Clothe>;
-  @select('filteredClothes') filteredClothes: Observable<Clothe>;
+  @select('clothes') clothes: Observable<Article>;
+  @select('filteredClothes') filteredClothes: Observable<Article>;
 
-  constructor(private clotheActions: ArticleActions){
+  constructor(private articleActions: ArticleActions){
 
   }
 
-
   ngOnInit(): void {
     //disdpatch action and change the state
-    this.clotheActions.filterClothes('ad');
+    this.articleActions.filterClothes('ad');
 
     console.log(this.clothes);
     console.log(this.filteredClothes);

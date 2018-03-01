@@ -1,5 +1,5 @@
 import { IArticleState } from "./IArticleState";
-import { FILTER_CLOTHES, REQUEST_ARTICLES_SUCCESS } from '../store/article.actions';
+import { FILTER_CLOTHES, REQUEST_ARTICLES_SUCCESS } from "./article.actions";
 
 const articles = [
     { id: 1, type: 't-shirt', brand: 'nike', picture: 'nike.jpg' },
@@ -12,7 +12,7 @@ const initialState: IArticleState = {
     filteredArticles: articles
 }
 
-function filterClothes(state, action) {
+function filterArticles(state, action) {
     return Object.assign({}, state, {
         filteredClothes: state.articles.filter(c => {
             return c.brand.toLowerCase()
@@ -28,12 +28,11 @@ function getArticles(state, action){
     })
 }
 
-
-export function reducer(state = initialState, action) {
+export function articleReducer(state = initialState, action) {
 
     switch (action.type) {
         case FILTER_CLOTHES:
-            return filterClothes(state, action);
+            return filterArticles(state, action);
         case REQUEST_ARTICLES_SUCCESS:
             return getArticles(state, action);
         default:
