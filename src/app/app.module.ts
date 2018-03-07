@@ -12,8 +12,10 @@ import { AppRoutingModule } from './routing/app-routing';
 import { ToastrModule } from 'ngx-toastr';
 //bootstrap
 import { AppBootstrapModule } from './modules/app-bootstrap/app-bootstrap.module';
+//material
+import { MaterialModule } from './modules/material/material.module';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { ArticleActions } from './store/article/article.actions';
 import { ArticleService } from './services/article/article.service';
@@ -22,6 +24,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
+
 
 @NgModule({
   declarations: [
@@ -34,10 +37,12 @@ import { MainComponent } from './components/main/main.component';
   imports: [
     BrowserModule,
     AppBootstrapModule,
+    MaterialModule,
     HttpClientModule,
     NgReduxModule,
     AppRoutingModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     ArticleActions,
