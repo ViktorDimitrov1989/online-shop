@@ -1,52 +1,23 @@
-<form class="card card-block bg-faded">
-  <legend class="m-b-1 text-xs-center">Sign up</legend>
+<!-- Material form login -->
+<form>
+    <p class="h4 text-center mb-4">Sign in</p>
 
-  <div class="form-group input-group">
-    <span class="has-float-label">
-      <input class="form-control" id="first" type="text" placeholder="Name"/>
-      <label for="first">First</label>
-    </span>
-    <label class="has-float-label">
-      <input class="form-control" type="text" placeholder="Surname"/>
-      <span>Last</span>
-    </label>
-  </div>
+    <!-- Material input email -->
+    <div class="md-form">
+        <i class="fa fa-envelope prefix grey-text"></i>
+        <input type="email" id="materialFormLoginEmailEx" class="form-control">
+        <label for="materialFormLoginEmailEx">Your email</label>
+    </div>
 
-  <div class="form-group input-group">
-    <span class="input-group-addon">@</span>
-    <label class="has-float-label">
-      <input class="form-control" type="email" placeholder="email@example.com" value="email@example.com"/>
-      <span>Email</span>
-    </label>
-  </div>
+    <!-- Material input password -->
+    <div class="md-form">
+        <i class="fa fa-lock prefix grey-text"></i>
+        <input type="password" id="materialFormLoginPasswordEx" class="form-control">
+        <label for="materialFormLoginPasswordEx">Your password</label>
+    </div>
 
-  <div class="form-group has-float-label">
-    <input class="form-control" id="password" type="password" placeholder="••••••••"/>
-    <label for="password">Password</label>
-  </div>
-
-  <label class="form-group has-float-label">
-    <select class="form-control custom-select">
-      <option selected>United States</option>
-      <option>Canada</option>
-      <option>...</option>
-    </select>
-    <span>Country</span>
-  </label>
-
-  <div class="form-group">
-    <label class="custom-control custom-checkbox">
-      <input class="custom-control-input" type="checkbox"/>
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Subscribe to newsletter</span>
-    </label>
-  </div>
-
-  <button class="btn btn-block btn-primary" type="submit">Sign up</button>
+    <div class="text-center mt-4">
+        <button class="btn btn-default" type="submit">Login</button>
+    </div>
 </form>
-
-<!---->
-
-<a href="https://github.com/tonystar/bootstrap-float-label" target="_blank">
-  <img src="https://img.shields.io/github/stars/tonystar/bootstrap-float-label.svg?style=social&label=Star"/>
-</a>
+<!-- Material form login -->

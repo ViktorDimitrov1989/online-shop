@@ -37,7 +37,10 @@
               </div>
             </li>
             <li>
-              <a href="#" class="nav-item nav-link">Contact</a>
+              <a href="#" class="nav-item nav-link" routerLink="/login">Login</a>
+            </li>
+            <li>
+                <a href="#" class="nav-item nav-link">Register</a>
             </li>
           </ul>
         </div>
@@ -46,9 +49,10 @@
 
     <div class="banner">
       <div class="container">
-        <h1>Bootstrap 4 Navbar</h1>
+        <!-- <h1>Bootstrap 4 Navbar</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec elit ex. Etiam elementum lectus et tempor molestie.</p>
-        <a href="#content" class="button button-primary">Learn More</a>
+        <a href="#content" class="button button-primary">Learn More</a> -->
+        <router-outlet></router-outlet>
       </div>
     </div>
   </header>
