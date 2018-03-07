@@ -4,6 +4,19 @@ html {
   font-size: 62.5%;
 }
 
+/* .container{
+  margin-left: 20px;
+  margin-right: 20px;
+  
+} */
+.dropdown{
+  display: inline-block;
+}
+
+.dropdown a{
+  display: block;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.6rem;

@@ -8,7 +8,11 @@ import * as $ from 'jquery';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  public isAuthenticated: boolean;
+
+  constructor() { 
+    this.isAuthenticated = false;
+  }
 
   ngOnInit() {
     this.initJquery();

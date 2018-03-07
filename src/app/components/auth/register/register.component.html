@@ -1,0 +1,37 @@
+<form class="login-form" #loginForm="ngForm" (ngSubmit)="login()">
+  <h3 class="head">Регистрация</h3>
+  <div class="fields-container">
+    <mat-form-field class="example-full-width">
+      <input class="input" matInput placeholder="Име" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+      <mat-hint>Задължително поле</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input class="input" matInput placeholder="Фамилия" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+        <mat-hint>Задължително поле</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input class="input" matInput placeholder="Имейл" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+      <mat-hint>Задължително поле</mat-hint>
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Моля въведете валиден имейл адрес.
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Имейла е
+        <strong>задължителен</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input class="input" matInput placeholder="Телефон за връзка" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+        <mat-hint>Задължително поле</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input class="input" matInput placeholder="Парола" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+        <mat-hint>Задължително поле</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input class="input" matInput placeholder="Повтори паролата" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+      <mat-hint>Задължително поле</mat-hint>
+    </mat-form-field>
+  </div>
+  <button mat-button type="submit" class="submit-btn">Напред</button>
+</form>

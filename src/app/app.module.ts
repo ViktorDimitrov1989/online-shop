@@ -15,6 +15,8 @@ import { AppBootstrapModule } from './modules/app-bootstrap/app-bootstrap.module
 //material
 import { MaterialModule } from './modules/material/material.module';
 
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { ArticleActions } from './store/article/article.actions';
@@ -24,6 +26,8 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { CartComponent } from './components/user/cart/cart.component';
 
 
 @NgModule({
@@ -32,12 +36,16 @@ import { MainComponent } from './components/main/main.component';
     LoginComponent,
     HeaderComponent,
     FooterComponent,
-    MainComponent
+    MainComponent,
+    RegisterComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
     AppBootstrapModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgReduxModule,
     AppRoutingModule,

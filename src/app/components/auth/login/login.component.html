@@ -1,15 +1,20 @@
-<div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Input">
-  </mat-form-field>
-
-  <mat-form-field>
-    <textarea matInput placeholder="Textarea"></textarea>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="Select">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
+<form class="login-form" #loginForm="ngForm" (ngSubmit)="login()">
+  <h3 class="head">Вход</h3>
+  <div class="fields-container">
+    <mat-form-field class="example-full-width">
+      <input class="input" matInput placeholder="Имейл" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Моля въведете валиден имейл адрес.
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Имейла е
+        <strong>задължителен</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input class="input" matInput placeholder="Парола" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+    </mat-form-field>
+    <p class="head">Забравена парола</p>
+  </div>
+  <button mat-button type="submit" class="submit-btn">Напред</button>
+</form>

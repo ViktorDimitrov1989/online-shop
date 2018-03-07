@@ -2,48 +2,59 @@
   <header class="header-area overlay">
     <nav class="navbar navbar-expand-md navbar-dark">
       <div class="container">
-        <a href="#" class="navbar-brand">Online-Shop</a>
+        <a href="/" class="navbar-brand">Online-Shop</a>
 
         <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
           <span class="menu-icon-bar"></span>
           <span class="menu-icon-bar"></span>
           <span class="menu-icon-bar"></span>
         </button>
-
-        <div id="main-nav" class="collapse navbar-collapse">
-          <ul class="navbar-nav ml-auto">
-            <li>
-              <a href="#" class="nav-item nav-link active">Home</a>
-            </li>
-            <li>
-              <a href="#" class="nav-item nav-link">About Us</a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="nav-item nav-link" data-toggle="dropdown">Services</a>
-              <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Dropdown Item 1</a>
-                <a href="#" class="dropdown-item">Dropdown Item 2</a>
-                <a href="#" class="dropdown-item">Dropdown Item 3</a>
-              </div>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="nav-item nav-link" data-toggle="dropdown">Portfolio</a>
-              <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Dropdown Item 1</a>
-                <a href="#" class="dropdown-item">Dropdown Item 2</a>
-                <a href="#" class="dropdown-item">Dropdown Item 3</a>
-                <a href="#" class="dropdown-item">Dropdown Item 4</a>
-                <a href="#" class="dropdown-item">Dropdown Item 5</a>
-              </div>
-            </li>
-            <li>
-              <a href="#" class="nav-item nav-link" routerLink="/login">Login</a>
-            </li>
-            <li>
-                <a href="#" class="nav-item nav-link">Register</a>
-            </li>
-          </ul>
-        </div>
+        <ul class="navbar-nav ml-auto">
+          <li class="dropdown">
+            <a href="#" class="nav-item nav-link" data-toggle="dropdown">Новородено(0-12м)</a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item">Dropdown Item 1</a>
+              <a href="#" class="dropdown-item">Dropdown Item 2</a>
+              <a href="#" class="dropdown-item">Dropdown Item 3</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="nav-item nav-link" data-toggle="dropdown">Дете(3-36м)</a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item">Dropdown Item 1</a>
+              <a href="#" class="dropdown-item">Dropdown Item 2</a>
+              <a href="#" class="dropdown-item">Dropdown Item 3</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="nav-item nav-link" data-toggle="dropdown">Дете(2-9г)</a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item">Dropdown Item 1</a>
+              <a href="#" class="dropdown-item">Dropdown Item 2</a>
+              <a href="#" class="dropdown-item">Dropdown Item 3</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="nav-item nav-link" data-toggle="dropdown">Тийн(8-16г)</a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item">Dropdown Item 1</a>
+              <a href="#" class="dropdown-item">Dropdown Item 2</a>
+              <a href="#" class="dropdown-item">Dropdown Item 3</a>
+            </div>
+          </li>
+          <li>
+            <a href="#" class="nav-item nav-link">Потребители</a>
+          </li>
+          <li class="nav-item" [hidden]="isAuthenticated">
+            <a class="nav-item nav-link" routerLink="/login">Вход</a>
+          </li>
+          <li class="nav-item" [hidden]="isAuthenticated">
+            <a class="nav-item nav-link" routerLink="/register">Регистрация</a>
+          </li>
+          <li class="nav-item" [hidden]="isAuthenticated">
+            <a class="nav-item nav-link" routerLink="/cart">Количка</a>
+          </li>
+        </ul>
       </div>
     </nav>
 

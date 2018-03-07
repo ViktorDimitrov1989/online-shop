@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatFormFieldControl, ErrorStateMatcher } from '@angular/material';
-import * as $ from 'jquery';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -10,38 +9,20 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [{ provide: MatFormFieldControl, useExisting: LoginComponent }]
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
-
-
-  private isChangingForms: boolean;
-
   constructor() { }
 
   ngOnInit() {
-  
-  }
-
-  private initJquery() {
-  }
-
-  login() {
-    console.log('Login')
-  }
-
-  register() {
-    console.log('Register')
   }
 
 }
