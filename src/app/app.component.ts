@@ -10,8 +10,7 @@ import Article from './models/article';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-  title = 'app';
+  static API_URL="http://localhost:8080";
 
   @select('clothes') clothes: Observable<Article>;
   @select('filteredClothes') filteredClothes: Observable<Article>;

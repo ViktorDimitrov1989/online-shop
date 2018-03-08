@@ -28,6 +28,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { CartComponent } from './components/user/cart/cart.component';
+import { AuthService } from './services/auth/auth.service';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -47,6 +49,7 @@ import { CartComponent } from './components/user/cart/cart.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpModule,
     NgReduxModule,
     AppRoutingModule,
     ToastrModule.forRoot(),
@@ -55,7 +58,8 @@ import { CartComponent } from './components/user/cart/cart.component';
   providers: [
     ArticleActions,
     HttpClient,
-    ArticleService
+    ArticleService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
