@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/app-state';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +11,10 @@ import * as $ from 'jquery';
 })
 export class HeaderComponent implements OnInit {
 
-  public isAuthenticated: boolean;
+  private loggedUser: Observable<any>;
 
-  constructor() { 
-    this.isAuthenticated = false;
+  constructor(private store: Store<AppState>) { 
+    this.loggedUser = this.store.select(state => state.userState.loggedUser);
   }
 
   ngOnInit() {

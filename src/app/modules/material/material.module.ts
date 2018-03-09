@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MatButtonModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatInputModule, MatOptionModule, MatSelectModule } from '@angular/material';
+import { MatButtonModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatInputModule, MatOptionModule, MatSelectModule, MatCheckboxModule } from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 
@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
     
   ],
   exports: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers:[ {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher} ]
 })

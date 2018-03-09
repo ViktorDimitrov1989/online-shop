@@ -7,7 +7,9 @@
     <mat-form-field class="example-full-width">
       <input class="input" matInput placeholder="Парола" name="password" [(ngModel)]="user.password">
     </mat-form-field>
-    <a class="nav-item nav-link" routerLink="/register">Нямате регистрация?</a>
+
+    <mat-checkbox class="check-box" name="rememberMe" [(ngModel)]="user.rememberMe">Запомни ме</mat-checkbox><br/>
   </div>
-  <button mat-button type="submit" class="submit-btn">Напред</button>
+    <a class="link" routerLink="/register">Нямате регистрация?</a><br/>
+    <button mat-button type="submit" class="submit-btn">Напред</button>
 </form>

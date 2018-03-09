@@ -21,7 +21,8 @@
       "scripts": ["../node_modules/jquery/dist/jquery.min.js"],
       "styles": [
         "styles.css",
-        "./styles/bootstrap/css/bootstrap.min.css"
+        "./styles/bootstrap/css/bootstrap.min.css",
+        "../node_modules/ngx-toastr/toastr.css"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

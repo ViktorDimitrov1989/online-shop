@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(public authService: AuthService, public router: Router) { 
     this.user = {
       email: '',
-      password: ''
+      password: '',
+      rememberMe: false
     }
 
   }

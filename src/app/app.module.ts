@@ -3,11 +3,8 @@ import { NgModule } from '@angular/core';
 
 //redux
 import { NgReduxModule, NgRedux } from 'ng2-redux';
-import { store, IArticleState} from './store';
-
 //routing
 import { AppRoutingModule } from './routing/app-routing';
-
 //toastr
 import { ToastrModule } from 'ngx-toastr';
 //bootstrap
@@ -18,19 +15,25 @@ import { MaterialModule } from './modules/material/material.module';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppComponent } from './app.component';
-import { ArticleActions } from './store/article/article.actions';
+
 import { ArticleService } from './services/article/article.service';
+import { AuthService } from './services/auth/auth.service';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+
+//components
+import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { CartComponent } from './components/user/cart/cart.component';
-import { AuthService } from './services/auth/auth.service';
-import { HttpModule } from '@angular/http';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/reducers';
 
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -53,10 +56,13 @@ import { HttpModule } from '@angular/http';
     NgReduxModule,
     AppRoutingModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    StoreModule.forRoot(reducers),
+    BrowserAnimationsModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    })
   ],
   providers: [
-    ArticleActions,
     HttpClient,
     ArticleService,
     AuthService
@@ -64,11 +70,4 @@ import { HttpModule } from '@angular/http';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
-  constructor(ngRedux: NgRedux<IArticleState>){
-    //set store to redux
-    ngRedux.provideStore(store);
-    //ngRedux.provideStore(anotherStore);
-  }
-
 }

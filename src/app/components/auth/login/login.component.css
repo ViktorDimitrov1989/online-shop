@@ -6,10 +6,15 @@
     text-align: center;
     background: rgba(255, 255, 255, 0.932);
     border-radius: 10px;
+    border: 1px solid grey;
 }
 
 .input{
     color: black;
+}
+
+.link{
+    margin-top: 10px
 }
 
 .head{
@@ -17,18 +22,24 @@
     color: black;
 }
 
+.check-box{
+    color: black;
+}
+
 .fields-container{
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     margin-left: 50px;
     margin-right: 50px;
 }
 
 .submit-btn{
+    margin-top: 25px;
     margin-bottom: 50px;
     width: 50%;
     height: 50%;
     background-color: skyblue;
+    border: 1px solid lightgreen;
 }
 
 .example-full-width {

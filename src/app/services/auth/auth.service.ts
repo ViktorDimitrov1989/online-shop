@@ -2,37 +2,45 @@ import { Injectable } from '@angular/core';
 import RegisterUser from '../../models/register-user';
 import { AppComponent } from '../../app.component';
 import LoginUser from '../../models/login-user';
-import { HttpHeaders, HttpClient} from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { UserState } from '../../store/user/user-state';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app-state';
+import { LoginUserAction, RegisterUserAction } from '../../store/user/user-actions';
 
 
 @Injectable()
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private toastr: ToastrService,
+    public store: Store<AppState>) { }
 
   public createAccount(user: RegisterUser) {
     this.http.post(AppComponent.API_URL + '/user/register', user)
-      .subscribe(resp => {
-        console.log(resp)
+      .subscribe((respObject: any) => {
+        this.toastr.success(respObject.message);
+        this.store.dispatch(new RegisterUserAction(respObject.response))
       },
-      err => {
-        console.log(err);
-      });
+        err => {
+          this.toastr.error(err.error.message);
+        });
   }
 
   public logIn(user: LoginUser) {
-    let headers = new HttpHeaders();
-    headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    headers.append('Access-Control-Allow-Methods', 'POST');
-    headers.append('Access-Control-Allow-Origin', '*');
 
-   this.http.post(AppComponent.API_URL + "/user/login", user, { withCredentials: true })
-    .subscribe((resp) => {
-      resp => console.log(resp)
-    },
-    err => {
-      console.log(err);
-    })
+    this.http.post(AppComponent.API_URL + "/user/login", user)
+      .subscribe((respObject: any) => {
+        this.toastr.success(respObject.message);
+        this.store.dispatch(new LoginUserAction(respObject.response))
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
   }
 
 }
