@@ -34,6 +34,10 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { UserInfoCardComponent } from './components/user/user-info-card/user-info-card.component';
+import { UsersListComponent } from './components/user/users-list/users-list.component';
+import { ArticleListComponent } from './components/basket/article-list/article-list.component';
+import { ArticleComponent } from './components/basket/article/article.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,11 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     FooterComponent,
     MainComponent,
     RegisterComponent,
-    CartComponent
+    CartComponent,
+    UserInfoCardComponent,
+    UsersListComponent,
+    ArticleListComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,

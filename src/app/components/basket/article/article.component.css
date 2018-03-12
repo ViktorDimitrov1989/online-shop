@@ -1,0 +1,14 @@
+.articles-header{
+    background-color: tomato;
+    margin-bottom: 25px;
+}
+
+.list{
+    align-items: flex-start
+}
+
+.article-img{
+    max-height: 150px;
+    max-width: 150px;
+}
+ 

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../components/auth/login/login.component';
 import { RegisterComponent } from '../components/auth/register/register.component';
 import { CartComponent } from '../components/user/cart/cart.component';
+import { UsersListComponent } from '../components/user/users-list/users-list.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+    //canActivate: [NotAuthGuard]
+  },
+  {
+    path: 'users',
+    component: UsersListComponent,
     //canActivate: [NotAuthGuard]
   }
 ]

@@ -1,101 +1,75 @@
-<body>
-  <header class="header-area overlay">
-    <nav class="navbar navbar-expand-md navbar-dark">
-      <div class="container">
-        <a href="/" class="navbar-brand">Online-Shop</a>
+<mat-toolbar color="primary" class="flex-container">
 
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
-          <span class="menu-icon-bar"></span>
-          <span class="menu-icon-bar"></span>
-          <span class="menu-icon-bar"></span>
-        </button>
-        <ul class="navbar-nav ml-auto">
-          <li class="dropdown">
-            <a href="#" class="nav-item nav-link" data-toggle="dropdown">Новородено(0-12м)</a>
-            <div class="dropdown-menu">
-              <a href="#" class="dropdown-item">Dropdown Item 1</a>
-              <a href="#" class="dropdown-item">Dropdown Item 2</a>
-              <a href="#" class="dropdown-item">Dropdown Item 3</a>
-            </div>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="nav-item nav-link" data-toggle="dropdown">Дете(3-36м)</a>
-            <div class="dropdown-menu">
-              <a href="#" class="dropdown-item">Dropdown Item 1</a>
-              <a href="#" class="dropdown-item">Dropdown Item 2</a>
-              <a href="#" class="dropdown-item">Dropdown Item 3</a>
-            </div>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="nav-item nav-link" data-toggle="dropdown">Дете(2-9г)</a>
-            <div class="dropdown-menu">
-              <a href="#" class="dropdown-item">Dropdown Item 1</a>
-              <a href="#" class="dropdown-item">Dropdown Item 2</a>
-              <a href="#" class="dropdown-item">Dropdown Item 3</a>
-            </div>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="nav-item nav-link" data-toggle="dropdown">Тийн(8-16г)</a>
-            <div class="dropdown-menu">
-              <a href="#" class="dropdown-item">Dropdown Item 1</a>
-              <a href="#" class="dropdown-item">Dropdown Item 2</a>
-              <a href="#" class="dropdown-item">Dropdown Item 3</a>
-            </div>
-          </li>
-          <li>
-            <a href="#" class="nav-item nav-link">Потребители</a>
-          </li>
-          <li class="nav-item" [hidden]="isAuthenticated">
-            <a class="nav-item nav-link" routerLink="/login">Вход</a>
-          </li>
-          <li class="nav-item" [hidden]="isAuthenticated">
-            <a class="nav-item nav-link" routerLink="/register">Регистрация</a>
-          </li>
-          <li class="nav-item" [hidden]="isAuthenticated">
-            <a class="nav-item nav-link" routerLink="/cart">Количка</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+  <div class="flex-container" fxShow="false" fxShow.gt-sm>
+    <button class="mat-elevation-z2" mat-button routerLink="/">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button class="mat-elevation-z2" mat-button [matMenuTriggerFor]="genders">
+      <mat-icon>store</mat-icon>
+      Магазин</button>
+    <button class="mat-elevation-z2" mat-button routerLink="/basket">
+      <mat-icon>shopping_basket</mat-icon>
+      Кошница</button>
+    <button class="mat-elevation-z2" mat-button routerLink="/users">
+        <mat-icon>group</mat-icon>
+        Потребители</button>
+  </div>
 
-    <div class="banner">
-      <div class="container">
-        <!-- <h1>Bootstrap 4 Navbar</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec elit ex. Etiam elementum lectus et tempor molestie.</p>
-        <a href="#content" class="button button-primary">Learn More</a> -->
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  </header>
+  <div class="auth-links" fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button class="mat-elevation-z2" mat-button [mat-menu-trigger-for]="menu" fxHide="false">
+      <mat-icon>account_box</mat-icon>
+      Автентикация</button>
+  </div>
 
-  <main>
-    <section id="content" class="content">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec elit ex. Etiam elementum lectus et tempor
-              molestie. Pellentesque vestibulum dui sit amet dui volutpat sollicitudin. Etiam non erat finibus, iaculis nunc
-              vel, convallis eros. Etiam efficitur tempor dui, vitae fringilla ipsum tristique quis. Aliquam erat volutpat.
-              Cras ullamcorper ex et viverra vulputate. Nam lectus ligula, pretium nec risus nec, ultricies fringilla mauris.
-              Proin quis venenatis neque, iaculis porta nulla. </p>
-          </div>
-          <div class="col-md-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec elit ex. Etiam elementum lectus et tempor
-              molestie. Pellentesque vestibulum dui sit amet dui volutpat sollicitudin. Etiam non erat finibus, iaculis nunc
-              vel, convallis eros. Etiam efficitur tempor dui, vitae fringilla ipsum tristique quis. Aliquam erat volutpat.
-              Cras ullamcorper ex et viverra vulputate. Nam lectus ligula, pretium nec risus nec, ultricies fringilla mauris.
-              Proin quis venenatis neque, iaculis porta nulla. </p>
-          </div>
-          <div class="col-md-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec elit ex. Etiam elementum lectus et tempor
-              molestie. Pellentesque vestibulum dui sit amet dui volutpat sollicitudin. Etiam non erat finibus, iaculis nunc
-              vel, convallis eros. Etiam efficitur tempor dui, vitae fringilla ipsum tristique quis. Aliquam erat volutpat.
-              Cras ullamcorper ex et viverra vulputate. Nam lectus ligula, pretium nec risus nec, ultricies fringilla mauris.
-              Proin quis venenatis neque, iaculis porta nulla. </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+  <!-- Menu button -->
+  <button mat-button [mat-menu-trigger-for]="mobile" fxHide="false" fxHide.gt-sm>
+      <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
 
-</body>
+<!-- Mobile menu -->
+<mat-menu [overlapTrigger]="false" class="flex-container" x-position="before" #mobile="matMenu">
+    <button mat-menu-item routerLink="/login">Вход</button>
+    <button mat-menu-item routerLink="/register">Регистрация</button>
+    <button mat-menu-item class="mat-elevation-z2" routerLink="/">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-menu-item class="mat-elevation-z2" [matMenuTriggerFor]="genders">
+      <mat-icon>store</mat-icon>
+      Магазин</button>
+    <button mat-menu-item class="mat-elevation-z2" routerLink="/basket">
+      <mat-icon>shopping_basket</mat-icon>
+      Кошница</button>
+    <button mat-menu-item class="mat-elevation-z2" routerLink="/users">
+        <mat-icon>group</mat-icon>
+        Потребители</button>
+</mat-menu>
+
+<div class="content">
+    <!-- <router-outlet></router-outlet> -->
+    <app-article></app-article>
+</div>
+
+<mat-menu [overlapTrigger]="false" class="menu" x-position="before" #menu="matMenu">
+  <button mat-menu-item routerLink="/login">Вход</button>
+  <button mat-menu-item routerLink="/register">Регистрация</button>
+</mat-menu>
+
+<!-- shop categories -->
+<!-- gender categories -->
+<mat-menu [overlapTrigger]="false" #genders="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="boysSesons">Момичета</button>
+  <button mat-menu-item [matMenuTriggerFor]="girlsSesons">Момчета</button>
+</mat-menu>
+
+<!-- seson categories -->
+<mat-menu #boysSesons="matMenu">
+  <button mat-menu-item>Пролет-лято</button>
+  <button mat-menu-item>Есен-Зима</button>
+</mat-menu>
+
+<!-- seson categories -->
+<mat-menu #girlsSesons="matMenu">
+    <button mat-menu-item>Пролет-лято</button>
+    <button mat-menu-item>Есен-Зима</button>
+</mat-menu>
