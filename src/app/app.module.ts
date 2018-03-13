@@ -38,6 +38,7 @@ import { UserInfoCardComponent } from './components/user/user-info-card/user-inf
 import { UsersListComponent } from './components/user/users-list/users-list.component';
 import { ArticleListComponent } from './components/basket/article-list/article-list.component';
 import { ArticleComponent } from './components/basket/article/article.component';
+import { IndexComponent } from './components/home/index/index.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ArticleComponent } from './components/basket/article/article.component'
     UserInfoCardComponent,
     UsersListComponent,
     ArticleListComponent,
-    ArticleComponent
+    ArticleComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,

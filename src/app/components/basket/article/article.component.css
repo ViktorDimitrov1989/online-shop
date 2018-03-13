@@ -1,14 +1,39 @@
-.articles-header{
+.list-header{
     background-color: tomato;
-    margin-bottom: 25px;
 }
 
-.list{
-    align-items: flex-start
+/* .flex-container{
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+} */
+
+.quantity-col{
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+}
+
+.quantity-field{
+    width: 10%;
+}
+
+.flex-item{
+    max-height: 50px;
+    margin: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
 }
 
 .article-img{
-    max-height: 150px;
-    max-width: 150px;
+    max-height: 170px;
+    max-width: 170px;
+}
+
+.text-container{
+    flex-wrap: wrap;
 }
  

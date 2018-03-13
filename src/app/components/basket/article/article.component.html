@@ -1,27 +1,123 @@
-<div class="list">
-  <mat-toolbar class="articles-header"></mat-toolbar>
+<!-- <mat-toolbar class="articles-header"></mat-toolbar> -->
+<h3 matSubheader class="list-header">Продукти</h3>
+<mat-list role="list" class="flex-container">
 
-  <mat-card class="article">
-    <!-- <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header> -->
-    <div class="article-img">
-        <img  mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <div class="flex-item">
+    <div>
+      <img class="article-img" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" />
     </div>
-    
-    <!-- <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
-        very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions> -->
-  </mat-card>
+
+    <div class="text-container">
+      <h3>Some Product Name</h3>
+      <h5>Some produc</h5>
+    </div>
+
+    <div class="quantity-col">
+      <strong>25.00
+        <span class="text-muted">x</span>
+      </strong>
+    </div>
+
+    <div class="quantity-col">
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <mat-form-field class="quantity-field">
+        <input matInput placeholder="1" disabled/>
+      </mat-form-field>
+
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+
+    <div class="quantity-col">
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  <hr/>
+  <div class="flex-item">
+
+    <div>
+      <img class="article-img" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" />
+    </div>
+
+    <div class="text-container">
+      <h3>Some Product Name</h3>
+      <h5>Some produc
+      </h5>
+    </div>
+
+    <div class="quantity-col">
+      <strong>25.00
+        <span class="text-muted">x</span>
+      </strong>
+    </div>
+
+    <div class="quantity-col">
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <mat-form-field class="quantity-field">
+        <input matInput placeholder="1" disabled/>
+      </mat-form-field>
+
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+
+    <div class="quantity-col">
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  <hr/>
+  <div class="flex-item">
+
+    <div>
+      <img class="article-img" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" />
+    </div>
+
+    <div class="text-container">
+      <h3>Some Product Name</h3>
+      <h5>Some produc
+      </h5>
+    </div>
 
 
-</div>
+
+    <div class="quantity-col">
+      <strong>25.00
+        <span class="text-muted">x</span>
+      </strong>
+    </div>
+
+    <div class="quantity-col">
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <mat-form-field class="quantity-field">
+        <input matInput placeholder="1" disabled/>
+      </mat-form-field>
+
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+
+    <div class="quantity-col">
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  <hr/>
+
+</mat-list>
