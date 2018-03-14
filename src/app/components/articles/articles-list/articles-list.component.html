@@ -2,9 +2,9 @@
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <p>Филтрирай по категории:</p>
     <mat-selection-list #shoes>
-        <mat-list-option>Панталони</mat-list-option>
-        <mat-list-option>Блузи</mat-list-option>
-        <mat-list-option>Тениски</mat-list-option>
+      <mat-list-option>Панталони</mat-list-option>
+      <mat-list-option>Блузи</mat-list-option>
+      <mat-list-option>Тениски</mat-list-option>
     </mat-selection-list>
 
     <!-- <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p> -->
@@ -13,10 +13,15 @@
     </button>
   </mat-drawer>
 
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-  </div>
+  <mat-toolbar color="primary" class="flex-container">
+
+    <div class="flex-container" fxShow="false" fxShow.gt-sm>
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>settings</mat-icon>
+        Филтри
+      </button>
+    </div>
+  </mat-toolbar>
+
 
 </mat-drawer-container>
