@@ -1,114 +1,46 @@
-/* .field{
-    
-    max-width: 700px;
-    min-width: 500px;
-
-    margin-left: 50px;
-    margin-right: 50px;
+.myForm {
+  display: flex;
+  flex-direction: column;
+  background-color: #D7E8D4;
+  border-radius: 3px;
+  padding: 4em;
 }
 
-.register-form{
-    margin-top: 40px;
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.myForm > div{
+  padding: 15px;
 }
 
-.fields-container > h3{
-    margin-top: 50px;
+.row {
+  display: flex;
+  justify-content: space-around;
 }
-
-.fields-container > button{
-    margin-top: 10px;
-    margin-bottom: 50px;
+.column {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  flex-basis: 30%;
 }
-
-.fields-container{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: stretch;
-
-    border-radius: 10px;
-}
-
-.centered{
-    
-    display: flex;
-    align-self: center;
-    justify-content: center;
-} */
-
-
-html,
- body {
-   height: 100%;
-   padding: 0;
-   margin: 0;
-   font-family: Arial, Helvetica, sans-serif;
- }
-textarea {
-   font-family: Arial, Helvetica, sans-serif;
-}
- 
- .main-content {
-   max-width: 500px;
-   padding: 20px;
- }
- 
- @media (max-width: 768px) {
-   .main-content {
-     padding: 20px 8px;
-   }
- }
- 
-
-/* form specific formatting */
- .form-group {
+.input-group {
    display: flex;
-   flex-direction: row;
- }
- 
- .form-group label {
-   flex: none;
-   display: block;
-   width: 125px;
-   font-weight: bold;
-   font-size: 1em;
- }
- .form-group label.right-inline {
-   text-align: right;  
-   padding-right: 8px;
-   padding-left: 10px;
-   width: auto;
- }
- 
- .form-group .input-control {
-   flex: 1 1 auto;
-   display: block;
-   margin-bottom: 10px;
-   margin-right: 8px;
-   padding: 4px;
-   margin-top: -4px;
- }
- 
- button {
-   padding: 5px 15px;
-   margin: 5px;
-   min-width: 100px
- }
- 
- @media (max-width: 768px) {
-   .form-group {
-     flex-direction: column;
-   }
-   .form-group .input-control {
-     margin-top: 2px;
-   }
-   .form-group label.right-inline {
-     text-align: left;  
-     padding-right: 0;
-     padding-left: 0;   
-   }
- }
+}
+.input-group > label {
+  margin-right: 1em; 
+  padding: .5em 0;
+}
+.myForm input,
+.myForm select {
+  flex: 6; 
+  padding: .5em;
+  margin-bottom: 1em;
+}
+.myForm button {
+  background: #303F9F;
+  color: white;
+}
+.myForm fieldset {
+   border: 0; 
+}
+.taxi > label,
+.extras > label {
+  display: block;
+}

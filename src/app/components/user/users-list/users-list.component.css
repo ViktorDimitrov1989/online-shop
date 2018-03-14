@@ -1,11 +1,12 @@
 .list{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.btn{
+.buttons{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
 }

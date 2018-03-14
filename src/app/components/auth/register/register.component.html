@@ -1,169 +1,68 @@
-<!-- <form class="register-form" #registerForm="ngForm" (ngSubmit)="register()">
-  <div class="fields-container">
-    <h3 class="centered">Регистрация</h3>
-  
-    
+<form class="myForm">
+  <h2 class="row">Регистрация</h2>
+  <div class="row">
 
-    
+    <div class="column">
+      <mat-form-field>
+        <input class="input" matInput placeholder="Име" name="firstName" [(ngModel)]="user.firstName">
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
 
-    
+      <mat-form-field>
+        <input class="input" matInput placeholder="Фамилия" name="lastName" [(ngModel)]="user.lastName">
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
 
-    
+      <mat-form-field>
+        <input class="input" matInput placeholder="Имейл" name="email" [(ngModel)]="user.email" [formControl]="emailFormControl"
+          [errorStateMatcher]="matcher">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Полето е
+          <strong>задължително</strong>
+        </mat-error>
+      </mat-form-field>
 
-    
+      <mat-form-field>
+        <input class="input" matInput placeholder="Парола" name="password" type="password" [(ngModel)]="user.password" [formControl]="passwordFormControl"
+          [errorStateMatcher]="matcher">
+        <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
+          Паролата трябва да е от минимум 5 символа.
+        </mat-error>
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Полето е
+          <strong>задължително</strong>
+        </mat-error>
+      </mat-form-field>
 
-    
+      <mat-form-field>
+        <input class="input" matInput placeholder="Повтори паролата" name="confirmPassword" type="password" [(ngModel)]="user.confirmPassword">
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
+    </div>
 
-    <a class="nav-item nav-link centered" routerLink="/login">Вече сте регистриран?</a>
-
-    <button mat-button type="submit" class="centered">Напред</button>
-  </div>
-</form> -->
-
-
-
-<!-- <div class="container register form">
-  <div>
-    <div class="form-area">
-      <form role="form" class="fields-container">
-        <br style="clear:both">
-        <h3 style="margin-bottom: 25px; text-align: center;">Contact Form</h3>
-        <div class="form-group">
-          <mat-form-field class="field">
-            <input class="input" matInput placeholder="Име" name="firstName" [(ngModel)]="user.firstName">
-            <mat-hint>Задължително поле</mat-hint>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="field">
-            <input class="input" matInput placeholder="Име" name="firstName" [(ngModel)]="user.firstName">
-            <mat-hint>Задължително поле</mat-hint>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="field">
-            <input class="input" matInput placeholder="Фамилия" name="lastName" [(ngModel)]="user.lastName">
-            <mat-hint>Задължително поле</mat-hint>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="field">
-            <input class="input" matInput placeholder="Имейл" name="email" [(ngModel)]="user.email" [formControl]="emailFormControl"
-              [errorStateMatcher]="matcher">
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-              Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-              Полето е
-              <strong>задължително</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="field">
-            <input class="input" matInput placeholder="Телефон за връзка" name="phoneNumber" [(ngModel)]="user.phoneNumber">
-            <mat-hint>Задължително поле</mat-hint>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="field">
-            <input class="input" matInput placeholder="Парола" name="password" type="password" [(ngModel)]="user.password" [formControl]="passwordFormControl"
-              [errorStateMatcher]="matcher">
-            <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
-              Паролата трябва да е от минимум 5 символа.
-            </mat-error>
-            <mat-error *ngIf="passwordFormControl.hasError('required')">
-              Полето е
-              <strong>задължително</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field class="field">
-            <input class="input" matInput placeholder="Повтори паролата" name="confirmPassword" type="password" [(ngModel)]="user.confirmPassword">
-            <mat-hint>Задължително поле</mat-hint>
-          </mat-form-field>
-        </div>
-
-        <button mat-button type="submit" class="btn btn-primary centered">Напред</button>
-      </form>
+    <div class="column">
+      <mat-form-field>
+        <input matInput placeholder="Телефон за връзка" name="phoneNumber" [(ngModel)]="user.phoneNumber">
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input class="input" matInput placeholder="Адрес за доставка" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <input class="input" matInput placeholder="Град" type="text">
+      </mat-form-field>
     </div>
   </div>
-</div> -->
 
-
-
-<article class="main-content container">
-
-  <header>
-    <h1>Responsive Form Example</h1>
-    <small>
-      <p>
-        This example demonstrates how to create a simple form layout that can responsively expand and stack depending on the width
-        of the page.
-      </p>
-      <p>&nbsp;</p>
-    </small>
-
-  </header>
-
-
-
-  <div class="form-group">
-    <mat-form-field class="input-control">
-      <input class="input" matInput placeholder="Име" name="firstName" [(ngModel)]="user.firstName">
-      <mat-hint>Задължително поле</mat-hint>
-    </mat-form-field>
-
-    <mat-form-field class="input-control">
-      <input class="input" matInput placeholder="Фамилия" name="lastName" [(ngModel)]="user.lastName">
-      <mat-hint>Задължително поле</mat-hint>
-    </mat-form-field>
+  <div class="row">
+    <a class="link" routerLink="/login">Имате регистрация?</a>
   </div>
 
-  <div class="form-group">
-    <mat-form-field class="input-control">
-      <input class="input-control" matInput placeholder="Телефон за връзка" name="phoneNumber" [(ngModel)]="user.phoneNumber">
-      <mat-hint>Задължително поле</mat-hint>
-    </mat-form-field>
+  <div class="row">
+    <button mat-button type="submit">Напред</button>
   </div>
-
-  <div class="form-group">
-    <mat-form-field class="input-control">
-      <input class="input" matInput placeholder="Имейл" name="email" [(ngModel)]="user.email" [formControl]="emailFormControl"
-        [errorStateMatcher]="matcher">
-      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-        Please enter a valid email address
-      </mat-error>
-      <mat-error *ngIf="emailFormControl.hasError('required')">
-        Полето е
-        <strong>задължително</strong>
-      </mat-error>
-    </mat-form-field>
-  </div>
-
-  <div class="form-group">
-    <mat-form-field class="input-control">
-      <input class="input" matInput placeholder="Парола" name="password" type="password" [(ngModel)]="user.password" [formControl]="passwordFormControl"
-        [errorStateMatcher]="matcher">
-      <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
-        Паролата трябва да е от минимум 5 символа.
-      </mat-error>
-      <mat-error *ngIf="passwordFormControl.hasError('required')">
-        Полето е
-        <strong>задължително</strong>
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="input-control">
-      <input class="input" matInput placeholder="Повтори паролата" name="confirmPassword" type="password" [(ngModel)]="user.confirmPassword">
-      <mat-hint>Задължително поле</mat-hint>
-    </mat-form-field>
-  </div>
-
-  <div class="form-group">
-
-    <button mat-button type="submit" class="btn btn-primary centered">Напред</button>
-  </div>
-
-</article>
+  
+</form>

@@ -1,15 +1,30 @@
-<form class="login-form" #loginForm="ngForm" (ngSubmit)="login()">
-  <h3 class="head">Вход</h3>
-  <div class="fields-container">
-    <mat-form-field class="example-full-width">
-      <input class="input" matInput placeholder="Имейл" name="email" [(ngModel)]="user.email">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input class="input" matInput placeholder="Парола" name="password" [(ngModel)]="user.password">
-    </mat-form-field>
+<form class="myForm">
+  <h2 class="row">Вход</h2>
 
-    <mat-checkbox class="check-box" name="rememberMe" [(ngModel)]="user.rememberMe">Запомни ме</mat-checkbox><br/>
+  <div class="row">
+  
+    <div class="column">
+      <mat-form-field class="example-full-width">
+        <input class="input" matInput placeholder="Имейл" name="email" [(ngModel)]="user.email">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input class="input" matInput placeholder="Парола" name="password" [(ngModel)]="user.password">
+      </mat-form-field>
+
+    </div>
   </div>
-    <a class="link" routerLink="/register">Нямате регистрация?</a><br/>
-    <button mat-button type="submit" class="submit-btn">Напред</button>
+
+  <div class="row">
+    <mat-checkbox class="check-box" name="rememberMe" [(ngModel)]="user.rememberMe">Запомни ме</mat-checkbox>
+  </div>
+
+  <div class="row">
+    <a class="link" routerLink="/register">Нямате регистрация?</a>
+  </div>
+
+  <div class="row">
+    <button mat-button type="submit">Напред</button>
+  </div>
+
 </form>

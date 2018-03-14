@@ -11,8 +11,11 @@
       <mat-icon>shopping_basket</mat-icon>
       Кошница</button>
     <button class="mat-elevation-z2" mat-button routerLink="/users">
-        <mat-icon>group</mat-icon>
-        Потребители</button>
+      <mat-icon>group</mat-icon>
+      Потребители</button>
+    <button class="mat-elevation-z2" mat-button routerLink="/articles">
+      <mat-icon>settings</mat-icon>
+      Артикули</button>
   </div>
 
   <div class="auth-links" fxLayout="row" fxShow="false" fxShow.gt-sm>
@@ -23,30 +26,35 @@
 
   <!-- Menu button -->
   <button mat-button [mat-menu-trigger-for]="mobile" fxHide="false" fxHide.gt-sm>
-      <mat-icon>menu</mat-icon>
+    <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
 
 <!-- Mobile menu -->
 <mat-menu [overlapTrigger]="false" class="flex-container" x-position="before" #mobile="matMenu">
-    <button mat-menu-item routerLink="/login">Вход</button>
-    <button mat-menu-item routerLink="/register">Регистрация</button>
-    <button mat-menu-item class="mat-elevation-z2" routerLink="/">
-      <mat-icon>home</mat-icon>
-    </button>
-    <button mat-menu-item class="mat-elevation-z2" [matMenuTriggerFor]="genders">
-      <mat-icon>store</mat-icon>
-      Магазин</button>
-    <button mat-menu-item class="mat-elevation-z2" routerLink="/basket">
-      <mat-icon>shopping_basket</mat-icon>
-      Кошница</button>
-    <button mat-menu-item class="mat-elevation-z2" routerLink="/users">
-        <mat-icon>group</mat-icon>
-        Потребители</button>
+  <button mat-menu-item routerLink="/login">Вход</button>
+  <button mat-menu-item routerLink="/register">Регистрация</button>
+  <button mat-menu-item class="mat-elevation-z2" routerLink="/">
+    <mat-icon>home</mat-icon>
+  </button>
+  <button mat-menu-item class="mat-elevation-z2" [matMenuTriggerFor]="genders">
+    <mat-icon>store</mat-icon>
+    Магазин</button>
+  <button mat-menu-item class="mat-elevation-z2" routerLink="/basket">
+    <mat-icon>shopping_basket</mat-icon>
+    Кошница</button>
+  <button mat-menu-item class="mat-elevation-z2" routerLink="/users">
+    <mat-icon>group</mat-icon>
+    Потребители</button>
+
+  <button mat-menu-item class="mat-elevation-z2" routerLink="/articles">
+    <mat-icon>settings</mat-icon>
+    Артикули</button>
 </mat-menu>
 
 <div class="content">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+  <!-- <app-articles-list></app-articles-list> -->
 </div>
 
 <mat-menu [overlapTrigger]="false" class="menu" x-position="before" #menu="matMenu">
@@ -69,6 +77,6 @@
 
 <!-- seson categories -->
 <mat-menu #girlsSesons="matMenu">
-    <button mat-menu-item>Пролет-лято</button>
-    <button mat-menu-item>Есен-Зима</button>
+  <button mat-menu-item>Пролет-лято</button>
+  <button mat-menu-item>Есен-Зима</button>
 </mat-menu>

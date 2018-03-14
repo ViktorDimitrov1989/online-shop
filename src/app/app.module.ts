@@ -39,6 +39,7 @@ import { UsersListComponent } from './components/user/users-list/users-list.comp
 import { ArticleListComponent } from './components/basket/article-list/article-list.component';
 import { ArticleComponent } from './components/basket/article/article.component';
 import { IndexComponent } from './components/home/index/index.component';
+import { ArticlesListComponent } from './components/articles/articles-list/articles-list.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { IndexComponent } from './components/home/index/index.component';
     UsersListComponent,
     ArticleListComponent,
     ArticleComponent,
-    IndexComponent
+    IndexComponent,
+    ArticlesListComponent
   ],
   imports: [
     BrowserModule,

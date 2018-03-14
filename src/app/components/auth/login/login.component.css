@@ -1,47 +1,46 @@
-.login-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.932);
-    border-radius: 10px;
-    border: 1px solid grey;
-}
+.myForm {
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    border-radius: 3px;
+    padding: 4em;
+  }
 
-.input{
-    color: black;
-}
-
-.link{
-    margin-top: 10px
-}
-
-.head{
-    margin-top: 30px;
-    color: black;
-}
-
-.check-box{
-    color: black;
-}
-
-.fields-container{
-    margin-top: 50px;
-    margin-bottom: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
-.submit-btn{
-    margin-top: 25px;
-    margin-bottom: 50px;
-    width: 50%;
-    height: 50%;
-    background-color: skyblue;
-    border: 1px solid lightgreen;
-}
-
-.example-full-width {
-    width: 100%;
-}
+  .myForm > div{
+    padding: 15px;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-around;
+  }
+  .column {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    flex-basis: 30%;
+  }
+  .input-group {
+     display: flex;
+  }
+  .input-group > label {
+    margin-right: 1em; 
+    padding: .5em 0;
+  }
+  .myForm input,
+  .myForm select {
+    flex: 6; 
+    padding: .5em;
+    margin-bottom: 1em;
+  }
+  .myForm button {
+    background: #303F9F;
+    color: white;
+  }
+  .myForm fieldset {
+     border: 0; 
+  }
+  .taxi > label,
+  .extras > label {
+    display: block;
+  }

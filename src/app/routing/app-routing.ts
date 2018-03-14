@@ -6,6 +6,7 @@ import { CartComponent } from '../components/user/cart/cart.component';
 import { UsersListComponent } from '../components/user/users-list/users-list.component';
 import { IndexComponent } from '../components/home/index/index.component';
 import { ArticleComponent } from '../components/basket/article/article.component';
+import { ArticlesListComponent } from '../components/articles/articles-list/articles-list.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
   {
     path: 'basket',
     component: ArticleComponent,
+    //canActivate: [NotAuthGuard]
+  },
+  {
+    path: 'articles',
+    component: ArticlesListComponent,
     //canActivate: [NotAuthGuard]
   }
 ]
