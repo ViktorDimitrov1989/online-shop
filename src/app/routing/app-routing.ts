@@ -5,8 +5,11 @@ import { RegisterComponent } from '../components/auth/register/register.componen
 import { CartComponent } from '../components/user/cart/cart.component';
 import { UsersListComponent } from '../components/user/users-list/users-list.component';
 import { IndexComponent } from '../components/home/index/index.component';
-import { ArticleComponent } from '../components/basket/article/article.component';
+import { ArticleComponent } from '../components/basket/basket-article/basket-article.component';
 import { ArticlesListComponent } from '../components/articles/articles-list/articles-list.component';
+import { CreateArticleComponent } from '../components/articles/create-article/create-article.component';
+import { CreateCategoryComponent } from '../components/category/create-category/create-category.component';
+import { CreateBrandComponent } from '../components/brand/create-brand/create-brand.component';
 
 const routes: Routes = [
   {
@@ -42,6 +45,21 @@ const routes: Routes = [
   {
     path: 'articles',
     component: ArticlesListComponent,
+    //canActivate: [NotAuthGuard]
+  },
+  {
+    path: 'article/create',
+    component: CreateArticleComponent,
+    //canActivate: [NotAuthGuard]
+  },
+  {
+    path: 'category/create',
+    component: CreateCategoryComponent,
+    //canActivate: [NotAuthGuard]
+  },
+  {
+    path: 'brand/create',
+    component: CreateBrandComponent,
     //canActivate: [NotAuthGuard]
   }
 ]

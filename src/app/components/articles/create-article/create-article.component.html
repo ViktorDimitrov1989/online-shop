@@ -1,0 +1,94 @@
+<form class="myForm">
+  <h2 class="row">Създаване на артикул</h2>
+  <div class="row">
+
+    <div class="column">
+      <mat-form-field>
+        <input class="input" matInput placeholder="Име" name="displayName">
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Описание" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
+
+      <div>
+
+        <input class="input" type="file" value="Избери снимка" name="picture">
+      </div>
+
+      <mat-form-field>
+        <input class="input" type="number" matInput placeholder="Цена" name="price">
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
+
+      <div>
+        <p>Марка:</p>
+        <mat-radio-group>
+          <mat-radio-button value="Nike">Nike</mat-radio-button>
+          <mat-radio-button value="Adidas">Adidas</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div>
+        <p>Категория:</p>
+        <mat-radio-group>
+          <mat-radio-button value="Nike">Блузи</mat-radio-button>
+          <mat-radio-button value="Adidas">Анцузи</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+    </div>
+
+    <div class="column">
+      <div>
+        <p>Налични размери:</p>
+        <mat-selection-list #articles>
+          <mat-list-option>M</mat-list-option>
+          <mat-list-option>L</mat-list-option>
+          <mat-list-option>XL</mat-list-option>
+        </mat-selection-list>
+      </div>
+
+      <div>
+        <p>Цветове:</p>
+        <mat-selection-list #articles>
+          <mat-list-option>бял</mat-list-option>
+          <mat-list-option>черен</mat-list-option>
+        </mat-selection-list>
+      </div>
+
+      <div>
+        <p>Статус:</p>
+        <mat-radio-group>
+          <mat-radio-button value="PROMO">Промоция</mat-radio-button>
+          <mat-radio-button value="REGULAR">Нормален</mat-radio-button>
+          <mat-radio-button value="SALE">Разпродажба</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div>
+        <p>Дата на изтичане:</p>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Избери дата">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <input class="input" type="number" matInput placeholder="Отстъпка" name="discount">
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <button mat-button type="submit" (click)="confirmCreation()">Създай артикул</button>
+  </div>
+
+</form>

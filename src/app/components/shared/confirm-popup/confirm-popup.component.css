@@ -1,0 +1,32 @@
+.container{
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+.img{
+    max-height: 250px;
+}
+
+.row{
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    background-color: green;
+    border-radius: 3px;
+}
+
+.head-text{
+    margin: 4px;
+    align-self: center;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

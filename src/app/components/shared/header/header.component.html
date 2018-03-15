@@ -13,9 +13,9 @@
     <button class="mat-elevation-z2" mat-button routerLink="/users">
       <mat-icon>group</mat-icon>
       Потребители</button>
-    <button class="mat-elevation-z2" mat-button routerLink="/articles">
-      <mat-icon>settings</mat-icon>
-      Артикули</button>
+    <button class="mat-elevation-z2" mat-button [matMenuTriggerFor]="adminFunc">
+      <mat-icon>assignment</mat-icon>
+      Менажиране на артикули</button>
   </div>
 
   <div class="auth-links" fxLayout="row" fxShow="false" fxShow.gt-sm>
@@ -47,9 +47,9 @@
     <mat-icon>group</mat-icon>
     Потребители</button>
 
-  <button mat-menu-item class="mat-elevation-z2" routerLink="/articles">
-    <mat-icon>settings</mat-icon>
-    Артикули</button>
+  <button mat-menu-item class="mat-elevation-z2" [matMenuTriggerFor]="adminFunc">
+    <mat-icon>assignment</mat-icon>
+    Менажиране на артикули</button>
 </mat-menu>
 
 <div class="content">
@@ -71,12 +71,20 @@
 
 <!-- seson categories -->
 <mat-menu #boysSesons="matMenu">
-  <button mat-menu-item>Пролет-лято</button>
-  <button mat-menu-item>Есен-Зима</button>
+  <button mat-menu-item routerLink="/articles">Пролет-лято</button>
+  <button mat-menu-item routerLink="/articles">Есен-Зима</button>
 </mat-menu>
 
 <!-- seson categories -->
 <mat-menu #girlsSesons="matMenu">
-  <button mat-menu-item>Пролет-лято</button>
-  <button mat-menu-item>Есен-Зима</button>
+  <button mat-menu-item routerLink="/articles">Пролет-лято</button>
+  <button mat-menu-item routerLink="/articles">Есен-Зима</button>
 </mat-menu>
+
+<!-- admin functionalities -->
+<mat-menu [overlapTrigger]="false" #adminFunc="matMenu">
+    <button mat-menu-item routerLink="/article/create">Създай артикул</button>
+    <button mat-menu-item routerLink="/brand/create">Създай бранд</button>
+    <button mat-menu-item routerLink="/category/create">Създай категория</button>
+</mat-menu>
+

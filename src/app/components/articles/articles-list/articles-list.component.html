@@ -1,13 +1,13 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
+
     <p>Филтрирай по категории:</p>
-    <mat-selection-list #shoes>
+    <mat-selection-list #articles>
       <mat-list-option>Панталони</mat-list-option>
       <mat-list-option>Блузи</mat-list-option>
       <mat-list-option>Тениски</mat-list-option>
     </mat-selection-list>
 
-    <!-- <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p> -->
     <button (click)="drawer.toggle()" mat-raised-button>
       Затвори филтрите
     </button>
@@ -21,7 +21,33 @@
         Филтри
       </button>
     </div>
+
+    <!-- Menu button -->
+    <button mat-button [mat-menu-trigger-for]="mobile" fxHide="false" fxHide.gt-sm>
+      <mat-icon>menu</mat-icon>
+    </button>
   </mat-toolbar>
 
+  <!-- Mobile menu -->
+  <mat-menu [overlapTrigger]="false" class="flex-container" x-position="before" #mobile="matMenu">
+    <button mat-menu-item class="mat-elevation-z2" (click)="drawer.toggle()">
+      <mat-icon>assignment</mat-icon>
+      Менажиране на артикули</button>
+  </mat-menu>
+
+  <main class="cards">
+    <mat-card class="card">
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" />
+      <mat-card-content class="text">
+        <h3>Тениска със картинка</h3>
+        <h5>Цена: 30лв.</h5>
+      </mat-card-content>
+      
+      <mat-card-actions class="buttons-container">
+        <button mat-button (click)="viewDetails()">Детайли</button>
+        <button mat-button class="mat-elevation-z2">Сложи в кошницата</button>
+      </mat-card-actions>
+    </mat-card>
+  </main>
 
 </mat-drawer-container>

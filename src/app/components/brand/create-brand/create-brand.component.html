@@ -1,0 +1,24 @@
+<form class="myForm">
+  <h2 class="row">Създаване на бранд</h2>
+  <div class="row">
+
+    <div class="column">
+      <mat-form-field>
+        <input class="input" matInput placeholder="Име" name="displayName">
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="textArea">
+        <textarea matInput #info placeholder="Информация" rows="5"></textarea>
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <button mat-button type="submit" (click)="confirmCreation()">Създай Бранд</button>
+  </div>
+
+</form>

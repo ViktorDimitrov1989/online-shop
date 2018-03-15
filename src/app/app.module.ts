@@ -36,10 +36,15 @@ import { reducers } from './store/reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { UserInfoCardComponent } from './components/user/user-info-card/user-info-card.component';
 import { UsersListComponent } from './components/user/users-list/users-list.component';
-import { ArticleListComponent } from './components/basket/article-list/article-list.component';
-import { ArticleComponent } from './components/basket/article/article.component';
+import { ArticleListComponent } from './components/basket/basket-article-list/basket-article-list.component';
+import { ArticleComponent } from './components/basket/basket-article/basket-article.component';
 import { IndexComponent } from './components/home/index/index.component';
 import { ArticlesListComponent } from './components/articles/articles-list/articles-list.component';
+import { ArticleDetailsComponent } from './components/articles/article-details/article-details.component';
+import { CreateArticleComponent } from './components/articles/create-article/create-article.component';
+import { CreateCategoryComponent } from './components/category/create-category/create-category.component';
+import { ConfirmPopupComponent } from './components/shared/confirm-popup/confirm-popup.component';
+import { CreateBrandComponent } from './components/brand/create-brand/create-brand.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +60,12 @@ import { ArticlesListComponent } from './components/articles/articles-list/artic
     ArticleListComponent,
     ArticleComponent,
     IndexComponent,
-    ArticlesListComponent
+    ArticlesListComponent,
+    ArticleDetailsComponent,
+    CreateArticleComponent,
+    CreateCategoryComponent,
+    ConfirmPopupComponent,
+    CreateBrandComponent
   ],
   imports: [
     BrowserModule,
@@ -72,14 +82,15 @@ import { ArticlesListComponent } from './components/articles/articles-list/artic
     BrowserAnimationsModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-    })
+    }),
   ],
   providers: [
     HttpClient,
     ArticleService,
     AuthService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ArticleDetailsComponent,ConfirmPopupComponent]
 })
 export class AppModule {
 }
