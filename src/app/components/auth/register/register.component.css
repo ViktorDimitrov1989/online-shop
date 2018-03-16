@@ -14,25 +14,31 @@
   display: flex;
   justify-content: space-around;
 }
+
 .column {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 1em;
   flex-basis: 30%;
 }
+
 .input-group {
    display: flex;
 }
+
 .input-group > label {
   margin-right: 1em; 
   padding: .5em 0;
 }
-.myForm input,
+
+/* .myForm input,
 .myForm select {
   flex: 6; 
   padding: .5em;
   margin-bottom: 1em;
-}
+} */
+
 .myForm button {
   background: #303F9F;
   color: white;
@@ -43,4 +49,17 @@
 .taxi > label,
 .extras > label {
   display: block;
+}
+
+.single{
+  display: flex;
+  justify-content: center;
+}
+
+.single > div{
+  flex: 1;
+}
+
+.err{
+  color: red;
 }

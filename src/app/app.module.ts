@@ -45,6 +45,7 @@ import { CreateArticleComponent } from './components/articles/create-article/cre
 import { CreateCategoryComponent } from './components/category/create-category/create-category.component';
 import { ConfirmPopupComponent } from './components/shared/confirm-popup/confirm-popup.component';
 import { CreateBrandComponent } from './components/brand/create-brand/create-brand.component';
+import { InputFileComponent } from './components/shared/input-file/input-file.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { CreateBrandComponent } from './components/brand/create-brand/create-bra
     CreateArticleComponent,
     CreateCategoryComponent,
     ConfirmPopupComponent,
-    CreateBrandComponent
+    CreateBrandComponent,
+    InputFileComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +85,7 @@ import { CreateBrandComponent } from './components/brand/create-brand/create-bra
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
+    
   ],
   providers: [
     HttpClient,

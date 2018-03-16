@@ -27,12 +27,12 @@
     margin-right: 1em; 
     padding: .5em 0;
   }
-  .myForm input,
+  /* .myForm input,
   .myForm select {
     flex: 6; 
     padding: .5em;
     margin-bottom: 1em;
-  }
+  } */
   .myForm button {
     background: #303F9F;
     color: white;

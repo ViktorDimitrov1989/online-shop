@@ -4,12 +4,24 @@
 
     <div class="column">
       <mat-form-field>
-        <input class="input" matInput placeholder="Име" name="displayName">
+        <input class="input" matInput placeholder="Име" name="name" [(ngModel)]="brand.name" [formControl]="nameFormControl" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="nameFormControl.hasError('required')">
+          Името е
+          <strong>задължително</strong>
+        </mat-error>
         <mat-hint>Задължително поле</mat-hint>
       </mat-form-field>
 
       <mat-form-field class="textArea">
-        <textarea matInput #info placeholder="Информация" rows="5"></textarea>
+        <textarea matInput #info placeholder="Информация" rows="2" name="description" [(ngModel)]="brand.description" [formControl]="descriptionFormControl"
+          [errorStateMatcher]="matcher"></textarea>
+        <mat-error *ngIf="descriptionFormControl.hasError('minlength') && !descriptionFormControl.hasError('required')">
+          Описанието трябва да е дълго минимум 35 символа.
+        </mat-error>
+        <mat-error *ngIf="descriptionFormControl.hasError('required')">
+          Описанието е
+          <strong>задължително</strong>
+        </mat-error>
         <mat-hint>Задължително поле</mat-hint>
       </mat-form-field>
 

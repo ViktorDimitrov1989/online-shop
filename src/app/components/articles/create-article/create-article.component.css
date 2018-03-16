@@ -1,7 +1,7 @@
 .myForm {
     display: flex;
     flex-direction: column;
-    background-color: #D7E8D4;
+    background-color: bisque;
     border-radius: 3px;
     padding: 4em;
 }
@@ -28,12 +28,12 @@
     margin-right: 1em; 
     padding: .5em 0;
 }
-.myForm input,
+/* .myForm input,
 .myForm select {
     flex: 6; 
     padding: .5em;
     margin-bottom: 1em;
-}
+} */
 .myForm button {
     background: #303F9F;
     color: white;
@@ -44,4 +44,8 @@
 .taxi > label,
 .extras > label {
     display: block;
+}
+
+.err{
+    color: red;
 }

@@ -5,4 +5,8 @@ export default class RegisterUser{
     phoneNumber: string;
     password: string;
     confirmPassword: string;
+    city: string;
+    street: string;
+    adress: string;
+    postCode: string;
 }
