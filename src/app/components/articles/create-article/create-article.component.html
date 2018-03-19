@@ -137,7 +137,7 @@
   </div>
 
   <div class="row">
-    <button mat-button type="submit" (click)="confirmCreation()">Създай артикул</button>
+    <button mat-button [disabled]="!createArticleForm.valid" type="submit" (click)="confirmCreation()">Създай артикул</button>
   </div>
 
 </form>

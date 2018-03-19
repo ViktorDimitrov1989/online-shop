@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ConfirmPopupComponent } from '../../shared/confirm-popup/confirm-popup.component';
 import { FormErrorStateMatcher } from '../../../utils/error-state-matcher';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import CreateArticle from '../../../models/create-article';
 import { FileValidators } from '../../../utils/file-validators';
 
@@ -52,6 +52,18 @@ export class CreateArticleComponent implements OnInit {
   statusFormControl = new FormControl('', [
     Validators.required
   ])
+
+  public createArticleForm = new FormGroup({
+    dispalyName: this.displayNameFormControl,
+    description: this.descriptionFormControl,
+    picture: this.pictureFormControl,
+    price: this.priceFormControl,
+    brand: this.brandFormControl,
+    category: this.categoryFormControl,
+    sizes: this.sizesFormControl,
+    colors: this.colorsFormControl,
+    status: this.statusFormControl  
+  })
 
 
   public matcher = new FormErrorStateMatcher();
