@@ -45,11 +45,11 @@
       <mat-form-field>
         <input class="input" matInput placeholder="Парола" name="password" type="password" [(ngModel)]="user.password" [formControl]="passwordFormControl"
           [errorStateMatcher]="matcher">
-        <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
+        <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')" >
           Паролата трябва да е от минимум 5 символа.
         </mat-error>
         <mat-error *ngIf="passwordFormControl.hasError('pattern') && !passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
-          Паролата трябва да съдържа минимум една цифра, една главна и една малка буква.
+          Паролата трябва да е с дължина 8 и 15 символа.
         </mat-error>
         <mat-error *ngIf="passwordFormControl.hasError('required')">
           Полето е
@@ -132,19 +132,15 @@
 
       </div>
 
-
     </div>
-
-
   </div>
-
 
   <div class="row">
     <a class="link" routerLink="/login">Имате регистрация?</a>
   </div>
 
   <div class="row">
-    <button mat-button type="submit">Напред</button>
+    <button mat-button type="submit" [disabled]="!registerForm.valid" (click)="register()">Напред</button>
   </div>
 
 </form>

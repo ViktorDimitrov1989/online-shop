@@ -5,6 +5,7 @@ import { AuthService } from "../../services/auth/auth.service";
 
 export const REGISTER_USER = 'user/REGISTER';
 export const LOGIN_USER = 'user/LOGIN';
+export const LOGOUT_USER = 'user/LOGOUT';
 
 export class RegisterUserAction implements Action {
     readonly type = REGISTER_USER;
@@ -17,3 +18,9 @@ export class LoginUserAction implements Action {
   
     constructor(public user: LoginUser) { }
 } 
+
+export class LogoutUserAction implements Action {
+    readonly type = LOGOUT_USER;
+
+    constructor(){}
+}

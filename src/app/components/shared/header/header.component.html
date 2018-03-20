@@ -18,10 +18,15 @@
       Менажиране на артикули</button>
   </div>
 
-  <div class="auth-links" fxLayout="row" fxShow="false" fxShow.gt-sm>
+  <div *ngIf="!isLogged" class="auth-links" fxLayout="row" fxShow="false" fxShow.gt-sm>
     <button class="mat-elevation-z2" mat-button [mat-menu-trigger-for]="menu" fxHide="false">
       <mat-icon>account_box</mat-icon>
       Автентикация</button>
+  </div>
+  <div *ngIf="isLogged" class="auth-links" fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button (click)="logout()" class="mat-elevation-z2" mat-button fxHide="false">
+      <mat-icon>power_settings_new</mat-icon>
+      Изход</button>
   </div>
 
   <!-- Menu button -->
@@ -32,8 +37,8 @@
 
 <!-- Mobile menu -->
 <mat-menu [overlapTrigger]="false" class="flex-container" x-position="before" #mobile="matMenu">
-  <button mat-menu-item routerLink="/login">Вход</button>
-  <button mat-menu-item routerLink="/register">Регистрация</button>
+  <button *ngIf="!isLogged" mat-menu-item routerLink="/login">Вход</button>
+  <button *ngIf="!isLogged" mat-menu-item routerLink="/register">Регистрация</button>
   <button mat-menu-item class="mat-elevation-z2" routerLink="/">
     <mat-icon>home</mat-icon>
   </button>

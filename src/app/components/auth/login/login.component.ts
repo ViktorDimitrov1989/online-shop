@@ -4,6 +4,9 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/form
 import LoginUser from '../../../models/login-user';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
+import { AppState } from '../../../store/app-state';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +17,18 @@ import { AuthService } from '../../../services/auth/auth.service';
 export class LoginComponent implements OnInit {
 
   public user: LoginUser;
+
   private errorMessage: string;
 
-  constructor(public authService: AuthService, public router: Router) { 
+  private authenticated: Observable<any>;
+
+  constructor(
+    public authService: AuthService, 
+    public router: Router,
+    private store: Store<AppState>
+  ) { 
+    this.authenticated = this.store.select(state => state.userState.authenticated);
+
     this.user = {
       email: '',
       password: '',
@@ -29,12 +41,19 @@ export class LoginComponent implements OnInit {
     
   }
 
-  private initJquery() {
-  }
-
   login() {
     this.authService.logIn(this.user);
-    //this.router.navigate(['/']);
+
+    this.authenticated.subscribe((value) => {
+
+      if(value){
+        this.router.navigate(['/']);
+      }else{
+        this.user.password = '';
+      }
+
+    })
+
   }
 
 }

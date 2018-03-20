@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserState } from '../../store/user/user-state';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app-state';
-import { LoginUserAction, RegisterUserAction } from '../../store/user/user-actions';
+import { LoginUserAction, RegisterUserAction, LogoutUserAction } from '../../store/user/user-actions';
 
 
 @Injectable()
@@ -18,10 +18,12 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private toastr: ToastrService,
-    public store: Store<AppState>) { }
+    public store: Store<AppState>) {
+  }
 
   public createAccount(user: RegisterUser) {
-    this.http.post(AppComponent.API_URL + '/user/register', user)
+
+    this.http.post(AppComponent.API_URL + '/auth/register', user)
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
         this.store.dispatch(new RegisterUserAction(respObject.response))
@@ -29,18 +31,33 @@ export class AuthService {
         err => {
           this.toastr.error(err.error.message);
         });
+
   }
 
   public logIn(user: LoginUser) {
 
-    this.http.post(AppComponent.API_URL + "/user/login", user)
+    this.http.post(AppComponent.API_URL + "/auth/login", user)
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
-        this.store.dispatch(new LoginUserAction(respObject.response))
+        this.store.dispatch(new LoginUserAction(respObject.response));
       },
         (err: any) => {
           this.toastr.error(err.error.message);
         })
+  }
+
+  public logout(){
+
+    this.http.get(AppComponent.API_URL + "/auth/logout")
+    .subscribe((respObject: any) => {
+      this.toastr.success(respObject.message)
+      this.store.dispatch(new LogoutUserAction())
+    },
+      (err: any) => {
+        this.toastr.error(err.error.message);
+    })
+
+
   }
 
 }

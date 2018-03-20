@@ -9,7 +9,7 @@
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input class="input" matInput placeholder="Парола" name="password" [(ngModel)]="user.password">
+        <input class="input" type="password" matInput placeholder="Парола" name="password" [(ngModel)]="user.password">
       </mat-form-field>
 
     </div>
@@ -24,7 +24,7 @@
   </div>
 
   <div class="row">
-    <button mat-button type="submit">Напред</button>
+    <button mat-button (click)="login()" type="submit">Напред</button>
   </div>
 
 </form>

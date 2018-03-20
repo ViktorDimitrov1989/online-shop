@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatFormFieldControl, ErrorStateMatcher } from '@angular/material';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup } from '@angular/forms';
 import RegisterUser from '../../../models/register-user';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 import { FormErrorStateMatcher } from '../../../utils/error-state-matcher';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/app-state';
 
 @Component({
   selector: 'app-register',
@@ -32,7 +35,7 @@ export class RegisterComponent implements OnInit {
   passwordFormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(5),
-    Validators.pattern("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$")
+    Validators.pattern("^([a-zA-Z0-9@*#]{8,15})$")
   ]);
 
   confirmPasswordFormControl = new FormControl('', [
@@ -56,12 +59,34 @@ export class RegisterComponent implements OnInit {
     Validators.required
   ])
 
+  public registerForm = new FormGroup({
+    firstName: this.firstNameFormControl,
+    lastName: this.lastNameFormControl,
+    email: this.emailFormControl,
+    password: this.passwordFormControl,
+    confirmPassword: this.confirmPasswordFormControl,
+    phoneNumber: this.phoneFormControl,
+    city: this.cityFormControl,
+    adress: this.adressFormControl,
+    street: this.streetFormControl  
+  })
+
   public user: RegisterUser;
+  
   private errorMessage: string;
 
   public isPasswordSame: boolean;
 
-  constructor(public authService: AuthService, public router: Router) {
+  private authenticated: Observable<any>;
+
+  constructor(
+    public authService: AuthService, 
+    public router: Router,
+    private store: Store<AppState>
+  ) {
+
+    this.authenticated = this.store.select(state => state.userState.authenticated);
+
     this.user = {
       firstName: '',
       lastName: '',
@@ -88,11 +113,18 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-
   public register() {
-    console.log(this.user);
     this.authService.createAccount(this.user);
-    this.router.navigate(['/login']);
+
+    this.authenticated.subscribe((value) => {
+      if(value){
+        this.router.navigate(['/login']);
+      }else{
+        this.user.password = '';
+        this.user.confirmPassword = '';
+      }
+    });
+      
   }
 
 }
