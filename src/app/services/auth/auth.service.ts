@@ -36,6 +36,7 @@ export class AuthService {
 
   public logIn(user: LoginUser) {
 
+
     this.http.post(AppComponent.API_URL + "/auth/login", user)
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);

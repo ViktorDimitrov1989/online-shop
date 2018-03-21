@@ -3,9 +3,15 @@
     margin-bottom: 30px;
 }
 
-.btn{
+/* .btn{
     display: flex;
     align-items: center;
     justify-content: center;
+} */
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
   

@@ -1,25 +1,32 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { UserState } from "./user-state";
-import { REGISTER_USER, LOGIN_USER, LOGOUT_USER, RegisterUserAction, LoginUserAction, LogoutUserAction } from "./user-actions";
+import { REGISTER_USER, LOGIN_USER, LOGOUT_USER, GET_USERS, RegisterUserAction, LoginUserAction, LogoutUserAction, GetUsersAction } from "./user-actions";
 import * as fromActions from './user-actions';
 import LoginUser from '../../models/login-user';
 
 const initialState: UserState = {
     loggedUser: {},
-    authenticated: false
+    authenticated: false,
+    allUsers: []
 }
 
-export function userReducer(state = initialState, action: fromActions.LoginUserAction | fromActions.RegisterUserAction | fromActions.LogoutUserAction): UserState {
+export function userReducer(state = initialState, 
+  action: fromActions.LoginUserAction | fromActions.RegisterUserAction | fromActions.LogoutUserAction | fromActions.GetUsersAction): UserState {
 
     switch(action.type) {
       case REGISTER_USER: {
-        return {loggedUser: action.user, authenticated: true};
+        //{loggedUser: action.user, authenticated: true, allUsers: action.allUsers}
+        return Object.assign({}, state, {loggedUser: action.user, authenticated: true});
       }
       case LOGIN_USER: {
-        return {loggedUser: action.user, authenticated: true};
+        //{loggedUser: action.user, authenticated: true, allUsers: action.allUsers};
+        return Object.assign({}, state, {loggedUser: action.user, authenticated: true});
       }
       case LOGOUT_USER: {
-        return {loggedUser: {}, authenticated: false};
+        return Object.assign({}, state, {authenticated: false});
+      }
+      case GET_USERS: {
+        return Object.assign({}, state, {allUsers: action.allUsers});
       }
       default: {
         return state;

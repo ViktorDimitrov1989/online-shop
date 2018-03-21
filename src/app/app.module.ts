@@ -46,6 +46,7 @@ import { CreateCategoryComponent } from './components/category/create-category/c
 import { ConfirmPopupComponent } from './components/shared/confirm-popup/confirm-popup.component';
 import { CreateBrandComponent } from './components/brand/create-brand/create-brand.component';
 import { InputFileComponent } from './components/shared/input-file/input-file.component';
+import { UserService } from './services/user/user.service';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { InputFileComponent } from './components/shared/input-file/input-file.co
   providers: [
     HttpClient,
     ArticleService,
-    AuthService
+    AuthService,
+    UserService
   ],
   bootstrap: [AppComponent],
   entryComponents: [ArticleDetailsComponent,ConfirmPopupComponent]
