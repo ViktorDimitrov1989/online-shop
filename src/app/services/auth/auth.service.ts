@@ -9,6 +9,7 @@ import { UserState } from '../../store/user/user-state';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app-state';
 import { LoginUserAction, RegisterUserAction, LogoutUserAction } from '../../store/user/user-actions';
+import { RequestOptions } from '@angular/http';
 
 
 @Injectable()
@@ -36,8 +37,7 @@ export class AuthService {
 
   public logIn(user: LoginUser) {
 
-
-    this.http.post(AppComponent.API_URL + "/auth/login", user)
+    this.http.post(AppComponent.API_URL + "/auth/login", user, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
         this.store.dispatch(new LoginUserAction(respObject.response));
@@ -47,16 +47,18 @@ export class AuthService {
         })
   }
 
-  public logout(){
+  public logout() {
 
-    this.http.get(AppComponent.API_URL + "/auth/logout")
-    .subscribe((respObject: any) => {
-      this.toastr.success(respObject.message)
-      this.store.dispatch(new LogoutUserAction())
-    },
-      (err: any) => {
-        this.toastr.error(err.error.message);
-    })
+    this.http.get(AppComponent.API_URL + "/auth/logout", { withCredentials: true })
+      .subscribe((respObject: any) => {
+        this.toastr.success(respObject.message)
+        this.store.dispatch(new LogoutUserAction())
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
+
+    
 
 
   }

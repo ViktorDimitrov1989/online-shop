@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app-state';
 import { AppComponent } from '../../app.component';
 import { GetUsersAction } from '../../store/user/user-actions';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class UserService {
@@ -16,9 +17,10 @@ export class UserService {
     private toastr: ToastrService,
     public store: Store<AppState>) { }
 
+  public getAllUsers() {
+    //    .map(res => console.log(res))
 
-    public getAllUsers(){
-      this.http.get(AppComponent.API_URL + "/admin/users/all", {withCredentials: true})
+    this.http.get(AppComponent.API_URL + "/admin/users/all", { withCredentials: true })
       .subscribe((respObject: any) => {
         console.log(respObject);
         // this.toastr.succeyss(respObject.message);
@@ -28,6 +30,6 @@ export class UserService {
           console.log(err)
           this.toastr.error(err.error.message);
         })
-    }
+  }
 
 }

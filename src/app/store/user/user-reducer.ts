@@ -15,18 +15,16 @@ export function userReducer(state = initialState,
 
     switch(action.type) {
       case REGISTER_USER: {
-        //{loggedUser: action.user, authenticated: true, allUsers: action.allUsers}
         return Object.assign({}, state, {loggedUser: action.user, authenticated: true});
       }
       case LOGIN_USER: {
-        //{loggedUser: action.user, authenticated: true, allUsers: action.allUsers};
         return Object.assign({}, state, {loggedUser: action.user, authenticated: true});
       }
       case LOGOUT_USER: {
-        return Object.assign({}, state, {authenticated: false});
+        return Object.assign({}, state, {authenticated: false, loggedUser: {}, allUsers: []});
       }
       case GET_USERS: {
-        return Object.assign({}, state, {allUsers: action.allUsers});
+        return Object.assign({}, state, {authenticated: state.authenticated, loggedUser:state.loggedUser, allUsers: action.allUsers});
       }
       default: {
         return state;
