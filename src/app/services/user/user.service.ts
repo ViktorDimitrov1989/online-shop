@@ -18,18 +18,58 @@ export class UserService {
     public store: Store<AppState>) { }
 
   public getAllUsers() {
-    //    .map(res => console.log(res))
-
     this.http.get(AppComponent.API_URL + "/admin/users/all", { withCredentials: true })
       .subscribe((respObject: any) => {
-        console.log(respObject);
-        // this.toastr.succeyss(respObject.message);
         this.store.dispatch(new GetUsersAction(respObject.response));
       },
         (err: any) => {
-          console.log(err)
           this.toastr.error(err.error.message);
         })
   }
+
+  public makeUserAdmin(id: number) {
+    this.http.post(AppComponent.API_URL + "/admin/users/makeAdmin/" + id, {}, { withCredentials: true })
+      .subscribe((respObject: any) => {
+        this.toastr.success(respObject.message);
+        this.getAllUsers();
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
+  }
+
+  public takeAdminPermissions(id: number) {
+    this.http.post(AppComponent.API_URL + "/admin/users/takeAdmin/" + id, {}, { withCredentials: true })
+      .subscribe((respObject: any) => {
+        this.toastr.success(respObject.message);
+        this.getAllUsers();
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
+  }
+
+  public blockUser(id: number) {
+    this.http.post(AppComponent.API_URL + "/admin/users/block/" + id, {}, { withCredentials: true })
+      .subscribe((respObject: any) => {
+        this.toastr.success(respObject.message);
+        this.getAllUsers();
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
+  }
+
+  public unBlockUser(id: number) {
+    this.http.post(AppComponent.API_URL + "/admin/users/unblock/" + id, {}, { withCredentials: true })
+      .subscribe((respObject: any) => {
+        this.toastr.success(respObject.message);
+        this.getAllUsers();
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
+  }
+
 
 }

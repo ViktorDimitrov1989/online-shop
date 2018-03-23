@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { UserState } from "./user-state";
-import { REGISTER_USER, LOGIN_USER, LOGOUT_USER, GET_USERS, RegisterUserAction, LoginUserAction, LogoutUserAction, GetUsersAction } from "./user-actions";
+import { REGISTER_USER, LOGIN_USER, LOGOUT_USER, GET_USERS, RegisterUserAction, LoginUserAction, LogoutUserAction, GetUsersAction} from "./user-actions";
 import * as fromActions from './user-actions';
 import LoginUser from '../../models/login-user';
 

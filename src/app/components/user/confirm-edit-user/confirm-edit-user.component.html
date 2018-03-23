@@ -1,0 +1,72 @@
+<mat-card class="info-card container">
+    <h3 class="row warning-message">{{message}}</h3>
+    <mat-card-header>
+      <div class="row">
+        <div class="column">
+          <div mat-card-avatar>
+            <mat-icon>perm_identity</mat-icon>
+          </div>
+        </div>
+        <div class="column">
+          <div class="row">
+            <div class="column">
+              <mat-card-title>Име:</mat-card-title>
+            </div>
+            <div class="column">
+              <mat-card-subtitle>{{user.firstName}}</mat-card-subtitle>
+              <mat-card-subtitle>{{user.lastName}}</mat-card-subtitle>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content class="row">
+      <div class="column">
+        <div class="row">
+          <h4>Информация</h4>
+        </div>
+        <div class="row-start">
+          <label>Имейл:</label>
+          <p>{{user.email}}</p>
+        </div>
+        <div class="row-start">
+            <label>Телефон:</label>
+            <p>{{user.phoneNumber}}</p>
+        </div>
+        <div class="row-start">
+            <label>Роли:</label>
+            <p>{{roles}}</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="row">
+          <h4>Адрес</h4>
+        </div>
+        <div *ngIf="user.address.city" class="row-start">
+            <label>Град/село:</label>
+            <p>{{user.address.city}}</p>
+        </div>
+        <div *ngIf="user.address.street" class="row-start">
+            <label>Улица:</label>
+            <p>{{user.address.street}}</p>
+        </div>
+        <div *ngIf="user.address.adress" class="row-start">
+            <label>Адрес:</label>
+            <p>{{user.address.adress}}</p>
+        </div>
+        <div *ngIf="user.address.postCode" class="row-start">
+            <label>Пощенски код:</label>
+            <p>{{user.address.postCode}}</p>
+        </div>
+      </div>
+  
+    </mat-card-content>
+    <div class="buttons">
+      <mat-card-actions>
+        <button class="mat-elevation-z2 btn" (click)="makeAction()" mat-button>Да</button>
+      </mat-card-actions>
+      <mat-card-actions>
+        <button class="mat-elevation-z2 btn" (click)="closeDialog()" mat-button>Не</button>
+      </mat-card-actions>
+    </div>
+  </mat-card>

@@ -1,6 +1,6 @@
 .info-card {
     /* max-width: 400px; */
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 
 .buttons{
@@ -13,7 +13,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    background-color: #D7E8D4;
+    background-color: bisque;
     border-radius: 3px;
     padding: 4em;
 }
@@ -60,5 +60,9 @@
     width: 150px;
 }
 
-
+.warning-message{
+    background-color: tomato;
+    border: 1px solid red;
+    border-radius: 3px;
+}
   
