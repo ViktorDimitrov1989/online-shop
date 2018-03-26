@@ -48,6 +48,7 @@ import { CreateBrandComponent } from './components/brand/create-brand/create-bra
 import { InputFileComponent } from './components/shared/input-file/input-file.component';
 import { UserService } from './services/user/user.service';
 import { ConfirmEditUserComponent } from './components/user/confirm-edit-user/confirm-edit-user.component';
+import { PaginatorComponent } from './components/shared/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { ConfirmEditUserComponent } from './components/user/confirm-edit-user/co
     ConfirmPopupComponent,
     CreateBrandComponent,
     InputFileComponent,
-    ConfirmEditUserComponent
+    ConfirmEditUserComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,

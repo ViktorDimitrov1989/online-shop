@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../../services/user/user.service';
 import { AppState } from '../../../store/app-state';
 import { Store } from '@ngrx/store';
 import LoginUser from '../../../models/login-user';
+import { MatPaginator } from '@angular/material';
+import { PaginatorComponent } from '../../shared/paginator/paginator.component';
 
 @Component({
   selector: 'app-users-list',
@@ -13,6 +15,8 @@ export class UsersListComponent implements OnInit {
 
   public users: [any];
   public loggedUser: any;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private store: Store<AppState>,
@@ -27,8 +31,13 @@ export class UsersListComponent implements OnInit {
     })
   }
 
+  //TODO: hardcoded values set pagination
   ngOnInit() {
-    this.userService.getAllUsers();
+    this.userService.getAllUsers(0, 10);
+  }
+
+  fetchRecords(message:string):void {
+    console.log(message);
   }
 
 }

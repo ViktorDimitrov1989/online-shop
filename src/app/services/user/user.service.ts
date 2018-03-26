@@ -17,10 +17,13 @@ export class UserService {
     private toastr: ToastrService,
     public store: Store<AppState>) { }
 
-  public getAllUsers() {
-    this.http.get(AppComponent.API_URL + "/admin/users/all", { withCredentials: true })
+  public getAllUsers(pageNumber: number, pageSize: number) {
+    pageNumber = pageNumber > 0 ? pageNumber - 1:0;
+
+    this.http.get(AppComponent.API_URL + "/admin/users/get?page=" + pageNumber + "&size=" + pageSize, { withCredentials: true })
       .subscribe((respObject: any) => {
-        this.store.dispatch(new GetUsersAction(respObject.response));
+        console.log(respObject);
+        this.store.dispatch(new GetUsersAction(respObject.response.content));
       },
         (err: any) => {
           this.toastr.error(err.error.message);
@@ -31,7 +34,7 @@ export class UserService {
     this.http.post(AppComponent.API_URL + "/admin/users/makeAdmin/" + id, {}, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
-        this.getAllUsers();
+        this.getAllUsers(0, 10);
       },
         (err: any) => {
           this.toastr.error(err.error.message);
@@ -42,7 +45,7 @@ export class UserService {
     this.http.post(AppComponent.API_URL + "/admin/users/takeAdmin/" + id, {}, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
-        this.getAllUsers();
+        this.getAllUsers(0, 10);
       },
         (err: any) => {
           this.toastr.error(err.error.message);
@@ -53,7 +56,7 @@ export class UserService {
     this.http.post(AppComponent.API_URL + "/admin/users/block/" + id, {}, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
-        this.getAllUsers();
+        this.getAllUsers(0, 10);
       },
         (err: any) => {
           this.toastr.error(err.error.message);
@@ -64,7 +67,7 @@ export class UserService {
     this.http.post(AppComponent.API_URL + "/admin/users/unblock/" + id, {}, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
-        this.getAllUsers();
+        this.getAllUsers(0, 10);
       },
         (err: any) => {
           this.toastr.error(err.error.message);

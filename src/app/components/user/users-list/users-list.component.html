@@ -33,5 +33,11 @@
   <div *ngIf="users">
     <app-user-info-card *ngFor="let user of users" [user]="user"></app-user-info-card>
   </div>
-  
+
+  <app-paginator *ngIf="users" 
+                (notify)="onPageEvent($event)"
+                [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 20]"
+                [length]="users.length"
+                (onChangePage)="fetchRecords($event)"></app-paginator>
 </mat-list>
