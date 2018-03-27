@@ -52,6 +52,7 @@ export class AuthService {
     this.http.get(AppComponent.API_URL + "/auth/logout", { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message)
+        this.router.navigateByUrl('/');
         this.store.dispatch(new LogoutUserAction())
       },
         (err: any) => {

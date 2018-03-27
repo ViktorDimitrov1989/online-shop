@@ -23,51 +23,51 @@ export class UserService {
     this.http.get(AppComponent.API_URL + "/admin/users/get?page=" + pageNumber + "&size=" + pageSize, { withCredentials: true })
       .subscribe((respObject: any) => {
         console.log(respObject);
-        this.store.dispatch(new GetUsersAction(respObject.response.content));
+        this.store.dispatch(new GetUsersAction(respObject.response));
       },
         (err: any) => {
           this.toastr.error(err.error.message);
         })
   }
 
-  public makeUserAdmin(id: number) {
+  public makeUserAdmin(id: number, pageIndex: number, pageSize: number) {
     this.http.post(AppComponent.API_URL + "/admin/users/makeAdmin/" + id, {}, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
-        this.getAllUsers(0, 10);
+        this.getAllUsers(pageIndex, pageSize);
       },
         (err: any) => {
           this.toastr.error(err.error.message);
         })
   }
 
-  public takeAdminPermissions(id: number) {
+  public takeAdminPermissions(id: number, pageIndex: number, pageSize: number) {
     this.http.post(AppComponent.API_URL + "/admin/users/takeAdmin/" + id, {}, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
-        this.getAllUsers(0, 10);
+        this.getAllUsers(pageIndex, pageSize);
       },
         (err: any) => {
           this.toastr.error(err.error.message);
         })
   }
 
-  public blockUser(id: number) {
+  public blockUser(id: number, pageIndex: number, pageSize: number) {
     this.http.post(AppComponent.API_URL + "/admin/users/block/" + id, {}, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
-        this.getAllUsers(0, 10);
+        this.getAllUsers(pageIndex, pageSize);
       },
         (err: any) => {
           this.toastr.error(err.error.message);
         })
   }
 
-  public unBlockUser(id: number) {
+  public unBlockUser(id: number, pageIndex: number, pageSize: number) {
     this.http.post(AppComponent.API_URL + "/admin/users/unblock/" + id, {}, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
-        this.getAllUsers(0, 10);
+        this.getAllUsers(pageIndex, pageSize);
       },
         (err: any) => {
           this.toastr.error(err.error.message);

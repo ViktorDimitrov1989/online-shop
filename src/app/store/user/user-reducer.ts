@@ -21,7 +21,7 @@ export function userReducer(state = initialState,
         return Object.assign({}, state, {loggedUser: action.user, authenticated: true});
       }
       case LOGOUT_USER: {
-        return Object.assign({}, state, {authenticated: false, loggedUser: {}, allUsers: []});
+        return Object.assign({}, state, {authenticated: false, loggedUser: {}});
       }
       case GET_USERS: {
         return Object.assign({}, state, {authenticated: state.authenticated, loggedUser:state.loggedUser, allUsers: action.allUsers});

@@ -12,24 +12,21 @@ export class PaginatorComponent implements OnInit {
   @Input() pageSize: number;
   @Input() pageSizeOptions: number[];
 
-  @Output() onChangePage: EventEmitter<string> = new EventEmitter;
+  @Output() onChangePage: EventEmitter<any> = new EventEmitter;
 
   pageEvent: PageEvent;
 
   constructor() {
+    length = Number.MAX_SAFE_INTEGER;
   }
 
   ngOnInit() {
   }
 
-  @Output() changePage(event?:PageEvent){
-    let getRecordsCondition: boolean = ((event.pageIndex + 1) * event.pageSize) >= event.length;
-    console.log(getRecordsCondition);
-    
-    if(getRecordsCondition){
-      console.log(event)
-      this.onChangePage.emit('fetchData');
-    }
+  @Output() changePage(event?: PageEvent) {
+    //let getRecordsCondition: boolean = ((event.pageIndex + 1) * event.pageSize) >= event.length;
+
+    this.onChangePage.emit(event);
 
   }
 

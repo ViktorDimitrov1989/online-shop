@@ -15,15 +15,21 @@ export class UsersListComponent implements OnInit {
 
   public users: [any];
   public loggedUser: any;
+  public usersLength;
+
+  private pageIndex: number;
+  private pageSize: number;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private store: Store<AppState>,
     private userService: UserService) {
+    this.usersLength = 0;
 
     this.store.select(state => state.userState.allUsers).subscribe(data => {
-      this.users = data;
+      this.users = data.content;
+      this.usersLength = data.totalElements;
     });
 
     this.store.select(state => state.userState.loggedUser).subscribe(data => {
@@ -33,11 +39,14 @@ export class UsersListComponent implements OnInit {
 
   //TODO: hardcoded values set pagination
   ngOnInit() {
-    this.userService.getAllUsers(0, 10);
+    this.userService.getAllUsers(0, 5);
   }
 
-  fetchRecords(message:string):void {
-    console.log(message);
+  fetchRecords(message:any):void {
+    this.pageIndex = message.pageIndex + 1;
+    this.pageSize = message.pageSize;
+
+    this.userService.getAllUsers(this.pageIndex, this.pageSize);
   }
 
 }
