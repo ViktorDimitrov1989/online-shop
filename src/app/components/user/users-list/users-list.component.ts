@@ -17,8 +17,8 @@ export class UsersListComponent implements OnInit {
   public loggedUser: any;
   public usersLength;
 
-  private pageIndex: number;
-  private pageSize: number;
+  private pageIndex: number = 0;
+  private pageSize: number = 5;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -37,9 +37,8 @@ export class UsersListComponent implements OnInit {
     })
   }
 
-  //TODO: hardcoded values set pagination
   ngOnInit() {
-    this.userService.getAllUsers(0, 5);
+    this.userService.getAllUsers(this.pageIndex, 5);
   }
 
   fetchRecords(message:any):void {
