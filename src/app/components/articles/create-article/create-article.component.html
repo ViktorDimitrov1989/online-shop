@@ -4,7 +4,7 @@
 
     <div class="column">
       <mat-form-field>
-        <input class="input" matInput placeholder="Име" name="displayName" [(ngModel)]="article.displayName" [formControl]="displayNameFormControl"
+        <input class="input" matInput placeholder="Име" name="name" [(ngModel)]="article.name" [formControl]="displayNameFormControl"
           [errorStateMatcher]="matcher">
         <mat-error *ngIf="displayNameFormControl.hasError('minlength') && !displayNameFormControl.hasError('required')">
           Името трябва да е дълго минимум 5 символа.
@@ -59,7 +59,7 @@
 
       <div>
         <p>Марка:</p>
-        <mat-radio-group name="brand" [(ngModel)]="article.brand" [formControl]="brandFormControl">
+        <mat-radio-group name="brandName" [(ngModel)]="article.brandName" [formControl]="brandFormControl">
           <mat-radio-button value="Nike">Nike</mat-radio-button>
           <mat-radio-button value="Adidas">Adidas</mat-radio-button>
         </mat-radio-group>
@@ -75,6 +75,28 @@
           <mat-radio-button value="TrackSuit">Анцузи</mat-radio-button>
         </mat-radio-group>
         <div class="err" *ngIf="!isCategorySelected">
+          Задължителен избор
+        </div>
+      </div>
+
+      <div>
+        <p>Сезон:</p>
+        <mat-radio-group name="season" [(ngModel)]="article.season" [formControl]="seasonFormControl">
+          <mat-radio-button value="FALL_WINTER">Есен-Зима</mat-radio-button>
+          <mat-radio-button value="SPRING_SUMMER">Пролет-Лято</mat-radio-button>
+        </mat-radio-group>
+        <div class="err" *ngIf="!isSeasonSelected">
+          Задължителен избор
+        </div>
+      </div>
+
+      <div>
+        <p>Пол:</p>
+        <mat-radio-group name="gender" [(ngModel)]="article.gender" [formControl]="genderFormControl">
+          <mat-radio-button value="GIRLS">Мимичета</mat-radio-button>
+          <mat-radio-button value="BOYS">Момчета</mat-radio-button>
+        </mat-radio-group>
+        <div class="err" *ngIf="!isGenderSelected">
           Задължителен избор
         </div>
       </div>
@@ -120,14 +142,14 @@
       <div>
         <p>Дата на изтичане:</p>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Избери дата">
+          <input matInput [matDatepicker]="picker" name="expireDate" [(ngModel)]="article.statusExpireDate" placeholder="Избери дата">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </div>
 
       <mat-form-field>
-        <input class="input" value="0" type="number" matInput placeholder="Отстъпка" name="discount">
+        <input class="input" value="0" type="number" matInput placeholder="Отстъпка" [(ngModel)]="article.statusDiscount" name="discount">
         <mat-icon matSuffix>%</mat-icon>
         <mat-hint>Задължително поле</mat-hint>
       </mat-form-field>

@@ -5,6 +5,7 @@ import { FormErrorStateMatcher } from '../../../utils/error-state-matcher';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import CreateArticle from '../../../models/create-article';
 import { FileValidators } from '../../../utils/file-validators';
+import { ArticleService } from '../../../services/article/article.service';
 
 @Component({
   selector: 'app-create-article',
@@ -53,6 +54,14 @@ export class CreateArticleComponent implements OnInit {
     Validators.required
   ])
 
+  seasonFormControl = new FormControl('', [
+    Validators.required
+  ])
+
+  genderFormControl = new FormControl('', [
+    Validators.required
+  ])
+
   public createArticleForm = new FormGroup({
     dispalyName: this.displayNameFormControl,
     description: this.descriptionFormControl,
@@ -62,7 +71,9 @@ export class CreateArticleComponent implements OnInit {
     category: this.categoryFormControl,
     sizes: this.sizesFormControl,
     colors: this.colorsFormControl,
-    status: this.statusFormControl  
+    status: this.statusFormControl,
+    gender: this.genderFormControl,
+    season: this.seasonFormControl
   })
 
 
@@ -73,13 +84,17 @@ export class CreateArticleComponent implements OnInit {
   public isSizesSelected: boolean;
   public isColorsSelected: boolean;
   public isStatusSelected: boolean;
+  public isGenderSelected: boolean;
+  public isSeasonSelected: boolean;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, public articleService: ArticleService) {
     this.article = {
-      displayName: '',
+      season: '',
+      gender: '',
+      name: '',
       description: '',
-      photo: {},
-      brand: '',
+      photo: '',
+      brandName: '',
       price: 0,
       status: '',
       expireDate: new Date(),
@@ -91,6 +106,18 @@ export class CreateArticleComponent implements OnInit {
     this.brandFormControl.valueChanges.subscribe(data => {
       if (data !== '' && data != undefined) {
         this.isBrandSelected = true;
+      }
+    })
+
+    this.genderFormControl.valueChanges.subscribe(data => {
+      if (data !== '' && data != undefined) {
+        this.isGenderSelected = true;
+      }
+    })
+
+    this.seasonFormControl.valueChanges.subscribe(data => {
+      if (data !== '' && data != undefined) {
+        this.isSeasonSelected = true;
       }
     })
 
@@ -128,11 +155,13 @@ export class CreateArticleComponent implements OnInit {
   }
 
   confirmCreation() {
-    this.dialog.open(ConfirmPopupComponent, {
-      data: {
-        message: 'Създай артикул?'
-      }
-    });
+    console.log(this.article)
+    this.articleService.createArticle(this.article);
+    // this.dialog.open(ConfirmPopupComponent, {
+    //   data: {
+    //     message: 'Създай артикул?'
+    //   }
+    // });
   }
 
 }

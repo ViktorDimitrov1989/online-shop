@@ -1,8 +1,10 @@
 export default class CreateArticle{
-    displayName: string;
+    name: string;
+    season: string;
+    gender: string;
     description: string;
     photo: any;
-    brand: string;
+    brandName: string;
     price: number;
     status: string;
     expireDate: Date;
