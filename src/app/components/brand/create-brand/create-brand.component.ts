@@ -3,7 +3,9 @@ import { MatDialog } from '@angular/material';
 import { ConfirmPopupComponent } from '../../shared/confirm-popup/confirm-popup.component';
 import { CreateBrand } from '../../../models/create-brand';
 import { FormErrorStateMatcher } from '../../../utils/error-state-matcher';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { ArticleService } from '../../../services/article/article.service';
 
 @Component({
   selector: 'app-create-brand',
@@ -21,11 +23,19 @@ export class CreateBrandComponent implements OnInit {
     Validators.minLength(35)
   ])
 
+  public createBrandForm = new FormGroup({
+    name: this.nameFormControl,
+    description: this.descriptionFormControl
+  })
+
 
   public matcher = new FormErrorStateMatcher();
   public brand: CreateBrand;
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+    public toastr: ToastrService,
+    public articleService: ArticleService
+  ) {
     this.brand = {
       name: '',
       description: ''
@@ -37,11 +47,12 @@ export class CreateBrandComponent implements OnInit {
   }
 
   confirmCreation() {
-    this.dialog.open(ConfirmPopupComponent, {
-      data: {
-        message: 'Създай бранд?'
-      }
-    });
+    if(!this.createBrandForm.valid){
+      this.toastr.error('Полетата във формата не са попълнени коректно!');
+    }else{
+      console.log(this.brand);
+      this.articleService.createBrand(this.brand);
+    }
   }
 
 }

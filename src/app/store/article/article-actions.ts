@@ -3,6 +3,7 @@ import { Action } from "@ngrx/store";
 export const CREATE_ARTICLE = 'article/CREATE';
 export const GET_ARTICLES = 'article/FIND_ALL';
 export const GET_ARTICLE_OPTIONS = 'article/OPTIONS';
+export const CREATE_BRAND = "article/CREATE_BRAND";
 
 export class CreateArticleAction implements Action {
     readonly type = CREATE_ARTICLE;
@@ -21,6 +22,14 @@ export class GetArticleOptions implements Action{
 
     constructor(public brands: any[],public colors: any[],public sizes: any[],public categories: any[]){}
 }
+
+
+export class CreateBrandAction implements Action{
+    readonly type = CREATE_BRAND;
+
+    constructor(public brand){};
+}
+
 
 
 
