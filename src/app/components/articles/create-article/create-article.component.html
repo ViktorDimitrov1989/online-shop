@@ -31,8 +31,8 @@
 
       <div>
         <mat-form-field>
-          <app-input-file [formControl]="pictureFormControl" placeholder="Задължително поле" name="photo" valuePlaceholder="Няма селектиран файл"
-            required>
+          <app-input-file [formControl]="pictureFormControl" (change)="fileChange($event)" placeholder="Задължително поле" name="photo"
+            valuePlaceholder="Няма селектиран файл" required>
           </app-input-file>
           <mat-icon matSuffix>folder</mat-icon>
           <mat-error *ngIf="pictureFormControl.hasError('required')">
@@ -60,43 +60,9 @@
       <div>
         <p>Марка:</p>
         <mat-radio-group name="brandName" [(ngModel)]="article.brandName" [formControl]="brandFormControl">
-          <mat-radio-button value="Nike">Nike</mat-radio-button>
-          <mat-radio-button value="Adidas">Adidas</mat-radio-button>
+          <mat-radio-button *ngFor="let brand of brands" value="{{brand.name}}">{{brand.name}}</mat-radio-button>
         </mat-radio-group>
         <div class="err" *ngIf="!isBrandSelected">
-          Задължителен избор
-        </div>
-      </div>
-
-      <div>
-        <p>Категория:</p>
-        <mat-radio-group name="category" [(ngModel)]="article.category" [formControl]="categoryFormControl">
-          <mat-radio-button value="Shirts">Блузи</mat-radio-button>
-          <mat-radio-button value="TrackSuit">Анцузи</mat-radio-button>
-        </mat-radio-group>
-        <div class="err" *ngIf="!isCategorySelected">
-          Задължителен избор
-        </div>
-      </div>
-
-      <div>
-        <p>Сезон:</p>
-        <mat-radio-group name="season" [(ngModel)]="article.season" [formControl]="seasonFormControl">
-          <mat-radio-button value="FALL_WINTER">Есен-Зима</mat-radio-button>
-          <mat-radio-button value="SPRING_SUMMER">Пролет-Лято</mat-radio-button>
-        </mat-radio-group>
-        <div class="err" *ngIf="!isSeasonSelected">
-          Задължителен избор
-        </div>
-      </div>
-
-      <div>
-        <p>Пол:</p>
-        <mat-radio-group name="gender" [(ngModel)]="article.gender" [formControl]="genderFormControl">
-          <mat-radio-button value="GIRLS">Мимичета</mat-radio-button>
-          <mat-radio-button value="BOYS">Момчета</mat-radio-button>
-        </mat-radio-group>
-        <div class="err" *ngIf="!isGenderSelected">
           Задължителен избор
         </div>
       </div>
@@ -105,12 +71,22 @@
 
     <div class="column">
       <div>
-        <p>Налични размери:</p>
-        <mat-selection-list #articles name="sizes" [(ngModel)]="article.sizes" [formControl]="sizesFormControl">
-          <mat-list-option value="M">M</mat-list-option>
-          <mat-list-option value="L">L</mat-list-option>
-          <mat-list-option value="XL">XL</mat-list-option>
-        </mat-selection-list>
+        <p>Размери:</p>
+        <mat-accordion class="accordion">
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-description>
+                Избери налични размери
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-selection-list #articles name="sizes" [(ngModel)]="article.sizes" [formControl]="sizesFormControl">
+              <mat-list-option *ngFor="let size of sizes" value="{{size.name}}">{{size.name}}</mat-list-option>
+            </mat-selection-list>
+
+          </mat-expansion-panel>
+        </mat-accordion>
         <div class="err" *ngIf="!isSizesSelected">
           Задължителен избор
         </div>
@@ -118,10 +94,22 @@
 
       <div>
         <p>Цветове:</p>
-        <mat-selection-list #articles name="colors" [(ngModel)]="article.colors" [formControl]="colorsFormControl">
-          <mat-list-option value="Бял">бял</mat-list-option>
-          <mat-list-option value="Черен">черен</mat-list-option>
-        </mat-selection-list>
+        <mat-accordion class="accordion">
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-description>
+                Избери налични цветове
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-selection-list #articles name="colors" [(ngModel)]="article.colors" [formControl]="colorsFormControl">
+              <mat-list-option *ngFor="let color of colors" value="{{color.name}}">{{color.name}}</mat-list-option>
+            </mat-selection-list>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
         <div class="err" *ngIf="!isColorsSelected">
           Задължителен избор
         </div>
@@ -156,10 +144,88 @@
 
     </div>
 
+
+    <div class="column">
+      <mat-radio-group name="category" [(ngModel)]="article.categoryId" [formControl]="categoryFormControl" class="radio-group">
+        <p>Избери категория:</p>
+        <mat-accordion class="accordion">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Момичета
+              </mat-panel-title>
+              <mat-panel-description>
+                Есен-Зима
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-radio-button *ngFor="let cat of girslFallWinterCategories" value="{{cat.id}}" class="row">
+              <div class="row">
+                <div class="column">{{cat.name}}:</div>
+                <div class="column">{{cat.minAge}} до {{cat.maxAge}} години</div>
+              </div>
+            </mat-radio-button>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Момичета
+              </mat-panel-title>
+              <mat-panel-description>
+                Пролет-Лято
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-radio-button *ngFor="let cat of girlsSpringSummerCategories" value="{{cat.id}}" class="row">
+              <div class="row">
+                <div class="column">{{cat.name}}:</div>
+                <div class="column">{{cat.minAge}} до {{cat.maxAge}} години</div>
+              </div>
+            </mat-radio-button>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Момчета
+              </mat-panel-title>
+              <mat-panel-description>
+                Есен-Зима
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-radio-button *ngFor="let cat of boysFallWinterCategories" value="{{cat.id}}" class="row">
+              <div class="row">
+                <div class="column">{{cat.name}}:</div>
+                <div class="column">{{cat.minAge}} до {{cat.maxAge}} години</div>
+              </div>
+            </mat-radio-button>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Момчета
+              </mat-panel-title>
+              <mat-panel-description>
+                Пролет-Лято
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-radio-button *ngFor="let cat of boysSpringSummerCategories" value="{{cat.id}}" class="row">
+              <div class="row">
+                <div class="column">{{cat.name}}:</div>
+                <div class="column">{{cat.minAge}} до {{cat.maxAge}} години</div>
+              </div>
+            </mat-radio-button>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <div class="err" *ngIf="!isCategorySelected">
+          Задължителен избор
+        </div>
+      </mat-radio-group>
+    </div>
+
   </div>
 
   <div class="row">
-    <button mat-button [disabled]="!createArticleForm.valid" type="submit" (click)="confirmCreation()">Създай артикул</button>
+    <button mat-button type="submit" (click)="confirmCreation()">Създай артикул</button>
   </div>
 
 </form>

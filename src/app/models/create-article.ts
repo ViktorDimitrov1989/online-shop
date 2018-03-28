@@ -1,7 +1,5 @@
 export default class CreateArticle{
     name: string;
-    season: string;
-    gender: string;
     description: string;
     photo: any;
     brandName: string;
@@ -11,4 +9,5 @@ export default class CreateArticle{
     discount: number;
     colors: string[];
     sizes: string[];
+    categoryId: number;
 }

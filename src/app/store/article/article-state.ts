@@ -1,3 +1,7 @@
 export interface ArticleState{
-    allArticles: any
+    allArticles: any,
+    brands: any,
+    sizes: any,
+    colors: any,
+    categories: any
 }
