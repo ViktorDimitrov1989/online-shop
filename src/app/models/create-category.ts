@@ -3,5 +3,5 @@ export class CreateCategory{
     minAge: number;
     maxAge: number;
     gender: string;
-    sezon: string;
+    season: string;
 }

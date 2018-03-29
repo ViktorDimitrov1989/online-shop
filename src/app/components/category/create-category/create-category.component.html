@@ -52,9 +52,9 @@
 
       <div>
         <p>Сезон:</p>
-        <mat-radio-group [(ngModel)]="category.sezon" [formControl]="sezonFormControl">
+        <mat-radio-group [(ngModel)]="category.season" [formControl]="sezonFormControl">
           <mat-radio-button value="SPRING_SUMMER">Пролет-лято</mat-radio-button>
-          <mat-radio-button value="AUTHUMN_WINTER">Есен-зима</mat-radio-button>
+          <mat-radio-button value="FALL_WINTER">Есен-зима</mat-radio-button>
         </mat-radio-group>
         <div class="err" *ngIf="!isSezonSelected">
           Задължителен избор

@@ -4,6 +4,7 @@ export const CREATE_ARTICLE = 'article/CREATE';
 export const GET_ARTICLES = 'article/FIND_ALL';
 export const GET_ARTICLE_OPTIONS = 'article/OPTIONS';
 export const CREATE_BRAND = "article/CREATE_BRAND";
+export const CREATE_CATEGORY = "article/CREATE_CATEGORY";
 
 export class CreateArticleAction implements Action {
     readonly type = CREATE_ARTICLE;
@@ -29,6 +30,13 @@ export class CreateBrandAction implements Action{
 
     constructor(public brand){};
 }
+
+export class CreateCategoryAction implements Action{
+    readonly type = CREATE_CATEGORY;
+
+    constructor(public category){};
+}
+
 
 
 

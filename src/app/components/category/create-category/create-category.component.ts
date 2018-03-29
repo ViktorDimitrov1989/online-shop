@@ -4,6 +4,7 @@ import { ConfirmPopupComponent } from '../../shared/confirm-popup/confirm-popup.
 import { FormErrorStateMatcher } from '../../../utils/error-state-matcher';
 import { CreateCategory } from '../../../models/create-category';
 import { FormControl, Validators } from '@angular/forms';
+import { ArticleService } from '../../../services/article/article.service';
 
 @Component({
   selector: 'app-create-category',
@@ -37,13 +38,16 @@ export class CreateCategoryComponent implements OnInit {
   public isSezonSelected: boolean;
   public isMaxAgeCorrect: boolean;
 
-  constructor(public dialog: MatDialog) { 
+  constructor(
+    public dialog: MatDialog, 
+    public articleService: ArticleService
+  ) { 
     this.category = {
       name: '',
       minAge: 0,
       maxAge: 0,
       gender: '',
-      sezon: ''
+      season: ''
     }
 
     this.genderFormControl.valueChanges.subscribe(data => {
@@ -80,11 +84,7 @@ export class CreateCategoryComponent implements OnInit {
   }
 
   confirmCreation(){
-    this.dialog.open(ConfirmPopupComponent, {
-      data: {
-        message: 'Създай категория?'
-      }
-    });
+    this.articleService.createCategory(this.category);
   }
 
 }

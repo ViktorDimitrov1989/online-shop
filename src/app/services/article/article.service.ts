@@ -5,9 +5,10 @@ import { ToastrService } from "ngx-toastr";
 import { Store } from "@ngrx/store";
 import { AppState } from "../../store/app-state";
 import { AppComponent } from "../../app.component";
-import { CreateArticleAction, GetArticleOptions, CreateBrandAction, GetArticlesAction } from "../../store/article/article-actions";
+import { CreateArticleAction, GetArticleOptions, CreateBrandAction, GetArticlesAction, CreateCategoryAction } from "../../store/article/article-actions";
 import CreateArticle from "../../models/create-article";
 import { CreateBrand } from "../../models/create-brand";
+import { CreateCategory } from "../../models/create-category";
 
 @Injectable()
 export class ArticleService {
@@ -66,10 +67,21 @@ export class ArticleService {
         })
   }
 
+  createCategory(category: CreateCategory){
+    this.http.post(AppComponent.API_URL + "/admin/category/create", category, { withCredentials: true })
+      .subscribe((respObject: any) => {
+        console.log(respObject)
+        this.toastr.success(respObject.message);
+        this.store.dispatch(new CreateCategoryAction(respObject.response));
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
+  }
+
   getArticles(page: number, size: number) {
     this.http.get(AppComponent.API_URL + "/article/all?page=" + page + "&size=" + size, { withCredentials: true })
       .subscribe((respObject: any) => {
-        console.log(respObject);
         this.store.dispatch(new GetArticlesAction(respObject.response));
       },
         (err: any) => {
