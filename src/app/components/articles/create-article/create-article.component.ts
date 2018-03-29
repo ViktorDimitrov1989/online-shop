@@ -96,6 +96,7 @@ export class CreateArticleComponent implements OnInit {
     private store: Store<AppState>) {
 
     this.article = {
+      isAvailable: false,
       name: '',
       description: '',
       photo: '',
@@ -106,7 +107,7 @@ export class CreateArticleComponent implements OnInit {
       discount: 0,
       colors: [],
       sizes: [],
-      categoryId: 0
+      category: 0
     }
 
     this.hookToTheState();

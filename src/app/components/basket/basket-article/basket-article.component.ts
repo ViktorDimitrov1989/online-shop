@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './basket-article.component.html',
   styleUrls: ['./basket-article.component.css']
 })
-export class ArticleComponent implements OnInit {
+export class BasketArticleComponent implements OnInit {
 
   constructor() { }
 

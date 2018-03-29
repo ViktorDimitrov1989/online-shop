@@ -1,3 +1,12 @@
-<p>
-  article works!
-</p>
+<mat-card class="card">
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" />
+  <mat-card-content class="text">
+    <h3>{{article.name}}</h3>
+    <h5>Цена: 30лв.</h5>
+  </mat-card-content>
+  
+  <mat-card-actions class="buttons-container">
+    <button mat-button (click)="viewDetails()">Детайли</button>
+    <button mat-button class="mat-elevation-z2">Сложи в кошницата</button>
+  </mat-card-actions>
+</mat-card>

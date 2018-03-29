@@ -9,5 +9,6 @@ export default class CreateArticle{
     discount: number;
     colors: string[];
     sizes: string[];
-    categoryId: number;
+    category: number;
+    isAvailable: boolean;
 }

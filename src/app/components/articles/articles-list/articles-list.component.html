@@ -20,8 +20,12 @@
         <mat-icon>settings</mat-icon>
         Филтри
       </button>
-    </div>
 
+
+    </div>
+    <mat-form-field class="search-bar">
+      <input class="input" matInput placeholder="Търси по име" name="name">
+    </mat-form-field>
     <!-- Menu button -->
     <button mat-button [mat-menu-trigger-for]="mobile" fxHide="false" fxHide.gt-sm>
       <mat-icon>menu</mat-icon>
@@ -35,19 +39,9 @@
       Менажиране на артикули</button>
   </mat-menu>
 
-  <main class="cards">
-    <mat-card class="card">
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" />
-      <mat-card-content class="text">
-        <h3>Тениска със картинка</h3>
-        <h5>Цена: 30лв.</h5>
-      </mat-card-content>
-      
-      <mat-card-actions class="buttons-container">
-        <button mat-button (click)="viewDetails()">Детайли</button>
-        <button mat-button class="mat-elevation-z2">Сложи в кошницата</button>
-      </mat-card-actions>
-    </mat-card>
+  <main class="cards" *ngIf="articlesList">
+    <div>HHHHHHHHHHHHHH</div>
+    <app-article *ngFor="let article of articlesList" [article]="article"></app-article>
   </main>
 
 </mat-drawer-container>

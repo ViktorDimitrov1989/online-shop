@@ -5,7 +5,7 @@ import { ToastrService } from "ngx-toastr";
 import { Store } from "@ngrx/store";
 import { AppState } from "../../store/app-state";
 import { AppComponent } from "../../app.component";
-import { CreateArticleAction, GetArticleOptions, CreateBrandAction } from "../../store/article/article-actions";
+import { CreateArticleAction, GetArticleOptions, CreateBrandAction, GetArticlesAction } from "../../store/article/article-actions";
 import CreateArticle from "../../models/create-article";
 import { CreateBrand } from "../../models/create-brand";
 
@@ -36,9 +36,9 @@ export class ArticleService {
   createArticle(articleToCreate: CreateArticle) {
 
     let data = new FormData();
-    let { name, description, brandName, price, status, expireDate, discount, colors, sizes, categoryId } = articleToCreate;
+    let { name, description, brandName, price, status, expireDate, discount, colors, sizes, category } = articleToCreate;
 
-    data.append('article', new Blob([JSON.stringify({ name, description, brandName, price, status, expireDate, discount, colors, sizes, categoryId })],
+    data.append('article', new Blob([JSON.stringify({ name, description, brandName, price, status, expireDate, discount, colors, sizes, category })],
       { type: 'application/json' }));
 
     if (articleToCreate.photo) {
@@ -66,13 +66,15 @@ export class ArticleService {
         })
   }
 
-  getArticles() {
-    this.http.get(`url`).subscribe(articles => {
-      return 'asd';
-    },
-      err => {
-        console.log(err);
-      });
+  getArticles(page: number, size: number) {
+    this.http.get(AppComponent.API_URL + "/article/all?page=" + page + "&size=" + size, { withCredentials: true })
+      .subscribe((respObject: any) => {
+        console.log(respObject);
+        this.store.dispatch(new GetArticlesAction(respObject.response));
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
   }
 
 }

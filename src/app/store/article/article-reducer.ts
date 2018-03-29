@@ -19,13 +19,13 @@ export function articleReducer(state = initialState,
           return state;
         }
         case GET_ARTICLES: {
-          return Object.assign({}, state, {allArticles: action.articles});
+          return Object.assign({}, state, {allArticles: action.articles, brands: state.brands, colors: state.colors, sizes: state.sizes, categories: state.categories});
         }
         case GET_ARTICLE_OPTIONS:{
-          return Object.assign({}, state, {brands: action.brands, colors: action.colors, sizes: action.sizes, categories: action.categories})
+          return Object.assign({}, state, {allArticles: state.allArticles, brands: action.brands, colors: action.colors, sizes: action.sizes, categories: action.categories})
         }
         case CREATE_BRAND:{
-          return Object.assign({}, state, state.brands.push(action.brand))
+          return Object.assign({}, state, {allArticles: state.allArticles, brands: state.brands.push(action.brand), colors: state.colors, sizes: state.sizes, categories: state.categories})
         }
         default: {
           return state;

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 //redux
 import { NgReduxModule, NgRedux } from 'ng2-redux';
@@ -37,7 +37,6 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { UserInfoCardComponent } from './components/user/user-info-card/user-info-card.component';
 import { UsersListComponent } from './components/user/users-list/users-list.component';
 import { ArticleListComponent } from './components/basket/basket-article-list/basket-article-list.component';
-import { ArticleComponent } from './components/basket/basket-article/basket-article.component';
 import { IndexComponent } from './components/home/index/index.component';
 import { ArticlesListComponent } from './components/articles/articles-list/articles-list.component';
 import { ArticleDetailsComponent } from './components/articles/article-details/article-details.component';
@@ -49,6 +48,8 @@ import { InputFileComponent } from './components/shared/input-file/input-file.co
 import { UserService } from './services/user/user.service';
 import { ConfirmEditUserComponent } from './components/user/confirm-edit-user/confirm-edit-user.component';
 import { PaginatorComponent } from './components/shared/paginator/paginator.component';
+import { ArticleComponent } from './components/articles/article/article.component';
+import { BasketArticleComponent } from './components/basket/basket-article/basket-article.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { PaginatorComponent } from './components/shared/paginator/paginator.comp
     CreateBrandComponent,
     InputFileComponent,
     ConfirmEditUserComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    BasketArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +101,7 @@ import { PaginatorComponent } from './components/shared/paginator/paginator.comp
     UserService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ArticleDetailsComponent,ConfirmPopupComponent, ConfirmEditUserComponent]
+  entryComponents: [ArticleDetailsComponent,ConfirmPopupComponent, ConfirmEditUserComponent],
 })
 export class AppModule {
 }

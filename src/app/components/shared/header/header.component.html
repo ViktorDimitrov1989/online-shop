@@ -15,7 +15,7 @@
       Потребители</button>
     <button class="mat-elevation-z2" mat-button [matMenuTriggerFor]="adminFunc">
       <mat-icon>assignment</mat-icon>
-      Менажиране на артикули</button>
+      Мениджмънт</button>
   </div>
 
   <div *ngIf="!isLogged" class="auth-links" fxLayout="row" fxShow="false" fxShow.gt-sm>
@@ -54,7 +54,7 @@
 
   <button mat-menu-item class="mat-elevation-z2" [matMenuTriggerFor]="adminFunc">
     <mat-icon>assignment</mat-icon>
-    Менажиране на артикули</button>
+    Мениджмънт</button>
 </mat-menu>
 
 <div class="content">
@@ -88,8 +88,23 @@
 
 <!-- admin functionalities -->
 <mat-menu [overlapTrigger]="false" #adminFunc="matMenu">
-    <button mat-menu-item routerLink="/article/create">Създай артикул</button>
-    <button mat-menu-item routerLink="/brand/create">Създай бранд</button>
-    <button mat-menu-item routerLink="/category/create">Създай категория</button>
+  <button mat-menu-item [matMenuTriggerFor]="adminArticles">Артикули</button>
+  <button mat-menu-item [matMenuTriggerFor]="adminBrands">Брандове</button>
+  <button mat-menu-item [matMenuTriggerFor]="adminCategories">Категории</button>
 </mat-menu>
 
+<!-- admin articles -->
+<mat-menu [overlapTrigger]="false" #adminArticles="matMenu">
+  <button mat-menu-item routerLink="/article/create">Създай артикул</button>
+  <button mat-menu-item routerLink="/article/edit">Промени артикули</button>
+</mat-menu>
+
+<!-- admin brands -->
+<mat-menu [overlapTrigger]="false" #adminBrands="matMenu">
+  <button mat-menu-item routerLink="/brand/create">Създай бранд</button>
+</mat-menu>
+
+<!-- admin categories -->
+<mat-menu [overlapTrigger]="false" #adminCategories="matMenu">
+  <button mat-menu-item routerLink="/category/create">Създай категория</button>
+</mat-menu>
