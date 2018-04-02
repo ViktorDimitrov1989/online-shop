@@ -2,11 +2,40 @@
   <mat-drawer #drawer class="example-sidenav" mode="side">
 
     <p>Филтрирай по категории:</p>
-    <mat-selection-list #articles>
-      <mat-list-option>Панталони</mat-list-option>
-      <mat-list-option>Блузи</mat-list-option>
-      <mat-list-option>Тениски</mat-list-option>
+    <mat-selection-list *ngIf="categories" [(ngModel)]="chosenCategories">
+      <mat-list-option *ngFor="let category of categories" value="{{category.id}}" (click)="filter()">
+        {{category.name}}
+      </mat-list-option>
     </mat-selection-list>
+
+    <p>Филтрирай по марка:</p>
+    <mat-selection-list *ngIf="brands" [(ngModel)]="chosenBrands">
+      <mat-list-option *ngFor="let brand of brands" value="{{brand.name}}" (click)="filter()">
+        {{brand.name}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <p>Филтрирай по цвят:</p>
+    <mat-selection-list *ngIf="colors" [(ngModel)]="chosenColors">
+      <mat-list-option *ngFor="let color of colors" value="{{color.name}}" (click)="filter()">
+        {{color.name}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <p>Филтрирай по големина:</p>
+    <mat-selection-list *ngIf="sizes" [(ngModel)]="chosenSizes">
+      <mat-list-option *ngFor="let size of sizes" value="{{size.name}}" (click)="filter()">
+        {{size.name}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <p>Филтрирай по статус:</p>
+    <mat-selection-list [(ngModel)]="chosenStatuses" (click)="filter()">
+      <mat-list-option value="PROMO">Промоция</mat-list-option>
+      <mat-list-option value="REGULAR">Нормален</mat-list-option>
+      <mat-list-option value="SALE">Разпродажба</mat-list-option>
+    </mat-selection-list>
+
 
     <button (click)="drawer.toggle()" mat-raised-button>
       Затвори филтрите
@@ -38,15 +67,11 @@
       <mat-icon>assignment</mat-icon>
       Менажиране на артикули</button>
   </mat-menu>
-  
-    <main class="cards" *ngIf="articlesList">
-      <app-article *ngFor="let article of articlesList" [article]="article"></app-article>
-    </main>
-  
+
+  <main class="cards" *ngIf="articlesList">
+    <app-article *ngFor="let article of articlesList" [article]="article"></app-article>
+  </main>
+
 </mat-drawer-container>
-<app-paginator class="paginator"
-                  (notify)="onPageEvent($event)"
-                  [pageSize]="pageSize"
-                  [pageSizeOptions]="[5, 10, 20]"
-                  [length]="articlesLength"
-                  (onChangePage)="fetchRecords($event)"></app-paginator>
+<app-paginator class="paginator" (notify)="onPageEvent($event)" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [length]="articlesLength"
+  (onChangePage)="fetchRecords($event)"></app-paginator>

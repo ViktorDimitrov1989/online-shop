@@ -1,6 +1,6 @@
 import { ArticleState } from "./article-state";
 
-import { CREATE_ARTICLE, GET_ARTICLES, GET_ARTICLE_OPTIONS, CREATE_BRAND, CreateArticleAction, GetArticlesAction, GetArticleOptions, CreateBrandAction, CreateCategoryAction, CREATE_CATEGORY} from "./article-actions";
+import { CREATE_ARTICLE, GET_ARTICLES, GET_ARTICLE_OPTIONS, CREATE_BRAND, FILTER_ARTICLES, CreateArticleAction, GetArticlesAction, GetArticleOptions, CreateBrandAction, CreateCategoryAction, CREATE_CATEGORY, FilterArticlesAction} from "./article-actions";
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 
 const initialState: ArticleState = {
@@ -12,7 +12,7 @@ const initialState: ArticleState = {
 }
 
 export function articleReducer(state = initialState, 
-    action: CreateArticleAction | GetArticlesAction | GetArticleOptions | CreateBrandAction | CreateCategoryAction): ArticleState {
+    action: CreateArticleAction | GetArticlesAction | GetArticleOptions | CreateBrandAction | CreateCategoryAction | FilterArticlesAction): ArticleState {
   
       switch(action.type) {
         case CREATE_ARTICLE: {
@@ -28,14 +28,23 @@ export function articleReducer(state = initialState,
           return Object.assign({}, state, {allArticles: state.allArticles, brands: [...state.brands, action.brand], colors: state.colors, sizes: state.sizes, categories: state.categories})
         }
         case CREATE_CATEGORY:{
-          console.log(action.category)
           return Object.assign({}, state, {allArticles: state.allArticles, brands: state.brands, colors: state.colors, sizes: state.sizes, categories: [...state.categories, action.category]})
+        }
+        case FILTER_ARTICLES:{
+          return Object.assign({}, state, {allArticles: action.allArticles, brands: state.brands, colors: state.colors, sizes: state.sizes, categories: state.categories})
         }
         default: {
           return state;
         }
       }	
+
+      // function filterArticles(filters: any[]){
+      //   return state.allArticles.colors.includes(filters.brand.name) 
+    	//     && o.sizes.some(r => sizesFilter.includes(r));
+      // }
   } 
+
+  
   
   export const getArticleState = createFeatureSelector<ArticleState>('articleState');
   

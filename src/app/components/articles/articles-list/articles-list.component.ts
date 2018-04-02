@@ -15,6 +15,17 @@ export class ArticlesListComponent implements OnInit {
   
   public showFiller = false;
   public articlesList: any[];
+  public brands: any[];
+  public colors: any[];
+  public sizes: any[];
+  public categories: any[];
+
+  public chosenBrands: any[] = [];
+  public chosenColors: any[] = [];
+  public chosenSizes: any[] = [];
+  public chosenCategories: any[] = [];
+  public chosenStatuses: any[] = [];
+
   public articlesLength: number;
 
   private pageIndex: number = 0;
@@ -30,12 +41,45 @@ export class ArticlesListComponent implements OnInit {
         this.articlesList = data.content;
         this.articlesLength = data.totalElements;
       });
+
+      this.store.select(state => state.articleState.brands)
+      .subscribe(data => {
+        this.brands = data;
+      })
+
+      this.store.select(state => state.articleState.colors)
+      .subscribe(data => {
+        this.colors = data;
+      })
+
+      this.store.select(state => state.articleState.sizes)
+      .subscribe(data => {
+        this.sizes = data;
+      })
+
+      this.store.select(state => state.articleState.categories)
+      .subscribe(data => {
+        this.categories = data;
+      })
+
       
-      this.articleService.getArticles(this.pageIndex, this.pageSize);
+      
 
   }
 
   ngOnInit() {
+    this.articleService.getArticleOptions();
+    this.articleService.getArticles(this.pageIndex, this.pageSize);
+  }
+
+  filter(){
+    console.log('FILTER!!!');
+    this.articleService.filterArticles(this.pageIndex, this.pageSize, {
+      chosenSizes: this.chosenSizes, 
+      chosenColors: this.chosenColors, 
+      chosenCategories: this.chosenCategories, 
+      chosenBrands: this.chosenBrands, 
+      chosenStatuses: this.chosenStatuses});
   }
 
   fetchRecords(message:any):void {

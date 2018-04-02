@@ -89,4 +89,16 @@ export class ArticleService {
         })
   }
 
+  filterArticles(page:number, size: number, filters: any){
+    this.http.post(AppComponent.API_URL + "/article/filter?page=" + page + "&size=" + size, filters, { withCredentials: true })
+      .subscribe((respObject: any) => {
+        console.log(respObject);
+        //this.store.dispatch(new GetArticlesAction(respObject.response));
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
+  }
+
+
 }
