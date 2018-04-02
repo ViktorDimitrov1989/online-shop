@@ -38,9 +38,15 @@
       <mat-icon>assignment</mat-icon>
       Менажиране на артикули</button>
   </mat-menu>
-
-  <main class="cards" *ngIf="articlesList">
-    <app-article *ngFor="let article of articlesList" [article]="article"></app-article>
-  </main>
-
+  
+    <main class="cards" *ngIf="articlesList">
+      <app-article *ngFor="let article of articlesList" [article]="article"></app-article>
+    </main>
+  
 </mat-drawer-container>
+<app-paginator class="paginator"
+                  (notify)="onPageEvent($event)"
+                  [pageSize]="pageSize"
+                  [pageSizeOptions]="[5, 10, 20]"
+                  [length]="articlesLength"
+                  (onChangePage)="fetchRecords($event)"></app-paginator>

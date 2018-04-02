@@ -32,4 +32,10 @@
     margin-top: 20px;
 }
 
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+}
+
 

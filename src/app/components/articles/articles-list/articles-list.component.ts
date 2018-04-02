@@ -30,6 +30,7 @@ export class ArticlesListComponent implements OnInit {
         this.articlesList = data.content;
         this.articlesLength = data.totalElements;
       });
+      
       this.articleService.getArticles(this.pageIndex, this.pageSize);
 
   }
