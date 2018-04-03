@@ -19,13 +19,14 @@ export class ArticlesListComponent implements OnInit {
   public colors: any[];
   public sizes: any[];
   public categories: any[];
+  public statuses: any[] = ['REGULAR', 'PROMO', 'SALE'];
   public articlesLength: number;
 
   public forbiddenBrands: any[] = [];
   public forbiddenColors: any[] = [];
   public forbiddenSizes: any[] = [];
   public forbiddenCategories: any[] = [];
-  public forbiddenStatuses: any[] = ['PROMO', 'REGULAR', 'SALE'];
+  public forbiddenStatuses: any[] = [];
   public chosenSeason: string;
   public chosenGender: string;
 
@@ -95,10 +96,10 @@ export class ArticlesListComponent implements OnInit {
         break;
       case 'category':
         for (let cat of this.categories) {
-          if (this.forbiddenCategories.indexOf(cat.id) == -1) {
-            this.forbiddenCategories.push(cat.id);
+          if (this.forbiddenCategories.indexOf(cat.id + "") == -1) {
+            this.forbiddenCategories.push(cat.id + "");
           } else {
-            this.forbiddenCategories.splice(this.forbiddenCategories.indexOf(cat.id), 1);
+            this.forbiddenCategories.splice(this.forbiddenCategories.indexOf(cat.id + ""), 1);
           }
         }
         break;
@@ -112,7 +113,7 @@ export class ArticlesListComponent implements OnInit {
         }
         break;
       case 'status':
-        for (let status of this.forbiddenStatuses) {
+        for (let status of this.statuses) {
           if (this.forbiddenStatuses.indexOf(status) == -1) {
             this.forbiddenStatuses.push(status);
           } else {
@@ -136,7 +137,7 @@ export class ArticlesListComponent implements OnInit {
 
     console.log(bindingModel);
 
-    //this.articleService.filterArticles(this.pageIndex, this.pageSize, bindingModel);
+    this.articleService.filterArticles(this.pageIndex, this.pageSize, bindingModel);
 
   }
 

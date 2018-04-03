@@ -30,7 +30,7 @@
     </mat-selection-list>
 
     <p>Филтрирай по статус:</p>
-    <mat-selection-list>
+    <mat-selection-list [(ngModel)]=forbiddenStatuses (click)="onFilterChange('status')">
       <mat-list-option value="PROMO">Промоция</mat-list-option>
       <mat-list-option value="REGULAR">Нормален</mat-list-option>
       <mat-list-option value="SALE">Разпродажба</mat-list-option>
