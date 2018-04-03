@@ -2,35 +2,35 @@
   <mat-drawer #drawer class="example-sidenav" mode="side">
 
     <p>Филтрирай по категории:</p>
-    <mat-selection-list *ngIf="categories" [(ngModel)]="chosenCategories">
-      <mat-list-option *ngFor="let category of categories" value="{{category.id}}" (click)="filter()">
+    <mat-selection-list *ngIf="categories" [(ngModel)]=forbiddenCategories  (click)="onFilterChange('category')">
+      <mat-list-option *ngFor="let category of categories" value="{{category.id}}">
         {{category.name}}
       </mat-list-option>
     </mat-selection-list>
 
     <p>Филтрирай по марка:</p>
-    <mat-selection-list *ngIf="brands" [(ngModel)]="chosenBrands">
-      <mat-list-option *ngFor="let brand of brands" value="{{brand.name}}" (click)="filter()">
+    <mat-selection-list *ngIf="brands" [(ngModel)]=forbiddenBrands (click)="onFilterChange('brand')">
+      <mat-list-option *ngFor="let brand of brands" value="{{brand.name}}">
         {{brand.name}}
       </mat-list-option>
     </mat-selection-list>
 
     <p>Филтрирай по цвят:</p>
-    <mat-selection-list *ngIf="colors" [(ngModel)]="chosenColors">
-      <mat-list-option *ngFor="let color of colors" value="{{color.name}}" (click)="filter()">
+    <mat-selection-list *ngIf="colors" [(ngModel)]=forbiddenColors (click)="onFilterChange('color')">
+      <mat-list-option *ngFor="let color of colors" value="{{color.name}}">
         {{color.name}}
       </mat-list-option>
     </mat-selection-list>
 
     <p>Филтрирай по големина:</p>
-    <mat-selection-list *ngIf="sizes" [(ngModel)]="chosenSizes">
-      <mat-list-option *ngFor="let size of sizes" value="{{size.name}}" (click)="filter()">
+    <mat-selection-list *ngIf="sizes" [(ngModel)]=forbiddenSizes (click)="onFilterChange('size')">
+      <mat-list-option *ngFor="let size of sizes" value="{{size.name}}">
         {{size.name}}
       </mat-list-option>
     </mat-selection-list>
 
     <p>Филтрирай по статус:</p>
-    <mat-selection-list [(ngModel)]="chosenStatuses" (click)="filter()">
+    <mat-selection-list>
       <mat-list-option value="PROMO">Промоция</mat-list-option>
       <mat-list-option value="REGULAR">Нормален</mat-list-option>
       <mat-list-option value="SALE">Разпродажба</mat-list-option>
