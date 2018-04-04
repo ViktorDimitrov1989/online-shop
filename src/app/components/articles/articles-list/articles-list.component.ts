@@ -91,7 +91,17 @@ export class ArticlesListComponent implements OnInit {
     this.pageIndex = message.pageIndex + 1;
     this.pageSize = message.pageSize;
 
-    this.articleService.getArticles(this.pageIndex, this.pageSize);
+    let bindingModel = {
+      selectedSizes: this.selectedSizes,
+      selectedColors: this.selectedColors,
+      selectedCategories: this.selectedCategories,
+      selectedBrands: this.selectedBrands,
+      selectedStatuses: this.selectedStatuses,
+      chosenSeason: 'SPRING_SUMMER',
+      chosenGender: 'GIRLS'
+    };
+
+    this.articleService.filterArticles(this.pageIndex, this.pageSize, bindingModel);
   }
 
   viewDetails() {

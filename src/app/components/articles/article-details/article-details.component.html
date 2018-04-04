@@ -1,46 +1,45 @@
-<div class="container">
+<div class="container" *ngIf="article">
   <mat-toolbar color="primary" class="row">
     <h2 class="head-text">Тениска с апликация</h2>
   </mat-toolbar>
 
   <div class="row">
     <div class="column image">
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="img" alt="Photo of a Shiba Inu"
-      />
+      <img mat-card-image src="{{article.photo}}" class="img" alt="article photo" />
     </div>
     <div class="column details">
       <mat-list role="list" class="list">
         <div class="info">
-          <p>Производител: Myoral</p>
-          <p>Наличност: в наличност</p>
+          <p>Производител: {{article.brand.name}}</p>
         </div>
         <div class="info">
-          <h3>36,50лв</h3>
+          <p *ngIf="article.isAvailable">Наличност: в наличност</p>
+          <p *ngIf="!article.isAvailable" class="warning">Наличност: не е в наличност</p>
+        </div>
+        <div class="info">
+          <p>Цена</p>
+          <h3>{{article.price | number: '1.2'}} лв</h3>
         </div>
         <div class="info">
           <p>размер:</p>
-          <mat-radio-group>
-            <mat-radio-button value="1">M</mat-radio-button>
-            <mat-radio-button value="2">L</mat-radio-button>
+          <mat-radio-group class="radio">
+            <mat-radio-button *ngFor="let size of article.sizes" value="{{size}}">{{size}}</mat-radio-button>
           </mat-radio-group>
         </div>
         <div class="info">
           <p>цвят:</p>
-          <mat-radio-group>
-            <mat-radio-button value="1">Син</mat-radio-button>
-            <mat-radio-button value="2">Червен</mat-radio-button>
+          <mat-radio-group class="radio">
+            <mat-radio-button *ngFor="let color of article.colors" value="{{color}}">{{color}}</mat-radio-button>
           </mat-radio-group>
         </div>
         <div class="info">
-          <button class="mat-elevation-z2 btn" mat-button routerLink="/">
+          <button class="mat-elevation-z2 btn" *ngIf="article.isAvailable" mat-button routerLink="/">
             Добави в кошницата
           </button>
         </div>
-        <div class="info">
-          <p>
-            - Къдрички на ръкавите и деколтето. - Закопчаване с копче отзад. - Колекция пролет-лято 2018 Състав : 92 % Памук , 8 % Еластан
-          </p>
-        </div>
+
+        <p class="info">Описание: {{article.description}}</p>
+
       </mat-list>
     </div>
   </div>

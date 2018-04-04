@@ -8,7 +8,12 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 })
 export class ArticleDetailsComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  public article: any;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { 
+    console.log(data.article)
+    this.article = data.article;
+  }
 
   ngOnInit() {
   }

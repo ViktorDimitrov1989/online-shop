@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { ArticleDetailsComponent } from '../article-details/article-details.component';
 
 @Component({
   selector: 'app-article',
@@ -7,12 +9,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ArticleComponent implements OnInit {
 
-
   @Input() article: any;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+
+  viewDetails(){
+    this.dialog.open(ArticleDetailsComponent, {
+      data: {
+        article: this.article
+      }
+   });
   }
 
 }
