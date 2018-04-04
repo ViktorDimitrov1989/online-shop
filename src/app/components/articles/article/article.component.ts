@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ArticleDetailsComponent } from '../article-details/article-details.component';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/app-state';
 
 @Component({
   selector: 'app-article',
@@ -10,8 +12,13 @@ import { ArticleDetailsComponent } from '../article-details/article-details.comp
 export class ArticleComponent implements OnInit {
 
   @Input() article: any;
+  public isAdmin: boolean;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog 
+  ) { 
+      this.isAdmin = sessionStorage.getItem('isAdmin') == 'true';
+  }
 
   ngOnInit() {
   }

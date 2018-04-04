@@ -50,6 +50,7 @@ import { ConfirmEditUserComponent } from './components/user/confirm-edit-user/co
 import { PaginatorComponent } from './components/shared/paginator/paginator.component';
 import { ArticleComponent } from './components/articles/article/article.component';
 import { BasketArticleComponent } from './components/basket/basket-article/basket-article.component';
+import { EditStatusComponent } from './components/status/edit-status/edit-status.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { BasketArticleComponent } from './components/basket/basket-article/baske
     InputFileComponent,
     ConfirmEditUserComponent,
     PaginatorComponent,
-    BasketArticleComponent
+    BasketArticleComponent,
+    EditStatusComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 <div class="container" *ngIf="article">
   <mat-toolbar color="primary" class="row">
-    <h2 class="head-text">Тениска с апликация</h2>
+    <h2 class="head-text">{{article.name}}</h2>
   </mat-toolbar>
 
   <div class="row">
@@ -17,7 +17,7 @@
           <p *ngIf="!article.isAvailable" class="warning">Наличност: не е в наличност</p>
         </div>
         <div class="info">
-          <p>Цена</p>
+          <p>Цена:</p>
           <h3>{{article.price | number: '1.2'}} лв</h3>
         </div>
         <div class="info">

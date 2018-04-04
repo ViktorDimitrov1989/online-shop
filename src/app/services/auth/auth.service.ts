@@ -41,6 +41,7 @@ export class AuthService {
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
         this.store.dispatch(new LoginUserAction(respObject.response));
+        sessionStorage.setItem('isAdmin', (respObject.response.authorities.indexOf('ROLE_ADMIN') > -1) + "");
       },
         (err: any) => {
           this.toastr.error(err.error.message);

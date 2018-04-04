@@ -1,15 +1,20 @@
 <mat-card class="card">
-  <img mat-card-image src="{{article.photo}}" alt="article photo" />
+  <img mat-card-image class="img" src="{{article.photo}}" alt="article photo" />
   <mat-card-content class="text">
     <h3>{{article.name}}</h3>
   </mat-card-content>
 
   <mat-card-content class="text">
-    <h5>Цена: {{article.price}} лв.</h5>
+    <h5>Цена: {{article.price | number: '1.2'}} лв.</h5>
   </mat-card-content>
 
-  <mat-card-actions class="buttons-container">
-    <button mat-button (click)="viewDetails()">Детайли</button>
-    <button mat-button class="mat-elevation-z2">Сложи в кошницата</button>
+  <mat-card-actions class="buttons-container" *ngIf="!isAdmin">
+    <button mat-button (click)="viewDetails()" color="primary">Детайли</button>
+    <button mat-button class="mat-raised-button" color="accent">Сложи в кошницата</button>
+  </mat-card-actions>
+  <mat-card-actions class="buttons-container" *ngIf="isAdmin">
+    <button mat-button class="mat-raised-button" color="accent">Промени статус</button>
+    <button mat-button class="mat-raised-button" color="accent">Промени артикул</button>
+    <button mat-button class="mat-raised-button"  color="warn">Изтрий</button>
   </mat-card-actions>
 </mat-card>
