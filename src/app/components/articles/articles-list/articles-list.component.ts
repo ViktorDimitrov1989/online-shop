@@ -83,8 +83,6 @@ export class ArticlesListComponent implements OnInit {
       chosenGender: 'GIRLS'
     };
 
-    console.log(bindingModel);
-
     this.articleService.filterArticles(this.pageIndex, this.pageSize, bindingModel);
 
   }

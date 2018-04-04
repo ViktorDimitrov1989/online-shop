@@ -5,7 +5,7 @@ import { ToastrService } from "ngx-toastr";
 import { Store } from "@ngrx/store";
 import { AppState } from "../../store/app-state";
 import { AppComponent } from "../../app.component";
-import { CreateArticleAction, GetArticleOptions, CreateBrandAction, GetArticlesAction, CreateCategoryAction } from "../../store/article/article-actions";
+import { CreateArticleAction, GetArticleOptions, CreateBrandAction, GetArticlesAction, CreateCategoryAction, FilterArticlesAction } from "../../store/article/article-actions";
 import CreateArticle from "../../models/create-article";
 import { CreateBrand } from "../../models/create-brand";
 import { CreateCategory } from "../../models/create-category";
@@ -92,8 +92,7 @@ export class ArticleService {
   filterArticles(page:number, size: number, filters: any){
     this.http.post(AppComponent.API_URL + "/article/filter?page=" + page + "&size=" + size, filters, { withCredentials: true })
       .subscribe((respObject: any) => {
-        console.log(respObject);
-        //this.store.dispatch(new GetArticlesAction(respObject.response));
+        this.store.dispatch(new FilterArticlesAction(respObject.response));
       },
         (err: any) => {
           this.toastr.error(err.error.message);
