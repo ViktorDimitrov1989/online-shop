@@ -22,11 +22,11 @@ export class ArticlesListComponent implements OnInit {
   public statuses: any[] = ['REGULAR', 'PROMO', 'SALE'];
   public articlesLength: number;
 
-  public forbiddenBrands: any[] = [];
-  public forbiddenColors: any[] = [];
-  public forbiddenSizes: any[] = [];
-  public forbiddenCategories: any[] = [];
-  public forbiddenStatuses: any[] = [];
+  public selectedBrands: any[] = [];
+  public selectedColors: any[] = [];
+  public selectedSizes: any[] = [];
+  public selectedCategories: any[] = [];
+  public selectedStatuses: any[] = [];
   public chosenSeason: string;
   public chosenGender: string;
 
@@ -65,8 +65,6 @@ export class ArticlesListComponent implements OnInit {
       })
 
 
-
-
   }
 
   ngOnInit() {
@@ -74,64 +72,14 @@ export class ArticlesListComponent implements OnInit {
     this.articleService.getArticles(this.pageIndex, this.pageSize);
   }
 
-  onFilterChange(type: string) {
-    switch (type) {
-      case 'size':
-        for (let size of this.sizes) {
-          if (this.forbiddenSizes.indexOf(size.name) == -1) {
-            this.forbiddenSizes.push(size.name);
-          } else {
-            this.forbiddenSizes.splice(this.forbiddenSizes.indexOf(size.name), 1);
-          }
-        }
-        break;
-      case 'color':
-        for (let color of this.colors) {
-          if (this.forbiddenColors.indexOf(color.name) == -1) {
-            this.forbiddenColors.push(color.name);
-          } else {
-            this.forbiddenColors.splice(this.forbiddenColors.indexOf(color.name), 1);
-          }
-        }
-        break;
-      case 'category':
-        for (let cat of this.categories) {
-          if (this.forbiddenCategories.indexOf(cat.id + "") == -1) {
-            this.forbiddenCategories.push(cat.id + "");
-          } else {
-            this.forbiddenCategories.splice(this.forbiddenCategories.indexOf(cat.id + ""), 1);
-          }
-        }
-        break;
-      case 'brand':
-        for (let brand of this.brands) {
-          if (this.forbiddenBrands.indexOf(brand.name) == -1) {
-            this.forbiddenBrands.push(brand.name);
-          } else {
-            this.forbiddenBrands.splice(this.forbiddenBrands.indexOf(brand.name), 1);
-          }
-        }
-        break;
-      case 'status':
-        for (let status of this.statuses) {
-          if (this.forbiddenStatuses.indexOf(status) == -1) {
-            this.forbiddenStatuses.push(status);
-          } else {
-            this.forbiddenStatuses.splice(this.forbiddenStatuses.indexOf(status), 1);
-          }
-        }
-        break;
-      default:
-        break;
-    }
-
+  onFilterChange() {
     let bindingModel = {
-      forbiddenSizes: this.forbiddenSizes,
-      forbiddenColors: this.forbiddenColors,
-      forbiddenCategories: this.forbiddenCategories,
-      forbiddenBrands: this.forbiddenBrands,
-      forbiddenStatuses: this.forbiddenStatuses,
-      chosenSeason: 'FALL_WINTER',
+      selectedSizes: this.selectedSizes,
+      selectedColors: this.selectedColors,
+      selectedCategories: this.selectedCategories,
+      selectedBrands: this.selectedBrands,
+      selectedStatuses: this.selectedStatuses,
+      chosenSeason: 'SPRING_SUMMER',
       chosenGender: 'GIRLS'
     };
 
