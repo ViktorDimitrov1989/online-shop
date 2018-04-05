@@ -41,6 +41,7 @@ export class ArticlesListComponent implements OnInit {
     this.store.select(state => state.articleState.allArticles)
       .subscribe(data => {
         this.articlesList = data.content;
+        console.log(this.articlesList);
         this.articlesLength = data.totalElements;
       });
 

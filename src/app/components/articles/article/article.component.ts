@@ -4,6 +4,7 @@ import { ArticleDetailsComponent } from '../article-details/article-details.comp
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app-state';
 import { EditStatusComponent } from '../../status/edit-status/edit-status.component';
+import { EditArticleComponent } from '../edit-article/edit-article.component';
 
 @Component({
   selector: 'app-article',
@@ -18,6 +19,7 @@ export class ArticleComponent implements OnInit {
   constructor(
     public dialog: MatDialog 
   ) { 
+    console.log(this.article)
       this.isAdmin = sessionStorage.getItem('isAdmin') == 'true';
   }
 
@@ -36,6 +38,14 @@ export class ArticleComponent implements OnInit {
     this.dialog.open(EditStatusComponent, {
       data: {
         status: this.article.status
+      }
+   });
+  }
+
+  showEditArticle(){
+    this.dialog.open(EditArticleComponent, {
+      data: {
+        article: this.article
       }
    });
   }

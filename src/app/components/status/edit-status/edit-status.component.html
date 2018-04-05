@@ -1,50 +1,39 @@
 <div class="edit-form">
-  <div class="column">
-    <p>Статус:</p>
-    <mat-accordion class="accordion input">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-description>
-            Избери статус
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <mat-radio-group name="status" class="radio-group">
-          <mat-radio-button value="PROMO">Промоция</mat-radio-button>
-          <mat-radio-button value="REGULAR">Нормален</mat-radio-button>
-          <mat-radio-button value="SALE">Разпродажба</mat-radio-button>
-        </mat-radio-group>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <div class="err" *ngIf="!isStatusSelected">
-      Задължителен избор
+  <div class="field-container">
+    <h4 class="row">
+      <b>Статус:</b>
+    </h4>
+
+    <mat-radio-group name="status" class="row" [(ngModel)]="status.status">
+      <mat-radio-button value="PROMO">Промоция</mat-radio-button>
+      <mat-radio-button value="REGULAR">Нормален</mat-radio-button>
+      <mat-radio-button value="SALE">Разпродажба</mat-radio-button>
+    </mat-radio-group>
+
+    <div class="row">
+      <mat-checkbox class="row" [(ngModel)]="status.available" name="available" value="status.available">В наличност</mat-checkbox>
     </div>
 
-    <div class="input">
-      <mat-selection-list name="isAvailable">
-        <mat-list-option value="true">В наличност</mat-list-option>
-      </mat-selection-list>
-    </div>
-
-    <div class="input">
-      <p>Дата на изтичане:</p>
+    <div class="row">
       <mat-form-field>
-        <input matInput [matDatepicker]="picker" name="expireDate" placeholder="Избери дата">
+        <input matInput [matDatepicker]="picker" name="expireDate" [(ngModel)]="status.expireDate" placeholder="Крайна дата">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
 
-    <div class="input">
+    <div class="row">
       <mat-form-field>
-        <input value="0" type="number" matInput placeholder="Отстъпка" name="discount">
+        <input value="0" type="number" matInput placeholder="Отстъпка" [(ngModel)]="status.discount" name="discount">
         <mat-icon matSuffix>%</mat-icon>
         <mat-hint>Задължително поле</mat-hint>
       </mat-form-field>
     </div>
+
+    <div class="row">
+      <button mat-raised-button color="warn">Назад</button>
+      <button mat-raised-button color="primary" type="submit" (click)="confirmEdit()">Промени артикула</button>
+    </div>
   </div>
-  <!-- <div class="row">
-      <button mat-button>Назад</button>
-      <button mat-button type="submit" (click)="confirmCreation()">Промени артикула</button>
-    </div> -->
 
 </div>

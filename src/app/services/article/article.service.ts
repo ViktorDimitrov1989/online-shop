@@ -21,7 +21,7 @@ export class ArticleService {
   }
 
   getArticleOptions(){
-    this.http.get(AppComponent.API_URL + "/admin/article/options", { withCredentials: true })
+    this.http.get(AppComponent.API_URL + "/article/options", { withCredentials: true })
       .subscribe((respObject: any) => {
         let colors = respObject.response.colors;
         let sizes = respObject.response.sizes;
@@ -82,6 +82,7 @@ export class ArticleService {
   getArticles(page: number, size: number) {
     this.http.get(AppComponent.API_URL + "/article/all?page=" + page + "&size=" + size, { withCredentials: true })
       .subscribe((respObject: any) => {
+        console.log(respObject.response);
         this.store.dispatch(new GetArticlesAction(respObject.response));
       },
         (err: any) => {
@@ -92,6 +93,7 @@ export class ArticleService {
   filterArticles(page:number, size: number, filters: any){
     this.http.post(AppComponent.API_URL + "/article/filter?page=" + page + "&size=" + size, filters, { withCredentials: true })
       .subscribe((respObject: any) => {
+        console.log(respObject.response);
         this.store.dispatch(new FilterArticlesAction(respObject.response));
       },
         (err: any) => {

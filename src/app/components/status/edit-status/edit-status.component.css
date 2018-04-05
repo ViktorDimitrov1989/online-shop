@@ -4,3 +4,23 @@
     background-color: bisque;
     border-radius: 3px;
 }
+
+.row{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    margin-top: 20px;
+}
+
+.row > * {
+    margin-left: 5px;
+}
+
+.field-container{
+    min-width: 600px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
