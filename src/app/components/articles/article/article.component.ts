@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { ArticleDetailsComponent } from '../article-details/article-details.component';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app-state';
+import { EditStatusComponent } from '../../status/edit-status/edit-status.component';
 
 @Component({
   selector: 'app-article',
@@ -27,6 +28,14 @@ export class ArticleComponent implements OnInit {
     this.dialog.open(ArticleDetailsComponent, {
       data: {
         article: this.article
+      }
+   });
+  }
+
+  showEditStatus(){
+    this.dialog.open(EditStatusComponent, {
+      data: {
+        status: this.article.status
       }
    });
   }

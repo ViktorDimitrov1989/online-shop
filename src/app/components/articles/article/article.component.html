@@ -13,7 +13,7 @@
     <button mat-button class="mat-raised-button" color="accent">Сложи в кошницата</button>
   </mat-card-actions>
   <mat-card-actions class="buttons-container" *ngIf="isAdmin">
-    <button mat-button class="mat-raised-button" color="accent">Промени статус</button>
+    <button mat-button class="mat-raised-button" (click)="showEditStatus()" color="accent">Промени статус</button>
     <button mat-button class="mat-raised-button" color="accent">Промени артикул</button>
     <button mat-button class="mat-raised-button"  color="warn">Изтрий</button>
   </mat-card-actions>

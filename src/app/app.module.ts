@@ -103,7 +103,7 @@ import { EditStatusComponent } from './components/status/edit-status/edit-status
     UserService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ArticleDetailsComponent,ConfirmPopupComponent, ConfirmEditUserComponent],
+  entryComponents: [ArticleDetailsComponent,ConfirmPopupComponent, ConfirmEditUserComponent, EditStatusComponent],
 })
 export class AppModule {
 }

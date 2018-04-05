@@ -1,0 +1,6 @@
+.edit-form{
+    display: flex;
+    flex-direction: column;
+    background-color: bisque;
+    border-radius: 3px;
+}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-edit-status',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditStatusComponent implements OnInit {
 
-  constructor() { }
+  public status: any;
+
+  constructor(public dialogRef: MatDialogRef<EditStatusComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any) {
+      this.status = data.status;
+  }
 
   ngOnInit() {
+    console.log(this.status);
   }
 
 }
