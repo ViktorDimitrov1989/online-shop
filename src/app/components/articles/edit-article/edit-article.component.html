@@ -1,146 +1,109 @@
 <form class="myForm">
-    <h4 class="row">Артикул</h4>
-    <div class="row">
-  
-      <div class="column">
+  <h4 class="row">Промени Артикул</h4>
+
+  <div class="row">
+    <div class="column">
+      <mat-form-field>
+        <input matInput placeholder="Име" name="name" [(ngModel)]="article.name" [formControl]="displayNameFormControl" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="displayNameFormControl.hasError('minlength') && !displayNameFormControl.hasError('required')">
+          Името трябва да е дълго минимум 5 символа.
+        </mat-error>
+        <mat-error *ngIf="displayNameFormControl.hasError('required')">
+          Полето е
+          <strong>задължително</strong>
+        </mat-error>
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Описание" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" name="description"
+          [(ngModel)]="article.description" [formControl]="descriptionFormControl" [errorStateMatcher]="matcher"></textarea>
+        <mat-error *ngIf="descriptionFormControl.hasError('minlength') && !descriptionFormControl.hasError('required')">
+          Описанието трябва да е дълго минимум 35 символа.
+        </mat-error>
+        <mat-error *ngIf="descriptionFormControl.hasError('required')">
+          Описанието е
+          <strong>задължително</strong>
+        </mat-error>
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
+
+      <div>
         <mat-form-field>
-          <input class="input" matInput placeholder="Име" name="firstName" [(ngModel)]="user.firstName" [formControl]="firstNameFormControl"
-            [errorStateMatcher]="matcher">
-          <mat-error *ngIf="firstNameFormControl.hasError('minlength') && !firstNameFormControl.hasError('required')">
-            Името трябва да е дълго минимум 3 символа.
+          <app-input-file [formControl]="pictureFormControl" (change)="fileChange($event)" placeholder="Задължително поле" name="photo"
+            valuePlaceholder="Промяна на снимката">
+          </app-input-file>
+          <mat-icon matSuffix>folder</mat-icon>
+          <mat-error *ngIf="pictureFormControl.hasError('maxContentSize')">
+            Файла не трябва да бъде по-голям от 10mb!
           </mat-error>
-          <mat-error *ngIf="firstNameFormControl.hasError('required')">
-            Полето е
-            <strong>задължително</strong>
-          </mat-error>
-          <mat-hint>Задължително поле</mat-hint>
-        </mat-form-field>
-  
-        <mat-form-field>
-          <input class="input" matInput placeholder="Фамилия" name="lastName" [(ngModel)]="user.lastName" [formControl]="lastNameFormControl"
-            [errorStateMatcher]="matcher">
-          <mat-error *ngIf="lastNameFormControl.hasError('minlength') && !lastNameFormControl.hasError('required')">
-            Фамилията трябва да е дълга минимум 3 символа.
-          </mat-error>
-          <mat-error *ngIf="lastNameFormControl.hasError('required')">
-            Полето е
-            <strong>задължително</strong>
-          </mat-error>
-          <mat-hint>Задължително поле</mat-hint>
-        </mat-form-field>
-  
-        <mat-form-field>
-          <input class="input" matInput placeholder="Имейл" name="email" [(ngModel)]="user.email" [formControl]="emailFormControl"
-            [errorStateMatcher]="matcher">
-          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Моля въведете валиден имейл адрес.
-          </mat-error>
-          <mat-error *ngIf="emailFormControl.hasError('required')">
-            Полето е
-            <strong>задължително</strong>
-          </mat-error>
-          <mat-hint>Задължително поле</mat-hint>
-        </mat-form-field>
-  
-        <mat-form-field>
-          <input class="input" matInput placeholder="Парола" name="password" type="password" [(ngModel)]="user.password" [formControl]="passwordFormControl"
-            [errorStateMatcher]="matcher">
-          <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')" >
-            Паролата трябва да е от минимум 5 символа.
-          </mat-error>
-          <mat-error *ngIf="passwordFormControl.hasError('pattern') && !passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
-            Паролата трябва да е с дължина 8 и 15 символа.
-          </mat-error>
-          <mat-error *ngIf="passwordFormControl.hasError('required')">
-            Полето е
-            <strong>задължително</strong>
-          </mat-error>
-          <mat-hint>Задължително поле</mat-hint>
-        </mat-form-field>
-  
-        <mat-form-field>
-          <input class="input" matInput placeholder="Повтори паролата" name="confirmPassword" type="password" [formControl]="confirmPasswordFormControl"
-          [errorStateMatcher]="matcher" [(ngModel)]="user.confirmPassword">
-          <div class="err" *ngIf="!isPasswordSame && !confirmPasswordFormControl.hasError('required')">
-            Паролите не съвпадат.
-          </div>
         </mat-form-field>
       </div>
-  
-      <div class="column">
-        <mat-form-field>
-          <span matPrefix>+359 &nbsp;</span>
-          <input type="tel" matInput maxlength="9" placeholder="Телефон за връзка" name="phone" [(ngModel)]="user.phoneNumber" [formControl]="phoneFormControl"
-            [errorStateMatcher]="matcher">
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-error *ngIf="phoneFormControl.hasError('pattern') && !phoneFormControl.hasError('required')">
-            Телефонния номер трябва да съдържа само цифри и да има дължина 9 символа.
-          </mat-error>
-          <mat-error *ngIf="phoneFormControl.hasError('required')">
-            Полето е
-            <strong>задължително</strong>
-          </mat-error>
-          <mat-hint>Задължително поле</mat-hint>
-        </mat-form-field>
-  
-        <div class="row single">
-          <div class="column">
-            <mat-form-field>
-              <input class="input" matInput placeholder="Улица" type="text" name="street" [(ngModel)]="user.street" [formControl]="streetFormControl"
-                [errorStateMatcher]="matcher">
-              <mat-error *ngIf="streetFormControl.hasError('required')">
-                Полето е
-                <strong>задължително</strong>
-              </mat-error>
-              <mat-hint>Задължително поле: За адреса на който ще получавате поръчаните от вас продукти.</mat-hint>
-            </mat-form-field>
-          </div>
-  
-          <div class="column">
-            <mat-form-field>
-              <input class="input" matInput placeholder="Номер/бл., вх., ап." name="adress" [(ngModel)]="user.adress" type="text" [formControl]="adressFormControl"
-                [errorStateMatcher]="matcher">
-              <mat-error *ngIf="adressFormControl.hasError('required')">
-                Полето е
-                <strong>задължително</strong>
-              </mat-error>
-              <mat-hint>Задължително поле: За адреса на който ще получавате поръчаните от вас продукти.</mat-hint>
-            </mat-form-field>
-          </div>
-  
+
+      <mat-form-field>
+        <input type="number" matInput placeholder="Цена" name="price" [(ngModel)]="article.price" [formControl]="priceFormControl"
+          [errorStateMatcher]="matcher">
+        <mat-icon matSuffix>лв.</mat-icon>
+        <mat-error *ngIf="priceFormControl.hasError('min') && !priceFormControl.hasError('required')">
+          Цената трябва да е по-голяма или равна на 1
+        </mat-error>
+        <mat-error *ngIf="priceFormControl.hasError('required')">
+          Цената е
+          <strong>задължителна</strong>
+        </mat-error>
+        <mat-hint>Задължително поле</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="column">
+      <p>Размери:</p>
+      <div class="input accordion">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-description>
+              Избери размери
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-selection-list #articles name="sizes" [(ngModel)]="article.sizes" [formControl]="sizesFormControl">
+            <mat-list-option *ngFor="let size of sizes" value="{{size.name}}">{{size.name}}</mat-list-option>
+          </mat-selection-list>
+
+        </mat-expansion-panel>
+        <div class="err" *ngIf="!isSizesSelected">
+          Задължителен избор
         </div>
-  
-  
-        <div class="row single">
-          <div class="column">
-            <mat-form-field>
-              <input class="input" matInput placeholder="Град/Село" type="text" name="phone" [(ngModel)]="user.city" [formControl]="cityFormControl"
-                [errorStateMatcher]="matcher">
-              <mat-error *ngIf="cityFormControl.hasError('required')">
-                Полето е
-                <strong>задължително</strong>
-              </mat-error>
-              <mat-hint>Задължително поле</mat-hint>
-            </mat-form-field>
-          </div>
-  
-          <div class="column">
-            <mat-form-field>
-              <input class="input" matInput name="postCode" [(ngModel)]="user.postCode" placeholder="Пощенски код" type="text">
-            </mat-form-field>
-          </div>
-  
+      </div>
+
+      <p>Цветове:</p>
+      <div class="input accordion">
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-description>
+              Избери цветове
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-selection-list #articles name="colors" [(ngModel)]="article.colors" [formControl]="colorsFormControl">
+            <mat-list-option *ngFor="let color of colors" value="{{color.name}}">{{color.name}}</mat-list-option>
+          </mat-selection-list>
+
+        </mat-expansion-panel>
+        <div class="err" *ngIf="!isColorsSelected">
+          Задължителен избор
         </div>
-  
       </div>
     </div>
-  
-    <div class="row">
-      <a class="link" routerLink="/login">Имате регистрация?</a>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <button mat-raised-button color="warn" (click)="hideModal()">Назад</button>
     </div>
-  
-    <div class="row">
-      <button mat-button type="submit" [disabled]="!registerForm.valid" (click)="register()">Напред</button>
+    <div class="column">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!editArticleForm.valid" (click)="editArticle()">Промени артикула</button>
     </div>
-  
-  </form>
+  </div>
+
+</form>

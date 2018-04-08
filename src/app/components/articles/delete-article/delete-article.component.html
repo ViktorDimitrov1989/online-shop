@@ -1,0 +1,52 @@
+<form class="myForm">
+  <h4 class="row">Изтрий Артикул</h4>
+
+  <div class="row">
+    <div class="column">
+      <mat-form-field>
+        <input matInput placeholder="Име" name="name" [ngModel]="article.name" [disabled]="true">
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Описание" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" name="description"
+          [ngModel]="article.description" [disabled]="true"></textarea>
+      </mat-form-field>
+
+      <div>
+        <p>Снимка:</p>
+        <img src="{{article.photo}}" alt="article photo" class="img" />
+      </div>
+
+      <mat-form-field>
+        <input type="number" matInput placeholder="Цена" name="price" [ngModel]="article.price" [disabled]="true">
+        <mat-icon matSuffix>лв.</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="column">
+      <p>Размери:</p>
+      <div class="input accordion">
+        <mat-selection-list #articles name="sizes" [(ngModel)]="article.sizes" [disabled]="true">
+          <mat-list-option *ngFor="let size of article.sizes" value="{{size}}">{{size}}</mat-list-option>
+        </mat-selection-list>
+      </div>
+
+      <p>Цветове:</p>
+      <div class="input accordion">
+        <mat-selection-list #articles name="colors" [(ngModel)]="article.colors" [disabled]="true">
+          <mat-list-option *ngFor="let color of article.colors" value="{{color}}">{{color}}</mat-list-option>
+        </mat-selection-list>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <button mat-raised-button color="warn" (click)="hideModal()">Назад</button>
+    </div>
+    <div class="column">
+      <button mat-raised-button color="primary" type="submit" (click)="deleteArticle()">Изтрий артикула</button>
+    </div>
+  </div>
+
+</form>

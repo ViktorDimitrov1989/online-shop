@@ -7,6 +7,11 @@
     width: 750px;
   }
   
+.img{
+    max-width: 210px;
+    padding-bottom: 15px;
+}
+
   .myForm > div{
     padding: 15px;
   }
@@ -54,7 +59,4 @@
     color: red;
   }
   
-  .accordion > *{
-    background-color: beige;
-    border-radius: 3px;
-}
+

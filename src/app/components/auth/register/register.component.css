@@ -39,10 +39,11 @@
   margin-bottom: 1em;
 } */
 
-.myForm button {
+/* .myForm button {
   background: #303F9F;
   color: white;
-}
+} */
+
 .myForm fieldset {
    border: 0; 
 }

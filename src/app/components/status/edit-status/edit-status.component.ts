@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -41,4 +42,9 @@ export class EditStatusComponent implements OnInit {
 
     return this.status.expireDate;
   }
+
+  hideModal() {
+    this.dialogRef.close();
+  }
+
 }

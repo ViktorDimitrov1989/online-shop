@@ -52,6 +52,7 @@ import { ArticleComponent } from './components/articles/article/article.componen
 import { BasketArticleComponent } from './components/basket/basket-article/basket-article.component';
 import { EditStatusComponent } from './components/status/edit-status/edit-status.component';
 import { EditArticleComponent } from './components/articles/edit-article/edit-article.component';
+import { DeleteArticleComponent } from './components/articles/delete-article/delete-article.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { EditArticleComponent } from './components/articles/edit-article/edit-ar
     PaginatorComponent,
     BasketArticleComponent,
     EditStatusComponent,
-    EditArticleComponent
+    EditArticleComponent,
+    DeleteArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +107,14 @@ import { EditArticleComponent } from './components/articles/edit-article/edit-ar
     UserService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ArticleDetailsComponent,ConfirmPopupComponent, ConfirmEditUserComponent, EditStatusComponent, EditArticleComponent],
+  entryComponents: [
+    ArticleDetailsComponent,
+    ConfirmPopupComponent, 
+    ConfirmEditUserComponent, 
+    EditStatusComponent, 
+    EditArticleComponent,
+    DeleteArticleComponent
+  ],
 })
 export class AppModule {
 }

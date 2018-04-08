@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app-state';
 import { EditStatusComponent } from '../../status/edit-status/edit-status.component';
 import { EditArticleComponent } from '../edit-article/edit-article.component';
+import { DeleteArticleComponent } from '../delete-article/delete-article.component';
 
 @Component({
   selector: 'app-article',
@@ -38,6 +39,14 @@ export class ArticleComponent implements OnInit {
     this.dialog.open(EditStatusComponent, {
       data: {
         status: this.article.status
+      }
+   });
+  }
+
+  showDeleteArticle(){
+    this.dialog.open(DeleteArticleComponent, {
+      data: {
+        article: this.article
       }
    });
   }
