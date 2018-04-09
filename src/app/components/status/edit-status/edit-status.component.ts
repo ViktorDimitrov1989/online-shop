@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { ArticleService } from '../../../services/article/article.service';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class EditStatusComponent implements OnInit {
   public status: any;
 
   constructor(public dialogRef: MatDialogRef<EditStatusComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public articleService: ArticleService) {
     this.status = data.status;
     this.status.expireDate = this.getDate();
     console.log(this.status);
@@ -25,6 +27,7 @@ export class EditStatusComponent implements OnInit {
 
   confirmEdit() {
     console.log(this.status);
+    this.articleService.editArticleStatus(this.status);
   }
 
   getDate(): Date {

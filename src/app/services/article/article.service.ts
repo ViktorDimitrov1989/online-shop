@@ -20,7 +20,7 @@ export class ArticleService {
 
   }
 
-  getArticleOptions(){
+  getArticleOptions() {
     this.http.get(AppComponent.API_URL + "/article/options", { withCredentials: true })
       .subscribe((respObject: any) => {
         let colors = respObject.response.colors;
@@ -56,7 +56,7 @@ export class ArticleService {
         })
   }
 
-  createBrand(brand: CreateBrand){
+  createBrand(brand: CreateBrand) {
     this.http.post(AppComponent.API_URL + "/admin/brand/create", brand, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
@@ -67,7 +67,7 @@ export class ArticleService {
         })
   }
 
-  createCategory(category: CreateCategory){
+  createCategory(category: CreateCategory) {
     this.http.post(AppComponent.API_URL + "/admin/category/create", category, { withCredentials: true })
       .subscribe((respObject: any) => {
         console.log(respObject)
@@ -90,11 +90,23 @@ export class ArticleService {
         })
   }
 
-  filterArticles(page:number, size: number, filters: any){
+  filterArticles(page: number, size: number, filters: any) {
     this.http.post(AppComponent.API_URL + "/article/filter?page=" + page + "&size=" + size, filters, { withCredentials: true })
       .subscribe((respObject: any) => {
         console.log(respObject.response);
         this.store.dispatch(new FilterArticlesAction(respObject.response));
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
+  }
+
+  editArticleStatus(bindingModel: any) {
+    this.http.post(AppComponent.API_URL + "/admin/articleStatus/edit", bindingModel, { withCredentials: true })
+      .subscribe((respObject: any) => {
+        console.log(respObject.response);
+        this.toastr.success(respObject.message);
+        this.getArticles(0, 10);
       },
         (err: any) => {
           this.toastr.error(err.error.message);

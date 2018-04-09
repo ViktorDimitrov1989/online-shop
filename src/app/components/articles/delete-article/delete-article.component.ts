@@ -16,7 +16,7 @@ export class DeleteArticleComponent implements OnInit {
     console.log(this.article);
   }
 
-  hideModal(){
+  hideModal() {
     this.dialogRef.close();
   }
 
