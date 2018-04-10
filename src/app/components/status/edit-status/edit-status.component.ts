@@ -28,6 +28,7 @@ export class EditStatusComponent implements OnInit {
   confirmEdit() {
     console.log(this.status);
     this.articleService.editArticleStatus(this.status);
+    this.hideModal();
   }
 
   getDate(): Date {
