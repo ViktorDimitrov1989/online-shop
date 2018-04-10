@@ -36,15 +36,20 @@ export class ArticleService {
 
   createArticle(articleToCreate: CreateArticle) {
 
+    console.log(articleToCreate);
     let data = new FormData();
-    let { name, description, brandName, price, status, expireDate, discount, colors, sizes, category } = articleToCreate;
+    let { name, description, brandName, price, status, expireDate, discount, colors, sizes, category, isAvailable } = articleToCreate;
 
-    data.append('article', new Blob([JSON.stringify({ name, description, brandName, price, status, expireDate, discount, colors, sizes, category })],
+    console.log({ name, description, brandName, price, status, expireDate, discount, colors, sizes, category, isAvailable })
+
+    data.append('article', new Blob([JSON.stringify({ name, description, brandName, price, status, expireDate, discount, colors, sizes, category, isAvailable })],
       { type: 'application/json' }));
 
     if (articleToCreate.photo) {
       data.append('photo', articleToCreate.photo);
     }
+
+    console.log(data);
 
     this.http.post(AppComponent.API_URL + "/admin/article/create", data, { withCredentials: true })
       .subscribe((respObject: any) => {
@@ -103,6 +108,47 @@ export class ArticleService {
 
   editArticleStatus(bindingModel: any) {
     this.http.post(AppComponent.API_URL + "/admin/articleStatus/edit", bindingModel, { withCredentials: true })
+      .subscribe((respObject: any) => {
+        console.log(respObject.response);
+        this.toastr.success(respObject.message);
+        this.getArticles(0, 10);
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
+  }
+
+  editArticle(articleToEdit: any) {
+    let data = new FormData();
+    let { name, description, price, colors, sizes, id } = articleToEdit;
+
+    data.append('article', new Blob([JSON.stringify({ name, description, price, status, colors, sizes, id })],
+      { type: 'application/json' }));
+
+    console.log(articleToEdit);
+
+    if (articleToEdit.photo) {
+      data.append('photo', articleToEdit.photo);
+    } else {
+      data.append('photo', null);
+    }
+
+
+
+    this.http.post(AppComponent.API_URL + "/admin/article/edit", data, { withCredentials: true })
+      .subscribe((respObject: any) => {
+        console.log(respObject);
+        this.toastr.success(respObject.message);
+        this.getArticles(0, 10);
+      },
+        (err: any) => {
+          console.log(err);
+          this.toastr.error(err.error.message);
+        })
+  }
+
+  deleteArticle(articleId: number) {
+    this.http.post(AppComponent.API_URL + "/admin/article/delete/" + articleId, {}, { withCredentials: true })
       .subscribe((respObject: any) => {
         console.log(respObject.response);
         this.toastr.success(respObject.message);

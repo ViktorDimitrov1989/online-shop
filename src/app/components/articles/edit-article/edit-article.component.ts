@@ -5,6 +5,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { FileValidators } from '../../../utils/file-validators';
 import { AppState } from '../../../store/app-state';
 import { Store } from '@ngrx/store';
+import { ArticleService } from '../../../services/article/article.service';
 
 @Component({
   selector: 'app-edit-article',
@@ -58,20 +59,18 @@ export class EditArticleComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<EditArticleComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public store: Store<AppState>
+    public store: Store<AppState>,
+    public articleService: ArticleService
   ) {
-    console.log(data);
     this.article = data.article;
 
     this.store.select(state => state.articleState.colors)
       .subscribe(colors => {
-        console.log(colors);
         this.colors = colors;
       })
 
     this.store.select(state => state.articleState.sizes)
       .subscribe(sizes => {
-        console.log(sizes)
         this.sizes = sizes;
       })
 
@@ -90,6 +89,19 @@ export class EditArticleComponent implements OnInit {
         this.isColorsSelected = false;
       }
     })
+  }
+
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      this.article.photo = file;
+    }
+  }
+
+  editArticle() {
+    this.articleService.editArticle(this.article);
+    this.hideModal();
   }
 
   hideModal() {
