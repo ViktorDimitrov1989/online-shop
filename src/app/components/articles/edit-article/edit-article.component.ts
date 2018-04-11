@@ -56,6 +56,10 @@ export class EditArticleComponent implements OnInit {
   public isSizesSelected: boolean;
   public isColorsSelected: boolean;
 
+  private articlesFilters: any;
+  private currentArticlesPage: number;
+  private currentArticlePageSize: number;
+
   constructor(
     public dialogRef: MatDialogRef<EditArticleComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -64,16 +68,11 @@ export class EditArticleComponent implements OnInit {
   ) {
     this.article = data.article;
 
-    this.store.select(state => state.articleState.colors)
-      .subscribe(colors => {
-        this.colors = colors;
-      })
+    this.subscribeToFormControls();
+    this.subscribeToTheState();
+  }
 
-    this.store.select(state => state.articleState.sizes)
-      .subscribe(sizes => {
-        this.sizes = sizes;
-      })
-
+  private subscribeToFormControls() {
     this.sizesFormControl.valueChanges.subscribe(data => {
       if (data.length > 0) {
         this.isSizesSelected = true;
@@ -91,6 +90,33 @@ export class EditArticleComponent implements OnInit {
     })
   }
 
+  private subscribeToTheState() {
+    this.store.select(state => state.articleState.colors)
+      .subscribe(colors => {
+        this.colors = colors;
+      })
+
+    this.store.select(state => state.articleState.sizes)
+      .subscribe(sizes => {
+        this.sizes = sizes;
+      })
+
+    this.store.select(state => state.articleState.currentArticlesFilters)
+      .subscribe(stateFilters => {
+        this.articlesFilters = stateFilters;
+      })
+
+    this.store.select(state => state.articleState.currentArticlesPage)
+      .subscribe(stateArticlesPage => {
+        this.currentArticlesPage = stateArticlesPage;
+      })
+
+    this.store.select(state => state.articleState.currentArticlesPageSize)
+      .subscribe(stateArticlesPageSize => {
+        this.currentArticlePageSize = stateArticlesPageSize;
+      })
+  }
+
   fileChange(event) {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
@@ -100,7 +126,7 @@ export class EditArticleComponent implements OnInit {
   }
 
   editArticle() {
-    this.articleService.editArticle(this.article);
+    this.articleService.editArticle(this.article, this.currentArticlesPage, this.currentArticlePageSize, this.articlesFilters);
     this.hideModal();
   }
 

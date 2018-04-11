@@ -9,6 +9,7 @@ import { CreateArticleAction, GetArticleOptions, CreateBrandAction, GetArticlesA
 import CreateArticle from "../../models/create-article";
 import { CreateBrand } from "../../models/create-brand";
 import { CreateCategory } from "../../models/create-category";
+import { ArticleListComponent } from "../../components/basket/basket-article-list/basket-article-list.component";
 
 @Injectable()
 export class ArticleService {
@@ -16,8 +17,9 @@ export class ArticleService {
   constructor(private http: HttpClient,
     private router: Router,
     private toastr: ToastrService,
-    public store: Store<AppState>) {
-
+    public store: Store<AppState>
+  ) {
+    
   }
 
   getArticleOptions() {
@@ -99,7 +101,7 @@ export class ArticleService {
     this.http.post(AppComponent.API_URL + "/article/filter?page=" + page + "&size=" + size, filters, { withCredentials: true })
       .subscribe((respObject: any) => {
         console.log(respObject.response);
-        this.store.dispatch(new FilterArticlesAction(respObject.response));
+        this.store.dispatch(new FilterArticlesAction(respObject.response, page, size, filters));
       },
         (err: any) => {
           this.toastr.error(err.error.message);
@@ -109,7 +111,7 @@ export class ArticleService {
   editArticleStatus(bindingModel: any) {
     this.http.post(AppComponent.API_URL + "/admin/articleStatus/edit", bindingModel, { withCredentials: true })
       .subscribe((respObject: any) => {
-        console.log(respObject.response);
+
         this.toastr.success(respObject.message);
         this.getArticles(0, 10);
       },
@@ -118,14 +120,12 @@ export class ArticleService {
         })
   }
 
-  editArticle(articleToEdit: any) {
+  editArticle(articleToEdit: any, currentArticlesPage: number, currentArticlePageSize: number, articlesFilters: number) {
     let data = new FormData();
     let { name, description, price, colors, sizes, id } = articleToEdit;
 
     data.append('article', new Blob([JSON.stringify({ name, description, price, status, colors, sizes, id })],
       { type: 'application/json' }));
-
-    console.log(articleToEdit);
 
     if (articleToEdit.photo) {
       data.append('photo', articleToEdit.photo);
@@ -133,16 +133,12 @@ export class ArticleService {
       data.append('photo', null);
     }
 
-
-
     this.http.post(AppComponent.API_URL + "/admin/article/edit", data, { withCredentials: true })
       .subscribe((respObject: any) => {
-        console.log(respObject);
         this.toastr.success(respObject.message);
-        this.getArticles(0, 10);
+        this.filterArticles(currentArticlesPage, currentArticlePageSize, articlesFilters);
       },
         (err: any) => {
-          console.log(err);
           this.toastr.error(err.error.message);
         })
   }

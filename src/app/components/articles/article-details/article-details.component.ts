@@ -18,4 +18,9 @@ export class ArticleDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
+  addArticleToTheBasket(){
+    console.log('article is added to the basket')
+  }
+
+
 }

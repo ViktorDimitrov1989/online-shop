@@ -3,5 +3,8 @@ export interface ArticleState{
     brands: any,
     sizes: any,
     colors: any,
-    categories: any
+    categories: any,
+    currentArticlesPage: number,
+    currentArticlesPageSize: number,
+    currentArticlesFilters: any
 }

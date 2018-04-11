@@ -43,7 +43,7 @@ const routes: Routes = [
     //canActivate: [NotAuthGuard]
   },
   {
-    path: 'articles',
+    path: 'articles/:gender/:season',
     component: ArticlesListComponent,
     //canActivate: [NotAuthGuard]
   },

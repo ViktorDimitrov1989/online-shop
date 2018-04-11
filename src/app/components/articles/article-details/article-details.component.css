@@ -25,6 +25,10 @@
     flex-basis: 40%;
 }
 
+.img{
+    height: 300px;
+}
+
 .details{
     flex-basis: 40%;
 }

@@ -13,8 +13,8 @@
           <p>Производител: {{article.brand.name}}</p>
         </div>
         <div class="info">
-          <p *ngIf="article.available">Наличност: в наличност</p>
-          <p *ngIf="!article.available" class="warning">Наличност: не е в наличност</p>
+          <p *ngIf="article.status.available">Наличност: в наличност</p>
+          <p *ngIf="!article.status.available" class="warning">Наличност: не е в наличност</p>
         </div>
         <div class="info">
           <p>Цена:</p>
@@ -33,7 +33,7 @@
           </mat-radio-group>
         </div>
         <div class="info">
-          <button class="mat-elevation-z2 btn" *ngIf="article.available" mat-button routerLink="/">
+          <button class="mat-elevation-z2 btn" *ngIf="article.status.available" mat-button routerLink="/">
             Добави в кошницата
           </button>
         </div>

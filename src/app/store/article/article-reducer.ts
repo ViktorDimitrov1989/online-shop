@@ -8,7 +8,10 @@ const initialState: ArticleState = {
     brands: [],
     colors: [],
     sizes: [],
-    categories: []
+    categories: [],
+    currentArticlesPage: 0,
+    currentArticlesPageSize: 10,
+    currentArticlesFilters: {}
 }
 
 export function articleReducer(state = initialState, 
@@ -19,19 +22,64 @@ export function articleReducer(state = initialState,
           return state;
         }
         case GET_ARTICLES: {
-          return Object.assign({}, state, {allArticles: action.articles, brands: state.brands, colors: state.colors, sizes: state.sizes, categories: state.categories});
+          return Object.assign({}, state, {
+            allArticles: action.articles, 
+            brands: state.brands, 
+            colors: state.colors, 
+            sizes: state.sizes, 
+            categories: state.categories,
+            currentArticlesPage: state.currentArticlesPage,
+            currentArticlesSize: state.currentArticlesPageSize,
+            currentArticlesFilters: state.currentArticlesFilters
+          });
         }
         case GET_ARTICLE_OPTIONS:{
-          return Object.assign({}, state, {allArticles: state.allArticles, brands: action.brands, colors: action.colors, sizes: action.sizes, categories: action.categories})
+          return Object.assign({}, state, {
+            allArticles: state.allArticles, 
+            brands: action.brands, 
+            colors: action.colors, 
+            sizes: action.sizes, 
+            categories: action.categories,
+            currentArticlesPage: state.currentArticlesPage,
+            currentArticlesSize: state.currentArticlesPageSize,
+            currentArticlesFilters: state.currentArticlesFilters
+          })
         }
         case CREATE_BRAND:{
-          return Object.assign({}, state, {allArticles: state.allArticles, brands: [...state.brands, action.brand], colors: state.colors, sizes: state.sizes, categories: state.categories})
+          return Object.assign({}, state, {
+            allArticles: state.allArticles, 
+            brands: [...state.brands, action.brand], 
+            colors: state.colors, 
+            sizes: state.sizes, 
+            categories: state.categories,
+            currentArticlesPage: state.currentArticlesPage,
+            currentArticlesSize: state.currentArticlesPageSize,
+            currentArticlesFilters: state.currentArticlesFilters
+          })
         }
         case CREATE_CATEGORY:{
-          return Object.assign({}, state, {allArticles: state.allArticles, brands: state.brands, colors: state.colors, sizes: state.sizes, categories: [...state.categories, action.category]})
+          return Object.assign({}, state, {
+            allArticles: state.allArticles, 
+            brands: state.brands, 
+            colors: state.colors, 
+            sizes: state.sizes, 
+            categories: [...state.categories, action.category],
+            currentArticlesPage: state.currentArticlesPage,
+            currentArticlesSize: state.currentArticlesPageSize,
+            currentArticlesFilters: state.currentArticlesFilters
+          })
         }
         case FILTER_ARTICLES:{
-          return Object.assign({}, state, {allArticles: action.allArticles, brands: state.brands, colors: state.colors, sizes: state.sizes, categories: state.categories})
+          return Object.assign({}, state, {
+            allArticles: action.allArticles, 
+            brands: state.brands, 
+            colors: state.colors, 
+            sizes: state.sizes, 
+            categories: state.categories,
+            currentArticlesPage: action.page,
+            currentArticlesPageSize: action.size,
+            currentArticlesFilters: action.filters
+          })
         }
         default: {
           return state;

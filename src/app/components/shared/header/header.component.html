@@ -70,20 +70,20 @@
 <!-- shop categories -->
 <!-- gender categories -->
 <mat-menu [overlapTrigger]="false" #genders="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="boysSesons">Момичета</button>
-  <button mat-menu-item [matMenuTriggerFor]="girlsSesons">Момчета</button>
+  <button mat-menu-item [matMenuTriggerFor]="boysSesons">Момчета</button>
+  <button mat-menu-item [matMenuTriggerFor]="girlsSesons">Момичета</button>
 </mat-menu>
 
 <!-- seson categories -->
 <mat-menu #boysSesons="matMenu">
-  <button mat-menu-item routerLink="/articles">Пролет-лято</button>
-  <button mat-menu-item routerLink="/articles">Есен-Зима</button>
+  <button mat-menu-item routerLink="/articles/boys/spring_summer">Пролет-лято</button>
+  <button mat-menu-item routerLink="/articles/boys/fall_winter">Есен-Зима</button>
 </mat-menu>
 
 <!-- seson categories -->
 <mat-menu #girlsSesons="matMenu">
-  <button mat-menu-item routerLink="/articles">Пролет-лято</button>
-  <button mat-menu-item routerLink="/articles">Есен-Зима</button>
+  <button mat-menu-item routerLink="/articles/girls/spring_summer">Пролет-лято</button>
+  <button mat-menu-item routerLink="/articles/girls/fall_winter">Есен-Зима</button>
 </mat-menu>
 
 <!-- admin functionalities -->

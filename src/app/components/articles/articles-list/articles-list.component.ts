@@ -5,6 +5,8 @@ import { ArticleDetailsComponent } from '../article-details/article-details.comp
 import { ArticleService } from '../../../services/article/article.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app-state';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+
 
 @Component({
   selector: 'app-articles-list',
@@ -27,8 +29,10 @@ export class ArticlesListComponent implements OnInit {
   public selectedSizes: any[] = [];
   public selectedCategories: any[] = [];
   public selectedStatuses: any[] = [];
-  public chosenSeason: string;
-  public chosenGender: string;
+
+  private chosenSeason: string;
+  private chosenGender: string;
+  private filterArticlesBindingModel: any;
 
   private pageIndex: number = 0;
   private pageSize: number = 10;
@@ -36,13 +40,33 @@ export class ArticlesListComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     public dialog: MatDialog,
-    public articleService: ArticleService) {
+    public articleService: ArticleService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
 
+    this.router.events.subscribe((val: any) => {
+      if (val.url && val.url.indexOf('articles') > -1) {
+        let tokens: string[] = val.url.split('/');
+
+        this.chosenGender = tokens[2].toUpperCase();
+        this.chosenSeason = tokens[3].toUpperCase();
+        this.onFilterChange();
+      }
+
+    })
+
+    this.hookToTheState();
+  }
+
+  hookToTheState() {
     this.store.select(state => state.articleState.allArticles)
       .subscribe(data => {
-        this.articlesList = data.content;
-        console.log(this.articlesList);
-        this.articlesLength = data.totalElements;
+        if (data.content) {
+          this.articlesList = data.content;
+          this.articlesLength = this.articlesList.length;
+        }
+
       });
 
     this.store.select(state => state.articleState.brands)
@@ -64,45 +88,45 @@ export class ArticlesListComponent implements OnInit {
       .subscribe(data => {
         this.categories = data;
       })
-
-
   }
 
   ngOnInit() {
+    this.chosenGender = this.route.snapshot.params.gender;
+    this.chosenSeason = this.route.snapshot.params.season;
     this.articleService.getArticleOptions();
-    this.articleService.getArticles(this.pageIndex, this.pageSize);
+    this.onFilterChange();
   }
 
   onFilterChange() {
-    let bindingModel = {
+    this.filterArticlesBindingModel = {
       selectedSizes: this.selectedSizes,
       selectedColors: this.selectedColors,
       selectedCategories: this.selectedCategories,
       selectedBrands: this.selectedBrands,
       selectedStatuses: this.selectedStatuses,
-      chosenSeason: 'SPRING_SUMMER',
-      chosenGender: 'GIRLS'
+      chosenSeason: this.chosenSeason.toUpperCase(),
+      chosenGender: this.chosenGender.toUpperCase()
     };
 
-    this.articleService.filterArticles(this.pageIndex, this.pageSize, bindingModel);
+    this.articleService.filterArticles(this.pageIndex, this.pageSize, this.filterArticlesBindingModel);
 
   }
 
-  fetchRecords(message: any): void {
-    this.pageIndex = message.pageIndex + 1;
+  public fetchRecords(message: any): void {
+    this.pageIndex = message.pageIndex;
     this.pageSize = message.pageSize;
 
-    let bindingModel = {
+    this.filterArticlesBindingModel = {
       selectedSizes: this.selectedSizes,
       selectedColors: this.selectedColors,
       selectedCategories: this.selectedCategories,
       selectedBrands: this.selectedBrands,
       selectedStatuses: this.selectedStatuses,
-      chosenSeason: 'SPRING_SUMMER',
-      chosenGender: 'GIRLS'
+      chosenSeason: this.chosenSeason,
+      chosenGender: this.chosenGender
     };
 
-    this.articleService.filterArticles(this.pageIndex, this.pageSize, bindingModel);
+    this.articleService.filterArticles(this.pageIndex, this.pageSize, this.filterArticlesBindingModel);
   }
 
   viewDetails() {

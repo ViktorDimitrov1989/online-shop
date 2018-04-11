@@ -41,7 +41,7 @@ export class CreateCategoryAction implements Action{
 export class FilterArticlesAction implements Action {
     readonly type = FILTER_ARTICLES;
 
-    constructor(public allArticles: any[]){};
+    constructor(public allArticles: any[], public page, public size, public filters){};
 }
 
 
