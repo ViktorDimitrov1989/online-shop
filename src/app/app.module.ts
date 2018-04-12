@@ -36,7 +36,7 @@ import { reducers } from './store/reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { UserInfoCardComponent } from './components/user/user-info-card/user-info-card.component';
 import { UsersListComponent } from './components/user/users-list/users-list.component';
-import { ArticleListComponent } from './components/basket/basket-article-list/basket-article-list.component';
+import { BasketArticleListComponent } from './components/basket/basket-article-list/basket-article-list.component';
 import { IndexComponent } from './components/home/index/index.component';
 import { ArticlesListComponent } from './components/articles/articles-list/articles-list.component';
 import { ArticleDetailsComponent } from './components/articles/article-details/article-details.component';
@@ -53,6 +53,7 @@ import { BasketArticleComponent } from './components/basket/basket-article/baske
 import { EditStatusComponent } from './components/status/edit-status/edit-status.component';
 import { EditArticleComponent } from './components/articles/edit-article/edit-article.component';
 import { DeleteArticleComponent } from './components/articles/delete-article/delete-article.component';
+import { BasketService } from './services/basket/basket.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { DeleteArticleComponent } from './components/articles/delete-article/del
     CartComponent,
     UserInfoCardComponent,
     UsersListComponent,
-    ArticleListComponent,
+    BasketArticleListComponent,
     ArticleComponent,
     IndexComponent,
     ArticlesListComponent,
@@ -104,7 +105,8 @@ import { DeleteArticleComponent } from './components/articles/delete-article/del
     HttpClient,
     ArticleService,
     AuthService,
-    UserService
+    UserService,
+    BasketService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

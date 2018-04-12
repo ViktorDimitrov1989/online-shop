@@ -20,7 +20,6 @@ export class ArticleComponent implements OnInit {
   constructor(
     public dialog: MatDialog 
   ) { 
-    console.log(this.article)
       this.isAdmin = sessionStorage.getItem('isAdmin') == 'true';
   }
 

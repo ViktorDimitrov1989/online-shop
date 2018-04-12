@@ -1,15 +1,43 @@
 import { Component, OnInit } from '@angular/core';
+import { AppState } from '../../../store/app-state';
+import { BasketService } from '../../../services/basket/basket.service';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-basket-article-list',
   templateUrl: './basket-article-list.component.html',
   styleUrls: ['./basket-article-list.component.css']
 })
-export class ArticleListComponent implements OnInit {
+export class BasketArticleListComponent implements OnInit {
 
-  constructor() { }
+  private loggedUser: any;
+
+  constructor(
+    private store: Store<AppState>,
+    private basketService: BasketService
+  ) {
+    this.store.select(state => state.basketState.loggedUserBasket)
+      .subscribe(data => {
+        if (data) {
+          console.log(data)
+        }
+
+      });
+
+    this.store.select(state => state.userState.loggedUser)
+      .subscribe(data => {
+        if (data) {
+          if (data) {
+            this.loggedUser = data
+          }
+
+        }
+
+      });
+  }
 
   ngOnInit() {
+    this.basketService.getBasketByUserId(this.loggedUser.id);
   }
 
 }

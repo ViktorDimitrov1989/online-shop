@@ -10,6 +10,7 @@ import { CreateArticleComponent } from '../components/articles/create-article/cr
 import { CreateCategoryComponent } from '../components/category/create-category/create-category.component';
 import { CreateBrandComponent } from '../components/brand/create-brand/create-brand.component';
 import { BasketArticleComponent } from '../components/basket/basket-article/basket-article.component';
+import { BasketArticleListComponent } from '../components/basket/basket-article-list/basket-article-list.component';
 
 const routes: Routes = [
   {
@@ -39,27 +40,12 @@ const routes: Routes = [
   },
   {
     path: 'basket',
-    component: BasketArticleComponent,
+    component: BasketArticleListComponent,
     //canActivate: [NotAuthGuard]
   },
   {
     path: 'articles/:gender/:season',
     component: ArticlesListComponent,
-    //canActivate: [NotAuthGuard]
-  },
-  {
-    path: 'article/create',
-    component: CreateArticleComponent,
-    //canActivate: [NotAuthGuard]
-  },
-  {
-    path: 'category/create',
-    component: CreateCategoryComponent,
-    //canActivate: [NotAuthGuard]
-  },
-  {
-    path: 'brand/create',
-    component: CreateBrandComponent,
     //canActivate: [NotAuthGuard]
   }
 ]

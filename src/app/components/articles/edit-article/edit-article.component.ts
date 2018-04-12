@@ -56,10 +56,6 @@ export class EditArticleComponent implements OnInit {
   public isSizesSelected: boolean;
   public isColorsSelected: boolean;
 
-  private articlesFilters: any;
-  private currentArticlesPage: number;
-  private currentArticlePageSize: number;
-
   constructor(
     public dialogRef: MatDialogRef<EditArticleComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -100,21 +96,6 @@ export class EditArticleComponent implements OnInit {
       .subscribe(sizes => {
         this.sizes = sizes;
       })
-
-    this.store.select(state => state.articleState.currentArticlesFilters)
-      .subscribe(stateFilters => {
-        this.articlesFilters = stateFilters;
-      })
-
-    this.store.select(state => state.articleState.currentArticlesPage)
-      .subscribe(stateArticlesPage => {
-        this.currentArticlesPage = stateArticlesPage;
-      })
-
-    this.store.select(state => state.articleState.currentArticlesPageSize)
-      .subscribe(stateArticlesPageSize => {
-        this.currentArticlePageSize = stateArticlesPageSize;
-      })
   }
 
   fileChange(event) {
@@ -126,7 +107,7 @@ export class EditArticleComponent implements OnInit {
   }
 
   editArticle() {
-    this.articleService.editArticle(this.article, this.currentArticlesPage, this.currentArticlePageSize, this.articlesFilters);
+    this.articleService.editArticle(this.article);
     this.hideModal();
   }
 

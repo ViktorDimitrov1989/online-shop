@@ -9,17 +9,40 @@ import { CreateArticleAction, GetArticleOptions, CreateBrandAction, GetArticlesA
 import CreateArticle from "../../models/create-article";
 import { CreateBrand } from "../../models/create-brand";
 import { CreateCategory } from "../../models/create-category";
-import { ArticleListComponent } from "../../components/basket/basket-article-list/basket-article-list.component";
 
 @Injectable()
 export class ArticleService {
+
+
+  private articlesFilters: any;
+  private currentArticlesPage: number;
+  private currentArticlePageSize: number;
 
   constructor(private http: HttpClient,
     private router: Router,
     private toastr: ToastrService,
     public store: Store<AppState>
   ) {
-    
+
+    this.subscribeToTheState();
+
+  }
+
+  subscribeToTheState() {
+    this.store.select(state => state.articleState.currentArticlesFilters)
+      .subscribe(stateFilters => {
+        this.articlesFilters = stateFilters;
+      })
+
+    this.store.select(state => state.articleState.currentArticlesPage)
+      .subscribe(stateArticlesPage => {
+        this.currentArticlesPage = stateArticlesPage;
+      })
+
+    this.store.select(state => state.articleState.currentArticlesPageSize)
+      .subscribe(stateArticlesPageSize => {
+        this.currentArticlePageSize = stateArticlesPageSize;
+      })
   }
 
   getArticleOptions() {
@@ -100,7 +123,6 @@ export class ArticleService {
   filterArticles(page: number, size: number, filters: any) {
     this.http.post(AppComponent.API_URL + "/article/filter?page=" + page + "&size=" + size, filters, { withCredentials: true })
       .subscribe((respObject: any) => {
-        console.log(respObject.response);
         this.store.dispatch(new FilterArticlesAction(respObject.response, page, size, filters));
       },
         (err: any) => {
@@ -111,16 +133,15 @@ export class ArticleService {
   editArticleStatus(bindingModel: any) {
     this.http.post(AppComponent.API_URL + "/admin/articleStatus/edit", bindingModel, { withCredentials: true })
       .subscribe((respObject: any) => {
-
         this.toastr.success(respObject.message);
-        this.getArticles(0, 10);
+        this.filterArticles(this.currentArticlesPage, this.currentArticlePageSize, this.articlesFilters);
       },
         (err: any) => {
           this.toastr.error(err.error.message);
         })
   }
 
-  editArticle(articleToEdit: any, currentArticlesPage: number, currentArticlePageSize: number, articlesFilters: number) {
+  editArticle(articleToEdit: any) {
     let data = new FormData();
     let { name, description, price, colors, sizes, id } = articleToEdit;
 
@@ -136,7 +157,7 @@ export class ArticleService {
     this.http.post(AppComponent.API_URL + "/admin/article/edit", data, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
-        this.filterArticles(currentArticlesPage, currentArticlePageSize, articlesFilters);
+        this.filterArticles(this.currentArticlesPage, this.currentArticlePageSize, this.articlesFilters);
       },
         (err: any) => {
           this.toastr.error(err.error.message);
@@ -146,9 +167,8 @@ export class ArticleService {
   deleteArticle(articleId: number) {
     this.http.post(AppComponent.API_URL + "/admin/article/delete/" + articleId, {}, { withCredentials: true })
       .subscribe((respObject: any) => {
-        console.log(respObject.response);
         this.toastr.success(respObject.message);
-        this.getArticles(0, 10);
+        this.filterArticles(this.currentArticlesPage, this.currentArticlePageSize, this.articlesFilters);
       },
         (err: any) => {
           this.toastr.error(err.error.message);
