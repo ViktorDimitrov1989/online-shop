@@ -9,8 +9,8 @@
   </mat-card-content>
 
   <mat-card-actions class="buttons-container" *ngIf="!isAdmin">
-    <button mat-button (click)="viewDetails()" color="primary">Детайли</button>
-    <button mat-button class="mat-raised-button" color="accent">Сложи в кошницата</button>
+    <button mat-button class="mat-raised-button" (click)="viewDetails()" color="accent">Детайли</button>
+    <!-- <button mat-button class="mat-raised-button" color="accent">Сложи в кошницата</button> -->
   </mat-card-actions>
   <mat-card-actions class="buttons-container" *ngIf="isAdmin">
     <button mat-button class="mat-raised-button" (click)="showEditStatus()" color="accent">Промени статус</button>

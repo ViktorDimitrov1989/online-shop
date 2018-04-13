@@ -47,6 +47,21 @@ const routes: Routes = [
     path: 'articles/:gender/:season',
     component: ArticlesListComponent,
     //canActivate: [NotAuthGuard]
+  },
+  {
+    path: 'article/create',
+    component: CreateArticleComponent,
+    //canActivate: [NotAuthGuard]
+  },
+  {
+    path: 'brand/create',
+    component: CreateBrandComponent,
+    //canActivate: [NotAuthGuard]
+  },
+  {
+    path: 'category/create',
+    component: CreateCategoryComponent,
+    //canActivate: [NotAuthGuard]
   }
 ]
 

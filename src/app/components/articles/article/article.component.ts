@@ -6,6 +6,7 @@ import { AppState } from '../../../store/app-state';
 import { EditStatusComponent } from '../../status/edit-status/edit-status.component';
 import { EditArticleComponent } from '../edit-article/edit-article.component';
 import { DeleteArticleComponent } from '../delete-article/delete-article.component';
+import { BasketService } from '../../../services/basket/basket.service';
 
 @Component({
   selector: 'app-article',
@@ -17,45 +18,73 @@ export class ArticleComponent implements OnInit {
   @Input() article: any;
   public isAdmin: boolean;
 
+  private loggedUser: any;
+
+  private loggedUserBasket: any;
+
   constructor(
-    public dialog: MatDialog 
-  ) { 
-      this.isAdmin = sessionStorage.getItem('isAdmin') == 'true';
+    public dialog: MatDialog,
+    public store: Store<AppState>,
+    public basketService: BasketService
+  ) {
+    this.isAdmin = sessionStorage.getItem('isAdmin') == 'true';
+
+    this.hookToTheState();
+  }
+
+  hookToTheState() {
+    this.store.select(state => state.userState.loggedUser)
+      .subscribe(data => {
+        if (data) {
+          this.loggedUser = data;
+        }
+      });
+
+    this.store.select(state => state.basketState.loggedUserBasket)
+      .subscribe(data => {
+        if (data) {
+          this.loggedUserBasket = data;
+        }
+      });
   }
 
   ngOnInit() {
+    if(!this.loggedUserBasket){
+      this.basketService.getBasketByUserId(this.loggedUser.id);
+    }
   }
 
-  viewDetails(){
+  viewDetails() {
     this.dialog.open(ArticleDetailsComponent, {
       data: {
-        article: this.article
+        article: this.article,
+        shoppingCartId: this.loggedUserBasket.id
       }
-   });
+    });
   }
 
-  showEditStatus(){
+  showEditStatus() {
     this.dialog.open(EditStatusComponent, {
       data: {
         status: this.article.status
       }
-   });
+    });
   }
 
-  showDeleteArticle(){
+  showDeleteArticle() {
     this.dialog.open(DeleteArticleComponent, {
       data: {
         article: this.article
       }
-   });
+    });
   }
 
-  showEditArticle(){
+  showEditArticle() {
     this.dialog.open(EditArticleComponent, {
       data: {
         article: this.article
       }
-   });
+    });
   }
 
 }

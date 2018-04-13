@@ -30,14 +30,15 @@ export class BasketArticleListComponent implements OnInit {
           if (data) {
             this.loggedUser = data
           }
-
         }
 
       });
   }
 
   ngOnInit() {
-    this.basketService.getBasketByUserId(this.loggedUser.id);
+    if (this.loggedUser.id) {
+      this.basketService.getBasketByUserId(this.loggedUser.id);
+    }
   }
 
 }
