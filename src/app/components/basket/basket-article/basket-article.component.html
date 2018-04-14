@@ -1,41 +1,39 @@
 <div role="listitem" class="flex-item">
   <div class="article-info">
     <div>
-      <img class="article-img" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" />
+      <img class="article-img" src="{{basketArticle.article.photo}}" alt="article photo" />
     </div>
 
     <div class="text-container">
-      <h3>Some Product Name</h3>
-      <h5>Some producSome producSome producSome producSome producSome producSomeSome producSome producSome producSome producSome
-        producSome producSomeSome producSome producSome producSome producSome producSome producSomeSome producSome producSome
-        producSome producSome producSome producSome</h5>
+      <h3>{{basketArticle.article.name}}</h3>
+      <h5>{{basketArticle.article.description}}</h5>
     </div>
   </div>
 
-
   <div class="article-controls">
     <div class="quantity-col">
-      <strong>25.00
+      <strong>{{basketArticle.article.price - (basketArticle.article.price * (basketArticle.article.status.discount / 100)) | number:'1.2'}}
+        <span matSuffix>лв.</span>
         <span class="text-muted">x</span>
       </strong>
     </div>
 
     <div class="quantity-col">
-      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank" (click)="increaseQuantity()">
         <mat-icon>add</mat-icon>
       </button>
 
       <mat-form-field class="quantity-field">
-        <input matInput placeholder="1" disabled/>
+        <input matInput placeholder="{{basketArticle.quantity}}" disabled/>
       </mat-form-field>
 
-      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank" [disabled]="basketArticle.quantity <= 1" (click)="decreaseQuantity()">
         <mat-icon>remove</mat-icon>
       </button>
     </div>
 
     <div class="quantity-col">
-      <button mat-mini-fab ng-href="www.ad.bg" target="_blank">
+      <button mat-mini-fab ng-href="www.ad.bg" target="_blank" (click)="removeArticle()">
         <mat-icon>delete</mat-icon>
       </button>
     </div>

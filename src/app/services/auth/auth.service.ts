@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app-state';
 import { LoginUserAction, RegisterUserAction, LogoutUserAction } from '../../store/user/user-actions';
 import { RequestOptions } from '@angular/http';
+import { BasketService } from '../basket/basket.service';
 
 
 @Injectable()
@@ -19,7 +20,9 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private toastr: ToastrService,
-    public store: Store<AppState>) {
+    public store: Store<AppState>,
+    public basketService: BasketService  
+  ) {
   }
 
   public createAccount(user: RegisterUser) {
@@ -40,6 +43,7 @@ export class AuthService {
     this.http.post(AppComponent.API_URL + "/auth/login", user, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
+        this.basketService.getBasketByUserId(respObject.response.id);
         this.store.dispatch(new LoginUserAction(respObject.response));
         sessionStorage.setItem('isAdmin', (respObject.response.authorities.indexOf('ROLE_ADMIN') > -1) + "");
       },

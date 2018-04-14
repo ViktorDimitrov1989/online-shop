@@ -1,0 +1,16 @@
+.content{
+    margin: 25px;
+    min-height: 83%;
+    overflow: hidden;
+    position: relative;
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: center; */
+}
+
+.app{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}

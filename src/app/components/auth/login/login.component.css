@@ -4,6 +4,14 @@
     background-color: beige;
     border-radius: 3px;
     padding: 4em;
+
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
   }
 
   .myForm > div{
@@ -12,7 +20,7 @@
   
   .row {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
   }
   .column {
     display: flex;
@@ -43,4 +51,8 @@
   .taxi > label,
   .extras > label {
     display: block;
+  }
+
+  .example-full-width{
+    min-width: 350px;
   }

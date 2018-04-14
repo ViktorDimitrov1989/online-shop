@@ -1,36 +1,38 @@
-<form class="myForm">
-  <h2 class="row">Създаване на бранд</h2>
-  <div class="row">
+<div class="form-container">
+  <form class="myForm">
+    <h2 class="row">Създаване на бранд</h2>
+    <div class="row">
 
-    <div class="column">
-      <mat-form-field>
-        <input class="input" matInput placeholder="Име" name="name" [(ngModel)]="brand.name" [formControl]="nameFormControl" [errorStateMatcher]="matcher">
-        <mat-error *ngIf="nameFormControl.hasError('required')">
-          Името е
-          <strong>задължително</strong>
-        </mat-error>
-        <mat-hint>Задължително поле</mat-hint>
-      </mat-form-field>
+      <div class="column">
+        <mat-form-field>
+          <input class="input" matInput placeholder="Име" name="name" [(ngModel)]="brand.name" [formControl]="nameFormControl" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="nameFormControl.hasError('required')">
+            Името е
+            <strong>задължително</strong>
+          </mat-error>
+          <mat-hint>Задължително поле</mat-hint>
+        </mat-form-field>
 
-      <mat-form-field class="textArea">
-        <textarea matInput #info placeholder="Информация" rows="2" name="description" [(ngModel)]="brand.description" [formControl]="descriptionFormControl"
-          [errorStateMatcher]="matcher"></textarea>
-        <mat-error *ngIf="descriptionFormControl.hasError('minlength') && !descriptionFormControl.hasError('required')">
-          Описанието трябва да е дълго минимум 35 символа.
-        </mat-error>
-        <mat-error *ngIf="descriptionFormControl.hasError('required')">
-          Описанието е
-          <strong>задължително</strong>
-        </mat-error>
-        <mat-hint>Задължително поле</mat-hint>
-      </mat-form-field>
+        <mat-form-field class="textArea">
+          <textarea matInput #info placeholder="Информация" rows="2" name="description" [(ngModel)]="brand.description" [formControl]="descriptionFormControl"
+            [errorStateMatcher]="matcher"></textarea>
+          <mat-error *ngIf="descriptionFormControl.hasError('minlength') && !descriptionFormControl.hasError('required')">
+            Описанието трябва да е дълго минимум 35 символа.
+          </mat-error>
+          <mat-error *ngIf="descriptionFormControl.hasError('required')">
+            Описанието е
+            <strong>задължително</strong>
+          </mat-error>
+          <mat-hint>Задължително поле</mat-hint>
+        </mat-form-field>
+
+      </div>
 
     </div>
 
-  </div>
+    <div class="row">
+      <button mat-button type="submit" (click)="confirmCreation()">Създай Бранд</button>
+    </div>
 
-  <div class="row">
-    <button mat-button type="submit" (click)="confirmCreation()">Създай Бранд</button>
-  </div>
-
-</form>
+  </form>
+</div>

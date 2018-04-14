@@ -4,7 +4,11 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>  
+
+<body class="app">
   <app-header></app-header>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
   <app-footer></app-footer>
 </body>

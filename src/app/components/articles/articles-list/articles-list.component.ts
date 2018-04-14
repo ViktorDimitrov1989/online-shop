@@ -64,7 +64,8 @@ export class ArticlesListComponent implements OnInit {
       .subscribe(data => {
         if (data.content) {
           this.articlesList = data.content;
-          this.articlesLength = this.articlesList.length;
+          console.log(data);
+          this.articlesLength = data.totalElements;
         }
 
       });
@@ -91,8 +92,8 @@ export class ArticlesListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.chosenGender = this.route.snapshot.params.gender;
-    this.chosenSeason = this.route.snapshot.params.season;
+    this.chosenGender = this.route.snapshot.params.gender.toUpperCase();
+    this.chosenSeason = this.route.snapshot.params.season.toUpperCase();
     this.articleService.getArticleOptions();
     this.onFilterChange();
   }

@@ -28,14 +28,12 @@ export class ArticleComponent implements OnInit {
     public basketService: BasketService
   ) {
     this.isAdmin = sessionStorage.getItem('isAdmin') == 'true';
-
-    this.hookToTheState();
   }
 
   hookToTheState() {
     this.store.select(state => state.userState.loggedUser)
       .subscribe(data => {
-        if (data) {
+        if (data.id) {
           this.loggedUser = data;
         }
       });
@@ -43,15 +41,14 @@ export class ArticleComponent implements OnInit {
     this.store.select(state => state.basketState.loggedUserBasket)
       .subscribe(data => {
         if (data) {
+          //console.log(data)
           this.loggedUserBasket = data;
         }
       });
   }
 
   ngOnInit() {
-    if(!this.loggedUserBasket){
-      this.basketService.getBasketByUserId(this.loggedUser.id);
-    }
+    this.hookToTheState();
   }
 
   viewDetails() {

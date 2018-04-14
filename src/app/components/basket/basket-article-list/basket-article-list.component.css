@@ -3,6 +3,7 @@
     background-color: tomato;
     margin-bottom: 30px;
     max-height: 50px;
+    height: 100%;
 }
 
 .flex-container{

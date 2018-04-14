@@ -4,6 +4,20 @@
     background-color: beige;
     border-radius: 3px;
     padding: 4em;
+    height: 100%;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container{
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
 }
   
 .myForm > div{
@@ -20,6 +34,7 @@
     justify-content: space-around;
     padding: 1em;
     flex-basis: 30%;
+    min-width: 350px;
 }
 .input-group {
      display: flex;

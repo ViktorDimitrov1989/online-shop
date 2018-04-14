@@ -1,72 +1,74 @@
-<form class="myForm">
-  <h2 class="row">Създаване на категория</h2>
-  <div class="row">
+<div class="form-container">
+  <form class="myForm">
+    <h2 class="row">Създаване на категория</h2>
+    <div class="row">
 
-    <div class="column">
-      <mat-form-field>
-        <input class="input" matInput placeholder="Име" name="displayName" [(ngModel)]="category.name" [formControl]="nameFormControl"
-          [errorStateMatcher]="matcher">
-        <mat-error *ngIf="nameFormControl.hasError('required')">
-          Полето е
-          <strong>задължително</strong>
-        </mat-error>
-        <mat-hint>Задължително поле</mat-hint>
-      </mat-form-field>
+      <div class="column">
+        <mat-form-field>
+          <input class="input" matInput placeholder="Име" name="displayName" [(ngModel)]="category.name" [formControl]="nameFormControl"
+            [errorStateMatcher]="matcher">
+          <mat-error *ngIf="nameFormControl.hasError('required')">
+            Полето е
+            <strong>задължително</strong>
+          </mat-error>
+          <mat-hint>Задължително поле</mat-hint>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input class="input" type="number" matInput placeholder="Минимална възраст" name="minAge" [(ngModel)]="category.minAge" [formControl]="minAgeFormControl"
-          [errorStateMatcher]="matcher">
-        <mat-error *ngIf="minAgeFormControl.hasError('min') && !minAgeFormControl.hasError('required')">
-          Минималната възраст трябва да е по-голяма или равна на 0
-        </mat-error>
-        <mat-error *ngIf="minAgeFormControl.hasError('required')">
-          Минималната възраст е
-          <strong>задължителна</strong>
-        </mat-error>
-        <mat-hint>Задължително поле</mat-hint>
-      </mat-form-field>
+        <mat-form-field>
+          <input class="input" type="number" matInput placeholder="Минимална възраст" name="minAge" [(ngModel)]="category.minAge" [formControl]="minAgeFormControl"
+            [errorStateMatcher]="matcher">
+          <mat-error *ngIf="minAgeFormControl.hasError('min') && !minAgeFormControl.hasError('required')">
+            Минималната възраст трябва да е по-голяма или равна на 0
+          </mat-error>
+          <mat-error *ngIf="minAgeFormControl.hasError('required')">
+            Минималната възраст е
+            <strong>задължителна</strong>
+          </mat-error>
+          <mat-hint>Задължително поле</mat-hint>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input class="input" type="number" matInput placeholder="Максимална възраст" name="maxAge" [(ngModel)]="category.maxAge"
-          [formControl]="maxAgeFormControl" [errorStateMatcher]="matcher">
-        <mat-error *ngIf="maxAgeFormControl.hasError('required')">
-          Максималната възраст е
-          <strong>задължителна</strong>
-        </mat-error>
-        <div class="err" *ngIf="!isMaxAgeCorrect">
-          Максималната възраст трябва да е по-голяма от минималната
+        <mat-form-field>
+          <input class="input" type="number" matInput placeholder="Максимална възраст" name="maxAge" [(ngModel)]="category.maxAge"
+            [formControl]="maxAgeFormControl" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="maxAgeFormControl.hasError('required')">
+            Максималната възраст е
+            <strong>задължителна</strong>
+          </mat-error>
+          <div class="err" *ngIf="!isMaxAgeCorrect">
+            Максималната възраст трябва да е по-голяма от минималната
+          </div>
+          <mat-hint>Задължително поле</mat-hint>
+        </mat-form-field>
+
+        <div>
+          <p>Пол:</p>
+          <mat-radio-group [(ngModel)]="category.gender" [formControl]="genderFormControl">
+            <mat-radio-button value="GIRLS">Момичета</mat-radio-button>
+            <mat-radio-button value="BOYS">Момчета</mat-radio-button>
+          </mat-radio-group>
+          <div class="err" *ngIf="!isGenderSelected">
+            Задължителен избор
+          </div>
         </div>
-        <mat-hint>Задължително поле</mat-hint>
-      </mat-form-field>
 
-      <div>
-        <p>Пол:</p>
-        <mat-radio-group [(ngModel)]="category.gender" [formControl]="genderFormControl">
-          <mat-radio-button value="GIRLS">Момичета</mat-radio-button>
-          <mat-radio-button value="BOYS">Момчета</mat-radio-button>
-        </mat-radio-group>
-        <div class="err" *ngIf="!isGenderSelected">
-          Задължителен избор
+        <div>
+          <p>Сезон:</p>
+          <mat-radio-group [(ngModel)]="category.season" [formControl]="sezonFormControl">
+            <mat-radio-button value="SPRING_SUMMER">Пролет-лято</mat-radio-button>
+            <mat-radio-button value="FALL_WINTER">Есен-зима</mat-radio-button>
+          </mat-radio-group>
+          <div class="err" *ngIf="!isSezonSelected">
+            Задължителен избор
+          </div>
         </div>
-      </div>
 
-      <div>
-        <p>Сезон:</p>
-        <mat-radio-group [(ngModel)]="category.season" [formControl]="sezonFormControl">
-          <mat-radio-button value="SPRING_SUMMER">Пролет-лято</mat-radio-button>
-          <mat-radio-button value="FALL_WINTER">Есен-зима</mat-radio-button>
-        </mat-radio-group>
-        <div class="err" *ngIf="!isSezonSelected">
-          Задължителен избор
-        </div>
       </div>
 
     </div>
 
-  </div>
+    <div class="row">
+      <button mat-button type="submit" (click)="confirmCreation()">Създай Категория</button>
+    </div>
 
-  <div class="row">
-    <button mat-button type="submit" (click)="confirmCreation()">Създай Категория</button>
-  </div>
-
-</form>
+  </form>
+</div>

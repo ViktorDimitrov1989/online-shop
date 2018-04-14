@@ -1,16 +1,17 @@
-<mat-toolbar class="list-header">
-  <div>
-    <button class="mat-elevation-z2 btn" mat-button routerLink="/">
-      Продължи с пазаруването
-    </button>
-  </div>
-</mat-toolbar>
-<mat-list role="list" class="flex-container">
+<div *ngIf="hasArticles">
+  <mat-toolbar class="list-header">
+    <div>
+      <button class="mat-elevation-z2 btn" mat-button [matMenuTriggerFor]="genders">
+        Продължи с пазаруването
+      </button>
+    </div>
+  </mat-toolbar>
+  <mat-list role="list" class="flex-container">
+    <app-basket-article *ngFor="let basketArticle of loggedUserBasket.articles" [basketArticle]="basketArticle"></app-basket-article>
+  </mat-list>
 
-</mat-list>
-
-<mat-toolbar style="height:auto; align-items: unset;" class="list-footer">
-  <!-- <div class="discount-info">
+  <mat-toolbar style="height:auto; align-items: unset;" class="list-footer">
+    <!-- <div class="discount-info">
     <mat-form-field class="example-full-width">
       <input class="input" matInput placeholder="Код за отстъпка" name="loyaltyCode">
     </mat-form-field>
@@ -18,13 +19,37 @@
       Ползвай намаление
     </button>
   </div> -->
-  <div class="price-info">
-    <div class="price">
-      Крайна цена:
-      <b>50.00лв.</b>
+    <div class="price-info">
+      <div class="price">
+        Крайна цена:
+        <b>{{overallPrice | number:'1.2'}}лв.</b>
+      </div>
+      <button class="mat-elevation-z2 btn" mat-button (click)="clearBasket()">
+        Плати
+      </button>
     </div>
-    <button class="mat-elevation-z2 btn" mat-button routerLink="/">
-      Плати
-    </button>
-  </div>
-</mat-toolbar>
+  </mat-toolbar>
+</div>
+
+<div *ngIf="!hasArticles">
+  <h1>Няма артикули в количката</h1>
+</div>
+
+<!-- shop categories -->
+<!-- gender categories -->
+<mat-menu [overlapTrigger]="false" #genders="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="boysSesons">Момчета</button>
+  <button mat-menu-item [matMenuTriggerFor]="girlsSesons">Момичета</button>
+</mat-menu>
+
+<!-- seson categories -->
+<mat-menu #boysSesons="matMenu">
+  <button mat-menu-item routerLink="/articles/boys/spring_summer">Пролет-лято</button>
+  <button mat-menu-item routerLink="/articles/boys/fall_winter">Есен-Зима</button>
+</mat-menu>
+
+<!-- seson categories -->
+<mat-menu #girlsSesons="matMenu">
+  <button mat-menu-item routerLink="/articles/girls/spring_summer">Пролет-лято</button>
+  <button mat-menu-item routerLink="/articles/girls/fall_winter">Есен-Зима</button>
+</mat-menu>

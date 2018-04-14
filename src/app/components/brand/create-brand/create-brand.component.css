@@ -4,8 +4,26 @@
     background-color: #D7E8D4;
     border-radius: 3px;
     padding: 4em;
+    height: 100%;
+
+    align-items: center;
+    justify-content: center;
 }
-  
+
+.mat-form-field{
+    min-width: 350px;
+}
+
+.form-container{
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+}
+
 .myForm > div{
     padding: 15px;
 }
