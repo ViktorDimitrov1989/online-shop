@@ -59,7 +59,7 @@ hr{
 
 .list-footer{
   border-radius: 3px;
-  background: lightgray;
+  background: tomato;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -70,6 +70,7 @@ hr{
     flex-direction: column;
     display: flex;
     justify-content: space-around;
+    margin: 7px;
 }
 
 .discount-info{
@@ -80,6 +81,7 @@ hr{
 .btn{
     background: #3F51B5;
     color: white;
+    margin: 7px;
 }
 
 .list-header{
