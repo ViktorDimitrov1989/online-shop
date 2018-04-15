@@ -3,7 +3,6 @@
     flex-direction: column;
     background-color: bisque;
     border-radius: 3px;
-    padding: 4em;
     height: 100%;
 }
 
@@ -11,7 +10,7 @@
     align-items: center;
     justify-content: center;
 
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     right: 0;
     height: 100%;

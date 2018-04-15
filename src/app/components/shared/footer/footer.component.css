@@ -28,3 +28,8 @@ header, section, footer {
   footer {
     background-color: #3F51B5;
   }
+
+  .footer{
+      display: flex;
+      justify-content: center;
+  }

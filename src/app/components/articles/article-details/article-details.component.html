@@ -22,15 +22,21 @@
         </div>
         <div class="info">
           <p>размер:</p>
-          <mat-radio-group class="radio" name="chosenSize" [(ngModel)]="chosenSize">
+          <mat-radio-group class="radio" name="chosenSize" [(ngModel)]="chosenSize" [formControl]="sizesFormControl">
             <mat-radio-button *ngFor="let size of article.sizes" value="{{size}}">{{size}}</mat-radio-button>
           </mat-radio-group>
+          <div class="warning" *ngIf="!isSizeSelected">
+            Задължителен избор
+          </div>
         </div>
         <div class="info">
           <p>цвят:</p>
-          <mat-radio-group class="radio" name="chosenColor" [(ngModel)]="chosenColor">
+          <mat-radio-group class="radio" name="chosenColor" [(ngModel)]="chosenColor" [formControl]="colorsFormControl">
             <mat-radio-button *ngFor="let color of article.colors" value="{{color}}">{{color}}</mat-radio-button>
           </mat-radio-group>
+          <div class="warning" *ngIf="!isColorSelected">
+            Задължителен избор
+          </div>
         </div>
         <div class="info">
           <button mat-button class="mat-raised-button" color="accent" *ngIf="article.status.available" (click)="addArticleToTheBasket()">
