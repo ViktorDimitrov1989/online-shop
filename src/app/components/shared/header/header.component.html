@@ -4,16 +4,16 @@
     <button class="mat-elevation-z2" mat-button routerLink="/">
       <mat-icon>home</mat-icon>
     </button>
-    <button class="mat-elevation-z2" mat-button [matMenuTriggerFor]="genders">
+    <button class="mat-elevation-z2" mat-button [matMenuTriggerFor]="genders" *ngIf="isLogged">
       <mat-icon>store</mat-icon>
       Магазин</button>
-    <button class="mat-elevation-z2" mat-button routerLink="/basket">
+    <button class="mat-elevation-z2" mat-button routerLink="/basket" *ngIf="!isAdmin && isLogged">
       <mat-icon>shopping_basket</mat-icon>
       Кошница</button>
-    <button class="mat-elevation-z2" mat-button routerLink="/users">
+    <button class="mat-elevation-z2" mat-button routerLink="/users" *ngIf="isAdmin && isLogged">
       <mat-icon>group</mat-icon>
       Потребители</button>
-    <button class="mat-elevation-z2" mat-button [matMenuTriggerFor]="adminFunc">
+    <button class="mat-elevation-z2" mat-button [matMenuTriggerFor]="adminFunc" *ngIf="isAdmin && isLogged">
       <mat-icon>assignment</mat-icon>
       Мениджмънт</button>
   </div>

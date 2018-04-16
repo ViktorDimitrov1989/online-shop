@@ -11,57 +11,56 @@ import { CreateCategoryComponent } from '../components/category/create-category/
 import { CreateBrandComponent } from '../components/brand/create-brand/create-brand.component';
 import { BasketArticleComponent } from '../components/basket/basket-article/basket-article.component';
 import { BasketArticleListComponent } from '../components/basket/basket-article-list/basket-article-list.component';
+import { LoggedGuard } from './guards/logged.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: IndexComponent,
-    //canActivate: [NotAuthGuard]
+    component: IndexComponent
   },
   {
     path: 'login',
-    component: LoginComponent,
-    //canActivate: [NotAuthGuard]
+    component: LoginComponent
   },
   {
     path: 'register',
-    component: RegisterComponent,
-    //canActivate: [NotAuthGuard]
+    component: RegisterComponent
   },
   {
     path: 'cart',
     component: CartComponent,
-    //canActivate: [NotAuthGuard]
+    canActivate: [LoggedGuard]
   },
   {
     path: 'users',
     component: UsersListComponent,
-    //canActivate: [NotAuthGuard]
+    canActivate: [AdminGuard]
   },
   {
     path: 'basket',
     component: BasketArticleListComponent,
-    //canActivate: [NotAuthGuard]
+    canActivate: [LoggedGuard]
   },
   {
     path: 'articles/:gender/:season',
     component: ArticlesListComponent,
-    //canActivate: [NotAuthGuard]
+    canActivate: [LoggedGuard]
   },
   {
     path: 'article/create',
     component: CreateArticleComponent,
-    //canActivate: [NotAuthGuard]
+    canActivate: [AdminGuard]
   },
   {
     path: 'brand/create',
     component: CreateBrandComponent,
-    //canActivate: [NotAuthGuard]
+    canActivate: [AdminGuard]
   },
   {
     path: 'category/create',
     component: CreateCategoryComponent,
-    //canActivate: [NotAuthGuard]
+    canActivate: [AdminGuard]
   }
 ]
 

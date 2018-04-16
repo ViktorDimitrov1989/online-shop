@@ -13,7 +13,10 @@ import { AuthService } from '../../../services/auth/auth.service';
 export class HeaderComponent implements OnInit {
 
   public user: any;
+
   public isLogged: boolean;
+
+  public isAdmin: boolean;
 
   constructor(
     private store: Store<AppState>,
@@ -25,6 +28,10 @@ export class HeaderComponent implements OnInit {
 
     this.store.select(state => state.userState.authenticated).subscribe(value => {
       this.isLogged = value;
+    })
+
+    this.store.select(state => state.userState.isAdmin).subscribe(value => {
+      this.isAdmin = value;
     })
   }
 

@@ -54,6 +54,8 @@ import { EditStatusComponent } from './components/status/edit-status/edit-status
 import { EditArticleComponent } from './components/articles/edit-article/edit-article.component';
 import { DeleteArticleComponent } from './components/articles/delete-article/delete-article.component';
 import { BasketService } from './services/basket/basket.service';
+import { AdminGuard } from './routing/guards/admin.guard';
+import { LoggedGuard } from './routing/guards/logged.guard';
 
 @NgModule({
   declarations: [
@@ -106,7 +108,9 @@ import { BasketService } from './services/basket/basket.service';
     ArticleService,
     AuthService,
     UserService,
-    BasketService
+    BasketService,
+    LoggedGuard,
+    AdminGuard
   ],
   bootstrap: [AppComponent],
   entryComponents: [

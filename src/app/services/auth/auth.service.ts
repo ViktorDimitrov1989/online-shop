@@ -21,7 +21,7 @@ export class AuthService {
     private router: Router,
     private toastr: ToastrService,
     public store: Store<AppState>,
-    public basketService: BasketService  
+    public basketService: BasketService
   ) {
   }
 
@@ -44,8 +44,9 @@ export class AuthService {
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
         this.basketService.getBasketByUserId(respObject.response.id);
-        this.store.dispatch(new LoginUserAction(respObject.response));
+        this.store.dispatch(new LoginUserAction(respObject.response, this.checkAdmin(respObject.response.authorities)));
         sessionStorage.setItem('isAdmin', (respObject.response.authorities.indexOf('ROLE_ADMIN') > -1) + "");
+        this.router.navigate(['/']);
       },
         (err: any) => {
           this.toastr.error(err.error.message);
@@ -63,10 +64,10 @@ export class AuthService {
         (err: any) => {
           this.toastr.error(err.error.message);
         })
+  }
 
-    
-
-
+  private checkAdmin(roles: any): boolean {
+    return roles.indexOf('ROLE_ADMIN') > -1;
   }
 
 }

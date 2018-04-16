@@ -7,7 +7,8 @@ import LoginUser from '../../models/login-user';
 const initialState: UserState = {
     loggedUser: {},
     authenticated: false,
-    allUsers: []
+    allUsers: [],
+    isAdmin: false
 }
 
 export function userReducer(state = initialState, 
@@ -15,16 +16,16 @@ export function userReducer(state = initialState,
 
     switch(action.type) {
       case REGISTER_USER: {
-        return Object.assign({}, state, {loggedUser: action.user, authenticated: true});
+        return Object.assign({}, state, {loggedUser: action.user, authenticated: state.authenticated, isAdmin: state.isAdmin});
       }
       case LOGIN_USER: {
-        return Object.assign({}, state, {loggedUser: action.user, authenticated: true});
+        return Object.assign({}, state, {loggedUser: action.user, authenticated: true, isAdmin: action.isAdmin});
       }
       case LOGOUT_USER: {
-        return Object.assign({}, state, {authenticated: false, loggedUser: {}});
+        return Object.assign({}, state, {authenticated: false, loggedUser: {}, isAdmin: false});
       }
       case GET_USERS: {
-        return Object.assign({}, state, {authenticated: state.authenticated, loggedUser:state.loggedUser, allUsers: action.allUsers});
+        return Object.assign({}, state, {authenticated: state.authenticated, loggedUser:state.loggedUser, allUsers: action.allUsers, isAdmin: state.isAdmin});
       }
       default: {
         return state;

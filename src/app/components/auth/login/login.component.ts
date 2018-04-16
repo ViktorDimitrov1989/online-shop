@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatFormFieldControl, ErrorStateMatcher } from '@angular/material';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import LoginUser from '../../../models/login-user';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
@@ -18,16 +18,22 @@ export class LoginComponent implements OnInit {
 
   public user: LoginUser;
 
+  public loggedUser: any;
+
   private errorMessage: string;
 
   private authenticated: Observable<any>;
 
+  
+
   constructor(
-    public authService: AuthService, 
+    public authService: AuthService,
     public router: Router,
     private store: Store<AppState>
-  ) { 
-    this.authenticated = this.store.select(state => state.userState.authenticated);
+  ) {
+    this.authenticated = this.store.select(state => {
+      this.loggedUser = state.userState.loggedUser
+    });
 
     this.user = {
       email: '',
@@ -38,22 +44,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   login() {
     this.authService.logIn(this.user);
-
-    this.authenticated.subscribe((value) => {
-
-      if(value){
-        this.router.navigate(['/']);
-      }else{
-        this.user.password = '';
-      }
-
-    })
-
   }
 
 }

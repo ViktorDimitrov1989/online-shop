@@ -11,13 +11,13 @@ export const GET_USERS = 'user/ALL';
 export class RegisterUserAction implements Action {
     readonly type = REGISTER_USER;
 
-    constructor(public user: RegisterUser){}
+    constructor(public user: any){}
 }
   
 export class LoginUserAction implements Action {
     readonly type = LOGIN_USER;
   
-    constructor(public user: LoginUser) { }
+    constructor(public user: any, public isAdmin: boolean) { }
 } 
 
 export class LogoutUserAction implements Action {
