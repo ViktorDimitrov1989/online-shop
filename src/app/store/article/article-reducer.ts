@@ -1,6 +1,6 @@
 import { ArticleState } from "./article-state";
 
-import { CREATE_ARTICLE, GET_ARTICLES, GET_ARTICLE_OPTIONS, CREATE_BRAND, FILTER_ARTICLES, CreateArticleAction, GetArticlesAction, GetArticleOptions, CreateBrandAction, CreateCategoryAction, CREATE_CATEGORY, FilterArticlesAction} from "./article-actions";
+import { CREATE_ARTICLE, GET_ARTICLES, GET_ARTICLE_OPTIONS, CREATE_BRAND, FILTER_ARTICLES, GET_ADVERTS, CreateArticleAction, GetArticlesAction, GetArticleOptions, CreateBrandAction, CreateCategoryAction, CREATE_CATEGORY, FilterArticlesAction, GetAdvertsAction} from "./article-actions";
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 
 const initialState: ArticleState = {
@@ -11,11 +11,12 @@ const initialState: ArticleState = {
     categories: [],
     currentArticlesPage: 0,
     currentArticlesPageSize: 10,
-    currentArticlesFilters: {}
+    currentArticlesFilters: {},
+    adverts: []
 }
 
 export function articleReducer(state = initialState, 
-    action: CreateArticleAction | GetArticlesAction | GetArticleOptions | CreateBrandAction | CreateCategoryAction | FilterArticlesAction): ArticleState {
+    action: CreateArticleAction | GetArticlesAction | GetArticleOptions | CreateBrandAction | CreateCategoryAction | FilterArticlesAction | GetAdvertsAction): ArticleState {
   
       switch(action.type) {
         case CREATE_ARTICLE: {
@@ -30,7 +31,8 @@ export function articleReducer(state = initialState,
             categories: state.categories,
             currentArticlesPage: state.currentArticlesPage,
             currentArticlesSize: state.currentArticlesPageSize,
-            currentArticlesFilters: state.currentArticlesFilters
+            currentArticlesFilters: state.currentArticlesFilters,
+            adverts: state.adverts
           });
         }
         case GET_ARTICLE_OPTIONS:{
@@ -42,7 +44,8 @@ export function articleReducer(state = initialState,
             categories: action.categories,
             currentArticlesPage: state.currentArticlesPage,
             currentArticlesSize: state.currentArticlesPageSize,
-            currentArticlesFilters: state.currentArticlesFilters
+            currentArticlesFilters: state.currentArticlesFilters,
+            adverts: state.adverts
           })
         }
         case CREATE_BRAND:{
@@ -54,7 +57,8 @@ export function articleReducer(state = initialState,
             categories: state.categories,
             currentArticlesPage: state.currentArticlesPage,
             currentArticlesSize: state.currentArticlesPageSize,
-            currentArticlesFilters: state.currentArticlesFilters
+            currentArticlesFilters: state.currentArticlesFilters,
+            adverts: state.adverts
           })
         }
         case CREATE_CATEGORY:{
@@ -66,7 +70,8 @@ export function articleReducer(state = initialState,
             categories: [...state.categories, action.category],
             currentArticlesPage: state.currentArticlesPage,
             currentArticlesSize: state.currentArticlesPageSize,
-            currentArticlesFilters: state.currentArticlesFilters
+            currentArticlesFilters: state.currentArticlesFilters,
+            adverts: state.adverts
           })
         }
         case FILTER_ARTICLES:{
@@ -78,7 +83,21 @@ export function articleReducer(state = initialState,
             categories: state.categories,
             currentArticlesPage: action.page,
             currentArticlesPageSize: action.size,
-            currentArticlesFilters: action.filters
+            currentArticlesFilters: action.filters,
+            adverts: state.adverts
+          })
+        }
+        case GET_ADVERTS:{
+          return Object.assign({}, state, {
+            allArticles: state.allArticles, 
+            brands: state.brands, 
+            colors: state.colors, 
+            sizes: state.sizes, 
+            categories: state.categories,
+            currentArticlesPage: state.currentArticlesPage,
+            currentArticlesSize: state.currentArticlesPageSize,
+            currentArticlesFilters: state.currentArticlesFilters,
+            adverts: action.adverts
           })
         }
         default: {

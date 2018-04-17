@@ -5,7 +5,7 @@ import { ToastrService } from "ngx-toastr";
 import { Store } from "@ngrx/store";
 import { AppState } from "../../store/app-state";
 import { AppComponent } from "../../app.component";
-import { CreateArticleAction, GetArticleOptions, CreateBrandAction, GetArticlesAction, CreateCategoryAction, FilterArticlesAction } from "../../store/article/article-actions";
+import { CreateArticleAction, GetArticleOptions, CreateBrandAction, GetArticlesAction, CreateCategoryAction, FilterArticlesAction, GetAdvertsAction } from "../../store/article/article-actions";
 import CreateArticle from "../../models/create-article";
 import { CreateBrand } from "../../models/create-brand";
 import { CreateCategory } from "../../models/create-category";
@@ -169,6 +169,16 @@ export class ArticleService {
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
         this.filterArticles(this.currentArticlesPage, this.currentArticlePageSize, this.articlesFilters);
+      },
+        (err: any) => {
+          this.toastr.error(err.error.message);
+        })
+  }
+
+  getAdverts() {
+    this.http.get(AppComponent.API_URL + "/unAuth/adverts/")
+      .subscribe((respObject: any) => {
+        this.store.dispatch(new GetAdvertsAction(respObject.response))
       },
         (err: any) => {
           this.toastr.error(err.error.message);

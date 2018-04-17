@@ -6,5 +6,6 @@ export interface ArticleState{
     categories: any,
     currentArticlesPage: number,
     currentArticlesPageSize: number,
-    currentArticlesFilters: any
+    currentArticlesFilters: any,
+    adverts: any[]
 }

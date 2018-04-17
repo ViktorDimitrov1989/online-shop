@@ -30,6 +30,7 @@ export class AuthService {
     this.http.post(AppComponent.API_URL + '/auth/register', user)
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
+        this.router.navigate(['/login']);
         this.store.dispatch(new RegisterUserAction(respObject.response))
       },
         err => {

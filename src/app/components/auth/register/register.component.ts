@@ -116,14 +116,14 @@ export class RegisterComponent implements OnInit {
   public register() {
     this.authService.createAccount(this.user);
 
-    this.authenticated.subscribe((value) => {
-      if(value){
-        this.router.navigate(['/login']);
-      }else{
-        this.user.password = '';
-        this.user.confirmPassword = '';
-      }
-    });
+    // this.authenticated.subscribe((value) => {
+    //   if(value){
+        
+    //   }else{
+    //     this.user.password = '';
+    //     this.user.confirmPassword = '';
+    //   }
+    // });
       
   }
 

@@ -6,6 +6,7 @@ export const GET_ARTICLE_OPTIONS = 'article/OPTIONS';
 export const CREATE_BRAND = "article/CREATE_BRAND";
 export const CREATE_CATEGORY = "article/CREATE_CATEGORY";
 export const FILTER_ARTICLES = "article/FILTER";
+export const GET_ADVERTS = 'article/GET_ADVERTS';
 
 export class CreateArticleAction implements Action {
     readonly type = CREATE_ARTICLE;
@@ -44,8 +45,11 @@ export class FilterArticlesAction implements Action {
     constructor(public allArticles: any[], public page, public size, public filters){};
 }
 
+export class GetAdvertsAction implements Action {
+    readonly type = GET_ADVERTS;
 
-
+    constructor(public adverts: any[]) { }
+}
 
 
 
