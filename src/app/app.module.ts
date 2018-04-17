@@ -56,6 +56,8 @@ import { DeleteArticleComponent } from './components/articles/delete-article/del
 import { BasketService } from './services/basket/basket.service';
 import { AdminGuard } from './routing/guards/admin.guard';
 import { LoggedGuard } from './routing/guards/logged.guard';
+import { AdvertListComponent } from './components/home/advert-list/advert-list.component';
+import { AdvertComponent } from './components/home/advert/advert.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +85,9 @@ import { LoggedGuard } from './routing/guards/logged.guard';
     BasketArticleComponent,
     EditStatusComponent,
     EditArticleComponent,
-    DeleteArticleComponent
+    DeleteArticleComponent,
+    AdvertListComponent,
+    AdvertComponent
   ],
   imports: [
     BrowserModule,
