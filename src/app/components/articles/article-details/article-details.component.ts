@@ -32,6 +32,8 @@ export class ArticleDetailsComponent implements OnInit {
   public chosenSize: string;
   public isSizeSelected: boolean;
   public isColorSelected: boolean;
+  public isAuthenticated: boolean;
+
 
   private basketId: any;
 
@@ -45,10 +47,10 @@ export class ArticleDetailsComponent implements OnInit {
   ) {
     this.article = data.article;
     this.basketId = data.shoppingCartId;
-    console.log(data);
+
+    this.store.select(state => state.userState.authenticated).subscribe(data => this.isAuthenticated = data);
 
     this.sizesFormControl.valueChanges.subscribe(data => {
-      console.log(data);
       if (data) {
         this.isSizeSelected = true;
       } else {
@@ -57,7 +59,6 @@ export class ArticleDetailsComponent implements OnInit {
     })
 
     this.colorsFormControl.valueChanges.subscribe(data => {
-      console.log(data);
       if (data) {
         this.isColorSelected = true;
       } else {
@@ -70,6 +71,10 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
   addArticleToTheBasket() {
+
+    if(!this.isAuthenticated){
+      this.toastr.error('Не сте автентикиран за тази функцоналност!');
+    }
 
     if (!this.createArticleForm.valid) {
       this.toastr.error('Не всички задължителни полета са попълнени!');

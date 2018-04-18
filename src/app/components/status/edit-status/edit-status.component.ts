@@ -22,17 +22,15 @@ export class EditStatusComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.status);
   }
 
   confirmEdit() {
-    console.log(this.status);
     this.articleService.editArticleStatus(this.status);
     this.hideModal();
   }
 
   getDate(): Date {
-    if (typeof this.status.expireDate.getMonth != 'function') {
+    if (this.status.expireDate && typeof this.status.expireDate.getMonth != 'function') {
       let tokens = this.status.expireDate.split('-');
 
       let year = tokens[0];

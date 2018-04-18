@@ -17,7 +17,6 @@ export class AdvertListComponent implements OnInit {
     private articleService: ArticleService
   ) {
     this.store.select(store => store.articleState.adverts).subscribe(data => {
-      console.log(data);
       this.adverts = data;
     })
   }

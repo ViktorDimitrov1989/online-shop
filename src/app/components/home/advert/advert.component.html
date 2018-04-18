@@ -1,4 +1,4 @@
-<div class="card" *ngIf="advert">
+<div class="card" *ngIf="advert" (click)="showDetails()">
   <div class="thumb" [style.background-image]="getBackground(advert.photo)"></div>
   <article>
     <h1 class="text">{{advert.name}}</h1>

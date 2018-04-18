@@ -17,14 +17,14 @@ body {
 #main > nav, 
 #main > aside {
     flex: 0 0 20vw;
-    background: beige;
+    /* background: beige; */
 }
 #main > nav {
     order: -1;
 }
 header, footer {
     /* background: #3F51B5; */
-    background: bisque;
+    /* background: bisque; */
     border-radius: 3px;
     height: 20vh;
 }
@@ -55,5 +55,9 @@ header, footer, article, nav, aside {
     display: flex;
     margin-bottom: 15px;
     margin-top: 15px;
+    justify-content: center;
+}
+
+.nav{
     justify-content: center;
 }
