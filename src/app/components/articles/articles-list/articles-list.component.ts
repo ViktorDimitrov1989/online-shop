@@ -51,6 +51,7 @@ export class ArticlesListComponent implements OnInit {
 
         this.chosenGender = tokens[2].toUpperCase();
         this.chosenSeason = tokens[3].toUpperCase();
+        this.articleService.getArticleOptions(this.chosenSeason, this.chosenGender, false);
         this.onFilterChange();
       }
 
@@ -94,7 +95,7 @@ export class ArticlesListComponent implements OnInit {
   ngOnInit() {
     this.chosenGender = this.route.snapshot.params.gender.toUpperCase();
     this.chosenSeason = this.route.snapshot.params.season.toUpperCase();
-    this.articleService.getArticleOptions();
+    this.articleService.getArticleOptions(this.chosenSeason, this.chosenGender, false);
     this.onFilterChange();
   }
 

@@ -198,7 +198,7 @@ export class CreateArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.articleService.getArticleOptions();
+    this.articleService.getArticleOptions('FALL_WINTER', 'GIRLS', true);
   }
 
   confirmCreation() {

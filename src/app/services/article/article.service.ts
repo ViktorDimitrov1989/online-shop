@@ -45,8 +45,12 @@ export class ArticleService {
       })
   }
 
-  getArticleOptions() {
-    this.http.get(AppComponent.API_URL + "/article/options", { withCredentials: true })
+  getArticleOptions(chosenSeason: string, chosenGender: string, allFlag: boolean) {
+    this.http.post(AppComponent.API_URL + `/article/options`, {
+      gender: chosenGender,
+      season: chosenSeason,
+      all: allFlag
+    } ,{ withCredentials: true })
       .subscribe((respObject: any) => {
         let colors = respObject.response.colors;
         let sizes = respObject.response.sizes;
