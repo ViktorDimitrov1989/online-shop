@@ -33,7 +33,7 @@ export class ArticleDetailsComponent implements OnInit {
   public isSizeSelected: boolean;
   public isColorSelected: boolean;
   public isAuthenticated: boolean;
-
+  public isAdmin: boolean;
 
   private basketId: any;
 
@@ -45,10 +45,13 @@ export class ArticleDetailsComponent implements OnInit {
     public router: Router,
     public toastr: ToastrService
   ) {
+    console.log(data);
     this.article = data.article;
     this.basketId = data.shoppingCartId;
 
-    this.store.select(state => state.userState.authenticated).subscribe(data => this.isAuthenticated = data);
+    
+
+    this.store.select(state => state.userState.isAdmin).subscribe(data => this.isAdmin = data);
 
     this.sizesFormControl.valueChanges.subscribe(data => {
       if (data) {
@@ -68,6 +71,8 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.select(state => state.userState.authenticated).subscribe(data => this.isAuthenticated = data);
+
   }
 
   addArticleToTheBasket() {

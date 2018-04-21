@@ -42,17 +42,17 @@
   <button mat-menu-item class="mat-elevation-z2" routerLink="/">
     <mat-icon>home</mat-icon>
   </button>
-  <button mat-menu-item class="mat-elevation-z2" [matMenuTriggerFor]="genders">
+  <button *ngIf="isLogged" mat-menu-item class="mat-elevation-z2" [matMenuTriggerFor]="genders">
     <mat-icon>store</mat-icon>
     Магазин</button>
-  <button mat-menu-item class="mat-elevation-z2" routerLink="/basket">
+  <button *ngIf="isLogged && !isAdmin" mat-menu-item class="mat-elevation-z2" routerLink="/basket">
     <mat-icon>shopping_basket</mat-icon>
     Кошница</button>
-  <button mat-menu-item class="mat-elevation-z2" routerLink="/users">
+  <button *ngIf="isLogged && isAdmin" mat-menu-item class="mat-elevation-z2" routerLink="/users">
     <mat-icon>group</mat-icon>
     Потребители</button>
 
-  <button mat-menu-item class="mat-elevation-z2" [matMenuTriggerFor]="adminFunc">
+  <button *ngIf="isLogged && isAdmin" mat-menu-item class="mat-elevation-z2" [matMenuTriggerFor]="adminFunc">
     <mat-icon>assignment</mat-icon>
     Мениджмънт</button>
 </mat-menu>

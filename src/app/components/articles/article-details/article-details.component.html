@@ -20,7 +20,7 @@
           <p>Цена:</p>
           <h3>{{article.price | number: '1.2'}} лв</h3>
         </div>
-        <div class="info" *ngIf="isAuthenticated">
+        <div class="info" *ngIf="isAuthenticated && article.status.available && !isAdmin">
           <p>размер:</p>
           <mat-radio-group class="radio" name="chosenSize" [(ngModel)]="chosenSize" [formControl]="sizesFormControl">
             <mat-radio-button *ngFor="let size of article.sizes" value="{{size}}">{{size}}</mat-radio-button>
@@ -29,7 +29,7 @@
             Задължителен избор
           </div>
         </div>
-        <div class="info" *ngIf="isAuthenticated">
+        <div class="info" *ngIf="isAuthenticated && article.status.available && !isAdmin">
           <p>цвят:</p>
           <mat-radio-group class="radio" name="chosenColor" [(ngModel)]="chosenColor" [formControl]="colorsFormControl">
             <mat-radio-button *ngFor="let color of article.colors" value="{{color}}">{{color}}</mat-radio-button>

@@ -79,6 +79,7 @@ export class ArticleService {
     this.http.post(AppComponent.API_URL + "/admin/article/create", data, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
+        this.router.navigateByUrl('/');
         this.store.dispatch(new CreateArticleAction(respObject));
       },
         (err: any) => {
@@ -90,6 +91,7 @@ export class ArticleService {
     this.http.post(AppComponent.API_URL + "/admin/brand/create", brand, { withCredentials: true })
       .subscribe((respObject: any) => {
         this.toastr.success(respObject.message);
+        this.router.navigateByUrl('/');
         this.store.dispatch(new CreateBrandAction(respObject.response));
       },
         (err: any) => {
@@ -100,8 +102,9 @@ export class ArticleService {
   createCategory(category: CreateCategory) {
     this.http.post(AppComponent.API_URL + "/admin/category/create", category, { withCredentials: true })
       .subscribe((respObject: any) => {
-        console.log(respObject)
+        //console.log(respObject)
         this.toastr.success(respObject.message);
+        this.router.navigateByUrl('/');
         this.store.dispatch(new CreateCategoryAction(respObject.response));
       },
         (err: any) => {
