@@ -59,6 +59,8 @@ import { LoggedGuard } from './routing/guards/logged.guard';
 import { AdvertListComponent } from './components/home/advert-list/advert-list.component';
 import { AdvertComponent } from './components/home/advert/advert.component';
 
+import { ViewEncapsulation } from '@angular/compiler/src/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,6 +107,7 @@ import { AdvertComponent } from './components/home/advert/advert.component';
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
+    
     
   ],
   providers: [

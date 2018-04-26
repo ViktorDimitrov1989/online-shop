@@ -13,12 +13,14 @@
 .example-sidenav {
     padding: 20px;
 }
+
 .cards {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     flex-direction: row;
     justify-content: space-around;
+    padding: 50px;
 }
 
 
@@ -38,4 +40,6 @@
     justify-content: space-around; 
 }
 
-
+.list-tool-bar{
+    background-color: tomato;
+}

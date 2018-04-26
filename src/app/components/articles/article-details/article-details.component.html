@@ -1,11 +1,10 @@
-<div class="container" *ngIf="article">
-  <mat-toolbar color="primary" class="row">
-    <h2 class="head-text">{{article.name}}</h2>
-  </mat-toolbar>
-
+<mat-toolbar color="primary" class="article-details-header">
+  <h2 class="head-text">{{article.name}}</h2>
+</mat-toolbar>
+<div class="article-details-container" *ngIf="article">
   <div class="row">
-    <div class="column image">
-      <img mat-card-image src="{{article.photo}}" class="img" alt="article photo" />
+    <div class="column article-details-image">
+      <img mat-card-image src="{{article.photo}}" class="article-details-img" alt="article photo" />
     </div>
     <div class="column details">
       <mat-list role="list" class="list">

@@ -45,7 +45,7 @@ header, footer, article, nav, aside {
     justify-content: center;
 }
 
-.container{
+.advert-container{
     display: flex;
     justify-content: center;
     align-content: center;

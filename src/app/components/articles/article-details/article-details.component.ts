@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app-state';
@@ -10,7 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-article-details',
   templateUrl: './article-details.component.html',
-  styleUrls: ['./article-details.component.css']
+  styleUrls: ['./article-details.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ArticleDetailsComponent implements OnInit {
 
